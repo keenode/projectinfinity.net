@@ -1,0 +1,13 @@
+.TitleBar {
+  padding: 10px 0;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  background-color: #1a1a1a;
+  cursor: default;
+  user-select: none;
+}
+
+.LayoutContainer {
+  border: 5px solid orange;
+}
