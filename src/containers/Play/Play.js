@@ -1,9 +1,9 @@
 import React from 'react'
 
-import './Play.css'
+import styles from './Play.css'
 
 const play = () => (
-  <div className="PageContainer">
+  <div className={styles.PageContainer}>
     <h1>Play</h1>
   </div>
 )

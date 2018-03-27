@@ -1,9 +1,9 @@
 import React from 'react'
 
-import './Home.css'
+import styles from './Home.css'
 
 const home = () => (
-  <div className="PageContainer">
+  <div className={styles.PageContainer}>
     <h1>Home</h1>
   </div>
 )
