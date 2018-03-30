@@ -24,7 +24,7 @@ class Play extends Component {
 
 const mapStateToProps = state => {
   return {
-    vitality: state.vitality
+    vitality: state.player.vitality
   }
 }
 
