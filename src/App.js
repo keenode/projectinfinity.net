@@ -5,13 +5,10 @@ import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home'
 import Play from './containers/Play/Play'
 
-import NavBar from './components/UI/NavBar/NavBar'
-
 class App extends Component {
   render() {
     return (
       <Layout>
-        <NavBar />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/play" component={Play} />

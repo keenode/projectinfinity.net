@@ -3,3 +3,8 @@
   color: white;
   padding: 15px;
 }
+
+.NavItem a.active {
+  color: cyan;
+  font-weight: 700;
+}
