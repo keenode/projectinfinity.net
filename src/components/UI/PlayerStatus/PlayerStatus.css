@@ -1,0 +1,22 @@
+.PlayerStatus {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  background-color: darkgrey;
+  padding: 20px;
+  z-index: 10;
+}
+
+.Avatar {
+  width: 80px;
+  height: 80px;
+  background-color: slateblue;
+}
+
+.PlayerStatus > span {
+  display: block;
+}
+
+.PlayerStatus b {
+  font-weight: 700;
+}

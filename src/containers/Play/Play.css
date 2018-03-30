@@ -1,4 +1,6 @@
 .PageContainer {
+  position: relative;
+  height: 80vh;
   padding: 30px;
-  background-color: green;
+  background-color: slategrey;
 }
