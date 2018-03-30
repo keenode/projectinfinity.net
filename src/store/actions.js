@@ -1,0 +1,2 @@
+export const ADD_VITALITY = 'ADD_VITALITY'
+export const SUB_VITALITY = 'SUB_VITALITY'
