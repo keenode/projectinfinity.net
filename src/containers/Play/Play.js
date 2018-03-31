@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Map from '../../components/World/Map/Map'
 import Button from '../../components/UI/Button/Button'
 import PlayerStatus from '../../components/UI/PlayerStatus/PlayerStatus'
 
@@ -12,6 +13,7 @@ class Play extends Component {
   render () {
     return (
         <div className={styles.PageContainer}>
+          <Map />
           <PlayerStatus vam={this.props.vam} />
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
