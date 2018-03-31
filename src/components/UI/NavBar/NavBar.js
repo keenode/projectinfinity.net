@@ -12,7 +12,7 @@ const navBar = () => (
     </ul>
     <ul className={styles.NavBarItems}>
       <NavItem link="/login">Login</NavItem>
-      <NavItem link="/sign-up">Sign Up</NavItem>
+      <NavItem link="/register">Register</NavItem>
     </ul>
   </nav>
 )
