@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 const SERVER_PORT = process.env.PORT || 9001
-const CLIENT_ORIGIN = 'http://localhost:3000'
+const CLIENT_ORIGIN = 'http://localhost:9000'
 
 // CORS Middleware
 app.use(function (req, res, next) {
