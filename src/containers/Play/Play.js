@@ -12,16 +12,13 @@ class Play extends Component {
   render () {
     return (
         <div className={styles.PageContainer}>
-          V: {this.props.vitality}<br />
-          A: {this.props.action}<br />
-          M: {this.props.mind}<br />
+          <PlayerStatus vam={this.props.vam} />
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
           <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button>
           <Button clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button><br />
           <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
           <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
-          <PlayerStatus />
       </div>
     )
   }
@@ -29,9 +26,14 @@ class Play extends Component {
 
 const mapStateToProps = state => {
   return {
-    vitality: state.player.vam.vitality,
-    action: state.player.vam.action,
-    mind: state.player.vam.mind
+    vam: {
+      vitality: state.player.vam.vitality,
+      maxVitality: state.player.vam.maxVitality,
+      action: state.player.vam.action,
+      maxAction: state.player.vam.maxAction,
+      mind: state.player.vam.mind,
+      maxMind: state.player.vam.maxMind
+    }
   }
 }
 
