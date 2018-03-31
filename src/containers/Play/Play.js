@@ -12,11 +12,16 @@ class Play extends Component {
   render () {
     return (
         <div className={styles.PageContainer}>
-          V: {this.props.vitality}
-          <Button clicked={this.props.onAddVitality}>+5 Vitality</Button>
-          <Button clicked={this.props.onSubVitality}>-5 Vitality</Button>
+          V: {this.props.vitality}<br />
+          A: {this.props.action}<br />
+          M: {this.props.mind}<br />
+          <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
+          <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
+          <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button>
+          <Button clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button><br />
+          <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
+          <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
           <PlayerStatus />
-          <h1>Play</h1>
       </div>
     )
   }
@@ -24,14 +29,17 @@ class Play extends Component {
 
 const mapStateToProps = state => {
   return {
-    vitality: state.player.vitality
+    vitality: state.player.vam.vitality,
+    action: state.player.vam.action,
+    mind: state.player.vam.mind
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddVitality: () => dispatch({ type: actionTypes.ADD_VITALITY, value: 5 }),
-    onSubVitality: () => dispatch({ type: actionTypes.SUB_VITALITY, value: 5 })
+    onUpdateVitality: (value) => dispatch({ type: actionTypes.UPDATE_VITALITY, value: value }),
+    onUpdateAction: (value) => dispatch({ type: actionTypes.UPDATE_ACTION, value: value }),
+    onUpdateMind: (value) => dispatch({ type: actionTypes.UPDATE_MIND, value: value })
   }
 }
 

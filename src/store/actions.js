@@ -1,2 +1,3 @@
-export const ADD_VITALITY = 'ADD_VITALITY'
-export const SUB_VITALITY = 'SUB_VITALITY'
+export const UPDATE_VITALITY = 'UPDATE_VITALITY'
+export const UPDATE_ACTION = 'UPDATE_ACTION'
+export const UPDATE_MIND = 'UPDATE_MIND'
