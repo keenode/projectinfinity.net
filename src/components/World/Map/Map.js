@@ -14,6 +14,7 @@ class Map extends Component {
     [0, 0, 1, 0, 0]
   ]
   tiles = new PIXI.Container()
+  coords = new PIXI.Container()
 
   componentDidMount () {
     console.log('[Map] Did Mount')
@@ -42,12 +43,18 @@ class Map extends Component {
   prepareTiles () {
     for (let y = 0; y < this.tilesData.length; y++) {
       for (let x = 0; x < this.tilesData[y].length; x++) {
-        this.tiles.addChild(new Tile(x, y, this.tilesData[y][x]).draw())
+        const tile = new Tile(x, y, this.tilesData[y][x])
+        this.tiles.addChild(tile.draw())
+        this.coords.addChild(tile.drawCoords())
       }
     }
     this.map.stage.addChild(this.tiles)
+    this.map.stage.addChild(this.coords)
+    // temp positioning...
     this.tiles.x = 300
     this.tiles.y = 100
+    this.coords.x = 300
+    this.coords.y = 100
     console.log('generated tiles: ', this.tiles)
   }
 
