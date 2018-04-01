@@ -1,0 +1,12 @@
+.Chat {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  width: 600px;
+  height: 200px;
+  padding: 15px;
+  color: #ccc;
+  background-color: #1a1a1a;
+  border: 1px solid #666;
+  box-sizing: border-box;
+}

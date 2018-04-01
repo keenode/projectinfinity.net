@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Map from '../../components/World/Map/Map'
 import Button from '../../components/UI/Button/Button'
 import PlayerStatus from '../../components/UI/PlayerStatus/PlayerStatus'
+import Chat from '../../components/UI/Chat/Chat'
 
 import * as actionTypes from '../../store/actions'
 
@@ -15,6 +16,7 @@ class Play extends Component {
         <div id="game-container" className={styles.GameContainer}>
           <Map />
           <PlayerStatus vam={this.props.vam} />
+          <Chat />
           <div className={styles.TestActions}>
             <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
             <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
