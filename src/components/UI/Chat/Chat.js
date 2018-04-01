@@ -2,9 +2,9 @@ import React from 'react'
 
 import styles from './Chat.css'
 
-const chat = () => (
+const chat = (props) => (
   <div className={styles.Chat}>
-    <p>chat</p>
+    <p>{props.messages}</p>
   </div>
 )
 

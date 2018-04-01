@@ -6,17 +6,21 @@ import Button from '../../components/UI/Button/Button'
 import PlayerStatus from '../../components/UI/PlayerStatus/PlayerStatus'
 import Chat from '../../components/UI/Chat/Chat'
 
-import * as playerActions from '../../store/actions'
+import * as actions from '../../store/actions'
 
 import styles from './Play.css'
 
 class Play extends Component {
+  componentDidMount () {
+    this.props.onInitChatMessages()
+  }
+  
   render () {
     return (
         <div id="game-container" className={styles.GameContainer}>
           <Map />
           <PlayerStatus vam={this.props.vam} />
-          <Chat />
+          <Chat messages={this.props.chat.messages} />
           <div className={styles.TestActions}>
             <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
             <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
@@ -39,15 +43,19 @@ const mapStateToProps = state => {
       maxAction: state.player.vam.maxAction,
       mind: state.player.vam.mind,
       maxMind: state.player.vam.maxMind
+    },
+    chat: {
+      messages: state.chat.messages
     }
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateVitality: (changeAmt) => dispatch(playerActions.updateVitality(changeAmt)),
-    onUpdateAction: (changeAmt) => dispatch(playerActions.updateAction(changeAmt)),
-    onUpdateMind: (changeAmt) => dispatch(playerActions.updateMind(changeAmt))
+    onUpdateVitality: (changeAmt) => dispatch(actions.updateVitality(changeAmt)),
+    onUpdateAction: (changeAmt) => dispatch(actions.updateAction(changeAmt)),
+    onUpdateMind: (changeAmt) => dispatch(actions.updateMind(changeAmt)),
+    onInitChatMessages: () => dispatch(actions.initMessages())
   }
 }
 

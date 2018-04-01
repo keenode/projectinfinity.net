@@ -3,4 +3,4 @@ export {
   updateAction,
   updateMind
 } from './player'
-// export {} from './chat'
+export { initMessages } from './chat'
