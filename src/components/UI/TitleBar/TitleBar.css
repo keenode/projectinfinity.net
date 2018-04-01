@@ -1,8 +1,10 @@
 .TitleBar {
-  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
   color: white;
   font-size: 12px;
-  text-align: center;
   background-color: #1a1a1a;
   cursor: default;
   user-select: none;

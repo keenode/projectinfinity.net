@@ -12,15 +12,17 @@ import styles from './Play.css'
 class Play extends Component {
   render () {
     return (
-        <div className={styles.PageContainer}>
+        <div id="game-container" className={styles.GameContainer}>
           <Map />
           <PlayerStatus vam={this.props.vam} />
-          <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
-          <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
-          <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button>
-          <Button clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button><br />
-          <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
-          <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
+          <div className={styles.TestActions}>
+            <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
+            <Button clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
+            <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button>
+            <Button clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button><br />
+            <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
+            <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
+          </div>
       </div>
     )
   }

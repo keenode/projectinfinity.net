@@ -8,7 +8,7 @@ import styles from './Layout.css';
 class Layout extends Component {
   render () {
     return (
-      <div>
+      <div className={styles.AppContainer}>
         <TitleBar title="Project Infinity" />
         <NavBar />
         <main className={styles.LayoutContainer}>

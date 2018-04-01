@@ -1,3 +1,7 @@
+.AppContainer {
+  overflow: hidden;
+}
+
 .LayoutContainer {
-  border: 5px solid orange;
+  width: 100%;
 }

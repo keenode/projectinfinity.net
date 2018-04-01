@@ -1,26 +1,63 @@
 import React, { Component } from 'react'
+import * as PIXI from 'pixi.js'
 
-import MapRenderer from './MapRenderer'
+// import MapRenderer from './MapRenderer'
+import Tile from './Tile/Tile'
 
 import styles from './Map.css'
 
 class Map extends Component {
-  tileData = [
+  tilesData = [
     [0, 0, 1, 1, 0],
     [0, 0, 1, 1, 0],
     [0, 1, 1, 1, 1],
     [0, 0, 1, 0, 0]
   ]
+  tiles = new PIXI.Container()
 
   componentDidMount () {
     console.log('[Map] Did Mount')
-    const mapRenderer = new MapRenderer('world', this.tileData)
-    mapRenderer.render()
+    this.setupPIXI('canvas-world')
+    this.prepareTiles()
+    this.map.ticker.add(delta => this.gameLoop(delta));
+  }
+
+  setupPIXI (mapSelectorId) {
+    const $gameContainer = document.getElementById('game-container')
+    this.map = new PIXI.Application({
+      width: $gameContainer.offsetWidth,
+      height: $gameContainer.offsetHeight,
+      // antialias: true
+    })
+    this.map.renderer.backgroundColor = 0x061639
+    this.map.renderer.autoResize = true
+
+    document.getElementById(mapSelectorId).appendChild(this.map.view)
+
+    window.onresize = () => {
+      this.map.renderer.resize($gameContainer.offsetWidth, $gameContainer.offsetHeight)      
+    }
+  }
+
+  prepareTiles () {
+    for (let y = 0; y < this.tilesData.length; y++) {
+      for (let x = 0; x < this.tilesData[y].length; x++) {
+        this.tiles.addChild(new Tile(x, y, this.tilesData[y][x]).draw())
+      }
+    }
+    this.map.stage.addChild(this.tiles)
+    this.tiles.x = 300
+    this.tiles.y = 100
+    console.log('generated tiles: ', this.tiles)
+  }
+
+  gameLoop (delta) {
+    // console.log(delta)
   }
 
   render () {
     return (
-      <div id="world" className={styles.Map}></div>
+      <div id="canvas-world" className={styles.Map}></div>
     )
   }
 }

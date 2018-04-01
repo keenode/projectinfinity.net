@@ -1,7 +1,12 @@
-.PageContainer {
+.GameContainer {
   position: relative;
-  height: 80vh;
-  padding: 30px;
+  width: 100%;
+  height: calc(100vh - 80px);
   background-color: slategrey;
-  padding-top: 300px;
+}
+
+.TestActions {
+  position: absolute;
+  left: 15px;
+  top: 300px;
 }
