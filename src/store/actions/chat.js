@@ -16,9 +16,9 @@ export const fetchMessagesFailed = () => {
 
 export const initMessages = () => {
   return dispatch => {
-    axios.get('http://localhost:9001/api')
+    axios.get('http://localhost:9001/api/chat/messages')
       .then(res => {
-        dispatch(getMessages(res.data.message))
+        dispatch(getMessages(res.data.messages))
       })
       .catch(err => {
         dispatch(fetchMessagesFailed())
