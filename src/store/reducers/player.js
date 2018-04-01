@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions'
+import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   vam: {
@@ -11,15 +11,15 @@ const initialState = {
   }
 }
 
-const checkBounds = (currValue, maxValue, changeAmount) => {
-  const newValue = currValue + changeAmount
+const checkBounds = (currValue, maxValue, changeAmt) => {
+  const newValue = currValue + changeAmt
   return newValue > maxValue ? maxValue : newValue < 0 ? 0 : newValue
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_VITALITY:
-      const newVitality = checkBounds(state.vam.vitality, state.vam.maxVitality, action.value)
+      const newVitality = checkBounds(state.vam.vitality, state.vam.maxVitality, action.changeAmt)
       return {
         ...state,
         vam: {
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
         }
       }
     case actionTypes.UPDATE_ACTION:
-      const newAction = checkBounds(state.vam.action, state.vam.maxAction, action.value)
+      const newAction = checkBounds(state.vam.action, state.vam.maxAction, action.changeAmt)
       return {
         ...state,
         vam: {
@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
         }
       }
       case actionTypes.UPDATE_MIND:
-        const newMind = checkBounds(state.vam.mind, state.vam.maxMind, action.value)
+        const newMind = checkBounds(state.vam.mind, state.vam.maxMind, action.changeAmt)
         return {
           ...state,
           vam: {

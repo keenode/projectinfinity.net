@@ -6,7 +6,7 @@ import Button from '../../components/UI/Button/Button'
 import PlayerStatus from '../../components/UI/PlayerStatus/PlayerStatus'
 import Chat from '../../components/UI/Chat/Chat'
 
-import * as actionTypes from '../../store/actions'
+import * as playerActions from '../../store/actions'
 
 import styles from './Play.css'
 
@@ -45,9 +45,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateVitality: (value) => dispatch({ type: actionTypes.UPDATE_VITALITY, value: value }),
-    onUpdateAction: (value) => dispatch({ type: actionTypes.UPDATE_ACTION, value: value }),
-    onUpdateMind: (value) => dispatch({ type: actionTypes.UPDATE_MIND, value: value })
+    onUpdateVitality: (changeAmt) => dispatch(playerActions.updateVitality(changeAmt)),
+    onUpdateAction: (changeAmt) => dispatch(playerActions.updateAction(changeAmt)),
+    onUpdateMind: (changeAmt) => dispatch(playerActions.updateMind(changeAmt))
   }
 }
 
