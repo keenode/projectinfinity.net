@@ -23,7 +23,7 @@ class App extends Component {
   render () {
     return (
       <Layout>
-        {/* <p>Message from API: {this.state.message}</p> */}
+        <p style={{position: 'absolute', right: '15px', top: '95px', color: 'white', zIndex: 10}}>Message from API: {this.state.message}</p>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/play" component={Play} />
