@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import axios from 'axios'
+import axios from '../../axios-instance'
 
 export const getMessages = (messages) => {
   return {
@@ -16,7 +16,7 @@ export const fetchMessagesFailed = () => {
 
 export const initMessages = () => {
   return dispatch => {
-    axios.get('http://localhost:9001/api/chat/messages')
+    axios.get('/api/chat/messages')
       .then(res => {
         dispatch(getMessages(res.data.messages))
       })
