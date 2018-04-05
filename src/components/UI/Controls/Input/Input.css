@@ -1,3 +1,8 @@
 .Input {
   padding: 5px;
+  margin-bottom: 15px;
+}
+
+.Invalid {
+  border: 1px solid red;
 }

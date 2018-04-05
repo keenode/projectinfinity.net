@@ -15,7 +15,12 @@ class Login extends Component {
           nmame: 'email',
           placeholder: 'Email'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       password: {
         elementType: 'input',
@@ -24,7 +29,12 @@ class Login extends Component {
           name: 'password',
           placeholder: 'Password'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       rememberMe: {
         elementType: 'input',
@@ -36,6 +46,16 @@ class Login extends Component {
     }
   }
 
+  checkValidation(value, rules) {
+    let isValid = true
+
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid
+    }
+
+    return isValid
+  }
+
   inputChangedHandler = (event, inputId) => {
     const updatedLoginForm = {
       ...this.state.loginForm
@@ -44,6 +64,9 @@ class Login extends Component {
       ...updatedLoginForm[inputId]
     }
     updatedFormElement.value = event.target.value
+    updatedFormElement.valid = this.checkValidation(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.touched = true
+    console.log(updatedFormElement)
     updatedLoginForm[inputId] = updatedFormElement
     this.setState({ loginForm: updatedLoginForm })
   }
@@ -76,6 +99,9 @@ class Login extends Component {
               elementType={formElement.config.elementType} 
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
               changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
           ))}
           <Button type="submit">Login</Button>

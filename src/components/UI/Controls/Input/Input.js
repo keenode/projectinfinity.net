@@ -4,6 +4,11 @@ import styles from './Input.css'
 
 const input = (props) => {
   let inputElement = null
+  const inputStyles = [styles.Input]
+
+  if (props.invalid && props.shouldValidate && props.touched) {
+    inputStyles.push(styles.Invalid)
+  }
 
   switch (props.elementType) {
     case ('input'):
@@ -26,7 +31,7 @@ const input = (props) => {
   }
 
   return (
-    <div className={styles.Input}>
+    <div className={inputStyles.join(' ')}>
       <label>{props.label}</label>
       {inputElement}
     </div>
