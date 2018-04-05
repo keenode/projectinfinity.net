@@ -5,6 +5,7 @@ import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home'
 import Play from './containers/Play/Play'
 import Login from './containers/Login/Login'
+import Register from './containers/Register/Register'
 
 class App extends Component {
   render () {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/play" component={Play} />
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Switch>
       </Layout>
     )
