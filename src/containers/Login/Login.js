@@ -10,9 +10,10 @@ class Login extends Component {
     loginForm: {
       email: {
         elementType: 'input',
+        label: 'Email',
         elementConfig: {
           type: 'email',
-          nmame: 'email',
+          name: 'email',
           placeholder: 'Email'
         },
         value: '',
@@ -24,6 +25,7 @@ class Login extends Component {
       },
       password: {
         elementType: 'input',
+        label: 'Password',
         elementConfig: {
           type: 'password',
           name: 'password',
@@ -38,7 +40,9 @@ class Login extends Component {
       },
       rememberMe: {
         elementType: 'input',
+        label: 'Remember Me',
         elementConfig: {
+          type: 'checkbox',
           checked: false
         },
         value: false,
@@ -103,7 +107,9 @@ class Login extends Component {
           {formElementsArray.map(formElement => (
             <Input 
               key={formElement.id}
-              elementType={formElement.config.elementType} 
+              id={'input-' + formElement.id}
+              elementType={formElement.config.elementType}
+              label={formElement.config.label}
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
               invalid={!formElement.config.valid}

@@ -12,10 +12,10 @@ const input = (props) => {
 
   switch (props.elementType) {
     case ('input'):
-      inputElement = <input {...props.elementConfig} value={props.value} onChange={props.changed} />
+      inputElement = <input id={props.id} {...props.elementConfig} value={props.value} onChange={props.changed} />
       break
     case ('textarea'):
-      inputElement = <textarea {...props.elementConfig} onChange={props.changed} />
+      inputElement = <textarea id={props.id} {...props.elementConfig} onChange={props.changed} />
       break
     case ('select'):
       inputElement = (
@@ -27,12 +27,12 @@ const input = (props) => {
       )
       break
     default:
-      inputElement = <input {...props.elementConfig} value={props.value} onChange={props.changed} />
+      inputElement = <input id={props.id} {...props.elementConfig} value={props.value} onChange={props.changed} />
   }
 
   return (
     <div className={inputStyles.join(' ')}>
-      <label>{props.label}</label>
+      <label htmlFor={props.id}>{props.label}</label>
       {inputElement}
     </div>
   )
