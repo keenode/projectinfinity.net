@@ -6,6 +6,7 @@ import Home from './containers/Home/Home'
 import Play from './containers/Play/Play'
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
+import Logout from './containers/Logout/Logout'
 
 class App extends Component {
   render () {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/play" component={Play} />
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
         </Switch>
       </Layout>

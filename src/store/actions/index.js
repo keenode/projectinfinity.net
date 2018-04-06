@@ -5,5 +5,6 @@ export {
 } from './player'
 export { initMessages } from './chat'
 export {
-  auth
+  auth,
+  logout
 } from './auth'
