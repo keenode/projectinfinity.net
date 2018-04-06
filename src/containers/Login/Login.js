@@ -18,7 +18,8 @@ class Login extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isEmail: true
         },
         valid: false,
         touched: false
@@ -33,7 +34,8 @@ class Login extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          minLength: 6
         },
         valid: false,
         touched: false
@@ -102,6 +104,9 @@ class Login extends Component {
     return (
       <section className={styles.Login}>
         <h1>Login</h1>
+        <hr />
+        <Button>Login w/ Facebook</Button>
+        <Button>Login w/ Google</Button>
         <hr />
         <form onSubmit={this.loginHandler}>
           {formElementsArray.map(formElement => (

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Input from '../../components/UI/Controls/Input/Input'
 import Button from '../../components/UI/Button/Button'
 
 import styles from './Register.css'
+import * as actions from '../../store/actions/index'
 
 class Register extends Component {
   state = {
@@ -18,7 +20,8 @@ class Register extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isEmail: true
         },
         valid: false,
         touched: false
@@ -33,7 +36,8 @@ class Register extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          minLength: 6
         },
         valid: false,
         touched: false
@@ -48,7 +52,8 @@ class Register extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          minLength: 6
         },
         valid: false,
         touched: false
@@ -94,6 +99,7 @@ class Register extends Component {
       formData[formElementId] = this.state.registerForm[formElementId].value
     }
     console.log('[registerHandler] formData: ', formData)
+    this.props.onAuth(formData.email, formData.password)
   }
 
   render() {
@@ -107,6 +113,9 @@ class Register extends Component {
     return (
       <section className={styles.Register}>
         <h1>Register</h1>
+        <hr />
+        <Button>Register w/ Facebook</Button>
+        <Button>Register w/ Google</Button>
         <hr />
         <form onSubmit={this.registrationHandler}>
           {formElementsArray.map(formElement => (
@@ -129,4 +138,10 @@ class Register extends Component {
   }
 }
 
-export default Register
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password) => dispatch(actions.auth(email, password))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Register)

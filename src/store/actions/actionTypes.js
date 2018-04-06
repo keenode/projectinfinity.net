@@ -3,3 +3,7 @@ export const UPDATE_ACTION = 'UPDATE_ACTION'
 export const UPDATE_MIND = 'UPDATE_MIND'
 export const GET_MESSAGES = 'GET_MESSAGES'
 export const FETCH_MESSAGES_ERROR = 'FETCH_MESSAGES_ERROR'
+
+export const AUTH_START = 'AUTH_START'
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_FAIL = 'AUTH_FAIL'
