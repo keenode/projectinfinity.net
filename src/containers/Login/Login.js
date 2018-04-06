@@ -41,9 +41,11 @@ class Login extends Component {
         elementConfig: {
           checked: false
         },
-        value: false
+        value: false,
+        valid: true
       }
-    }
+    },
+    formIsValid: false
   }
 
   checkValidation(value, rules) {
@@ -66,9 +68,14 @@ class Login extends Component {
     updatedFormElement.value = event.target.value
     updatedFormElement.valid = this.checkValidation(updatedFormElement.value, updatedFormElement.validation)
     updatedFormElement.touched = true
-    console.log(updatedFormElement)
     updatedLoginForm[inputId] = updatedFormElement
-    this.setState({ loginForm: updatedLoginForm })
+
+    let formIsValid = true
+    for (let inputId in updatedLoginForm) {
+      formIsValid = updatedLoginForm[inputId].valid && formIsValid
+    }
+
+    this.setState({ loginForm: updatedLoginForm, formIsValid: formIsValid })
   }
 
   loginHandler = (event) => {
@@ -104,7 +111,7 @@ class Login extends Component {
               touched={formElement.config.touched}
               changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
           ))}
-          <Button type="submit">Login</Button>
+          <Button type="submit" disabled={!this.state.formIsValid}>Login</Button>
         </form>
       </section>
     )
