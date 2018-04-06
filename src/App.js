@@ -13,21 +13,40 @@ import * as actions from './store/actions/index'
 
 class App extends Component {
   componentDidMount() {
-    this.props.onTryAutoSignup()
+    // TEMP commented out
+    // this.props.onTryAutoSignup()
   }
 
   render() {
+    let routes = (
+      <Switch>      
+        <Route path="/" exact component={Home} />      
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Switch>      
+    )
+
+    if (this.props.isLoggedIn) {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Home} />        
+          <Route path="/play" component={Play} />
+          <Route path="/logout" component={Logout} />
+        </Switch>         
+      )
+    }
+
     return (
       <Layout>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/play" component={Play} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/register" component={Register} />
-        </Switch>
+        {routes}
       </Layout>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.token !== null
   }
 }
 
@@ -37,4 +56,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

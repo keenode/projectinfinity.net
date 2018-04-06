@@ -11,7 +11,7 @@ class Layout extends Component {
     return (
       <div className={styles.AppContainer}>
         <TitleBar title="Project Infinity" />
-        <NavBar isAuth={this.props.isAuthenticated} />
+        <NavBar isLoggedIn={this.props.isLoggedIn} />
         <main className={styles.LayoutContainer}>
           {this.props.children}
         </main>
@@ -22,7 +22,7 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isLoggedIn: state.auth.token !== null
   }
 }
 
