@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import TitleBar from '../../components/UI/TitleBar/TitleBar'
 import NavBar from '../../components/UI/NavBar/NavBar'
@@ -10,7 +11,7 @@ class Layout extends Component {
     return (
       <div className={styles.AppContainer}>
         <TitleBar title="Project Infinity" />
-        <NavBar />
+        <NavBar isAuth={this.props.isAuthenticated} />
         <main className={styles.LayoutContainer}>
           {this.props.children}
         </main>
@@ -19,4 +20,10 @@ class Layout extends Component {
   }
 }
 
-export default Layout
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(Layout)
