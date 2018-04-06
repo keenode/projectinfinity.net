@@ -6,5 +6,6 @@ export {
 export { initMessages } from './chat'
 export {
   auth,
-  logout
+  logout,
+  authCheckState
 } from './auth'
