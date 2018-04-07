@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth20')
 const jwt = require('jsonwebtoken')
 const keys = require('./keys')
 const User = require('../models/user')
+const config = require('../config')
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -24,7 +25,7 @@ passport.use(
     User.findOne({ googleId: profile.id }).then(currentUser => {
       if (currentUser) {
         console.log('user is: ', currentUser)
-        jwt.sign({ currentUser }, 'my_secret_key', { expiresIn: '14 days' }, (err, token) => {
+        jwt.sign({ currentUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
           console.log('token: ' + token)
           currentUser.token = token
           done(null, currentUser)
