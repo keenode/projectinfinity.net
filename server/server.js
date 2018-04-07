@@ -6,7 +6,8 @@ const app = express()
 mongoose.connect('mongodb://localhost/projectinfinity')
 mongoose.Promise = global.Promise
 
-const routes = require('./routes/api')
+const routes = require('./routes/api/api')
+const authRoutes = require('./routes/api/auth')
 
 const SERVER_PORT = process.env.PORT || 9001
 const CLIENT_ORIGIN = 'http://localhost:9000'
@@ -24,6 +25,7 @@ app.get('/', (req, res) => res.send('PI Server API'))
 app.get('/api', (req, res) => res.send({ message: 'Hello from PI API!' }))
 
 app.use('/api', routes)
+app.use('/api/auth', authRoutes)
 
 // Error handling middleware
 app.use(function (err, req, res, next) {
