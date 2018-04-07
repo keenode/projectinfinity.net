@@ -9,15 +9,20 @@ passport.use(
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
-    console.log('passport cb function fired!')
-    console.log(profile)
-    new User({
-      email: profile.emails.find(email => email.type === 'account').value,
-      googleId: profile.id
-    })
-    .save()
-    .then(newUser => {
-      console.log('new user created: ', newUser)
+    // console.log(profile)
+    User.findOne({ googleId: profile.id }).then(currentUser => {
+      if (currentUser) {
+        console.log('user is: ', currentUser)
+      } else {
+        new User({
+          email: profile.emails.find(email => email.type === 'account').value,
+          googleId: profile.id
+        })
+        .save()
+        .then(newUser => {
+          console.log('new user created: ', newUser)
+        })
+      }
     })
   })
 )
