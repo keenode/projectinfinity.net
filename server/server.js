@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const passportSetup = require('./config/passport-setup')
+const passport = require('passport')
 
 const app = express()
 
@@ -13,6 +14,8 @@ const authRoutes = require('./routes/api/auth')
 
 const SERVER_PORT = process.env.PORT || 9001
 const CLIENT_ORIGIN = 'http://localhost:9000'
+
+app.use(passport.initialize())
 
 // CORS Middleware
 app.use(function (req, res, next) {

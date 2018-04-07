@@ -16,7 +16,7 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect',
   passport.authenticate('google'),
   function (req, res) {
-    res.send('you reached google cb!')
+    res.redirect('http://localhost:9000')
 })
 
 module.exports = router

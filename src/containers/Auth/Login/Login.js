@@ -96,6 +96,7 @@ class Login extends Component {
   oauthLogin = (service) => {
     if (service === 'google') {
       console.log('Logging in with Google...')
+      window.location = 'http://localhost:9001/api/auth/google'
     }
   }
 

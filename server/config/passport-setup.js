@@ -3,6 +3,16 @@ const GoogleStrategy = require('passport-google-oauth20')
 const keys = require('./keys')
 const User = require('../models/users')
 
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user.id)
+  })
+})
+
 passport.use(
   new GoogleStrategy({
     callbackURL: '/api/auth/google/redirect',
@@ -13,6 +23,7 @@ passport.use(
     User.findOne({ googleId: profile.id }).then(currentUser => {
       if (currentUser) {
         console.log('user is: ', currentUser)
+        done(null, currentUser)
       } else {
         new User({
           email: profile.emails.find(email => email.type === 'account').value,
@@ -21,6 +32,7 @@ passport.use(
         .save()
         .then(newUser => {
           console.log('new user created: ', newUser)
+          done(null, newUser)
         })
       }
     })
