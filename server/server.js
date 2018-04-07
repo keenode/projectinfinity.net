@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const passportSetup = require('./config/passport-setup')
+
 const app = express()
 
 mongoose.connect('mongodb://localhost/projectinfinity')

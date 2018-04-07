@@ -93,6 +93,12 @@ class Login extends Component {
     console.log('[loginHandler] formData: ', formData)
   }
 
+  oauthLogin = (service) => {
+    if (service === 'google') {
+      console.log('Logging in with Google...')
+    }
+  }
+
   render() {
     const formElementsArray = []
     for (let key in this.state.loginForm) {
@@ -106,7 +112,7 @@ class Login extends Component {
         <h1>Login</h1>
         <hr />
         <Button>Login w/ Facebook</Button>
-        <Button>Login w/ Google</Button>
+        <Button clicked={() => { this.oauthLogin('google') }}>Login w/ Google</Button>
         <hr />
         <form onSubmit={this.loginHandler}>
           {formElementsArray.map(formElement => (
