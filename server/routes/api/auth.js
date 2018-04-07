@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const passport = require('passport')
 
-router.get('/login', function (req, res) {
+router.get('/login', function(req, res) {
   res.send('Auth!')
 })
 
-router.get('/logout', function (req, res) {
+router.get('/logout', function(req, res) {
   res.send('Logout!')
 })
 
