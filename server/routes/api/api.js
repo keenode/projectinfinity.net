@@ -1,6 +1,4 @@
-const express = require('express')
-const router = express.Router()
-const app = express()
+const router = require('express').Router()
 
 const Ninja = require('../../models/ninja')
 
