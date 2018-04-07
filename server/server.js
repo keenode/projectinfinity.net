@@ -1,14 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
 const passportSetup = require('./config/passport-setup')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const config = require('./config')
+const db = require('./db')
+const authCheck = require('./middleware/auth-check')
 
 const app = express()
 
-mongoose.connect('mongodb://localhost/projectinfinity')
-mongoose.Promise = global.Promise
+db.connect(config.dbUri)
 
 const routes = require('./routes/api/api')
 const authRoutes = require('./routes/api/auth')
@@ -32,35 +33,36 @@ app.get('/api', (req, res) => res.json({ message: 'Hello from PI API!' }))
 
 app.get('/api/mock-login', function(req, res) {
   const user = { id: 1 }
-  jwt.sign({ user }, 'my_secret_key', { expiresIn: '14 days' }, (err, token) => {
+  jwt.sign({ user }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
     res.json({ token })
   })
 })
 
-app.get('/api/protected', verifyToken, function(req, res) {
-  jwt.verify(req.token, 'my_secret_key', function(err, data) {
-    if (err) {
-      res.sendStatus(403)
-    } else {
+app.get('/api/protected', authCheck, function(req, res) {
+  // jwt.verify(req.token, config.jwtSecret, function(err, data) {
+    // console.log(err)
+    // if (err) {
+    //   res.sendStatus(403)
+    // } else {
       res.json({
         message: 'protected!',
-        data
+        // data
       })
-    }
-  })
+    // }
+  // })
 })
 
-function verifyToken(req, res, next) {
-  const bearerHeader = req.headers['authorization']
-  if (typeof bearerHeader !== 'undefined') {
-    const bearer = bearerHeader.split(' ')
-    const bearerToken = bearer[1]
-    req.token = bearerToken
-    next()
-  } else {
-    res.sendStatus(403)
-  }
-}
+// function verifyToken(req, res, next) {
+//   const bearerHeader = req.headers['authorization']
+//   if (typeof bearerHeader !== 'undefined') {
+//     const bearer = bearerHeader.split(' ')
+//     const bearerToken = bearer[1]
+//     req.token = bearerToken
+//     next()
+//   } else {
+//     res.sendStatus(403)
+//   }
+// }
 
 app.use('/api', routes)
 app.use('/api/auth', authRoutes)

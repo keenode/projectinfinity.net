@@ -1,0 +1,4 @@
+{
+  "dbUri": "mongodb://localhost/projectinfinity",
+  "jwtSecret": "my_secret_key"
+}
