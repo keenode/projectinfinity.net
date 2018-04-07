@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import Input from '../../components/UI/Controls/Input/Input'
-import Button from '../../components/UI/Button/Button'
+import Input from '../../../components/UI/Controls/Input/Input'
+import Button from '../../../components/UI/Button/Button'
 
-import styles from './Login.css'
+import styles from './Register.css'
+import * as actions from '../../../store/actions/index'
 
-class Login extends Component {
+class Register extends Component {
   state = {
-    loginForm: {
+    registerForm: {
       email: {
         elementType: 'input',
         label: 'Email',
@@ -40,15 +42,21 @@ class Login extends Component {
         valid: false,
         touched: false
       },
-      rememberMe: {
+      confirmPassword: {
         elementType: 'input',
-        label: 'Remember Me',
+        label: 'Confirm Password',
         elementConfig: {
-          type: 'checkbox',
-          checked: false
+          type: 'password',
+          name: 'confirm-password',
+          placeholder: 'Confirm Password'
         },
-        value: false,
-        valid: true
+        value: '',
+        validation: {
+          required: true,
+          minLength: 6
+        },
+        valid: false,
+        touched: false
       }
     },
     formIsValid: false
@@ -65,50 +73,51 @@ class Login extends Component {
   }
 
   inputChangedHandler = (event, inputId) => {
-    const updatedLoginForm = {
-      ...this.state.loginForm
+    const updatedregisterForm = {
+      ...this.state.registerForm
     }
     const updatedFormElement = {
-      ...updatedLoginForm[inputId]
+      ...updatedregisterForm[inputId]
     }
     updatedFormElement.value = event.target.value
     updatedFormElement.valid = this.checkValidation(updatedFormElement.value, updatedFormElement.validation)
     updatedFormElement.touched = true
-    updatedLoginForm[inputId] = updatedFormElement
+    updatedregisterForm[inputId] = updatedFormElement
 
     let formIsValid = true
-    for (let inputId in updatedLoginForm) {
-      formIsValid = updatedLoginForm[inputId].valid && formIsValid
+    for (let inputId in updatedregisterForm) {
+      formIsValid = updatedregisterForm[inputId].valid && formIsValid
     }
 
-    this.setState({ loginForm: updatedLoginForm, formIsValid: formIsValid })
+    this.setState({ registerForm: updatedregisterForm, formIsValid: formIsValid })
   }
 
-  loginHandler = (event) => {
+  registrationHandler = (event) => {
     event.preventDefault()
     const formData = {}
-    for (let formElementId in this.state.loginForm) {
-      formData[formElementId] = this.state.loginForm[formElementId].value
+    for (let formElementId in this.state.registerForm) {
+      formData[formElementId] = this.state.registerForm[formElementId].value
     }
-    console.log('[loginHandler] formData: ', formData)
+    console.log('[registerHandler] formData: ', formData)
+    this.props.onAuth(formData.email, formData.password)
   }
 
   render() {
     const formElementsArray = []
-    for (let key in this.state.loginForm) {
+    for (let key in this.state.registerForm) {
       formElementsArray.push({
         id: key,
-        config: this.state.loginForm[key]
+        config: this.state.registerForm[key]
       })
     }
     return (
-      <section className={styles.Login}>
-        <h1>Login</h1>
+      <section className={styles.Register}>
+        <h1>Register</h1>
         <hr />
-        <Button>Login w/ Facebook</Button>
-        <Button>Login w/ Google</Button>
+        <Button>Register w/ Facebook</Button>
+        <Button>Register w/ Google</Button>
         <hr />
-        <form onSubmit={this.loginHandler}>
+        <form onSubmit={this.registrationHandler}>
           {formElementsArray.map(formElement => (
             <Input 
               key={formElement.id}
@@ -122,11 +131,17 @@ class Login extends Component {
               touched={formElement.config.touched}
               changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
           ))}
-          <Button type="submit" disabled={!this.state.formIsValid}>Login</Button>
+          <Button type="submit" disabled={!this.state.formIsValid}>Register</Button>
         </form>
       </section>
     )
   }
 }
 
-export default Login
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password) => dispatch(actions.auth(email, password))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Register)

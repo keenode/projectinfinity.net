@@ -13,11 +13,11 @@ const navBar = (props) => (
     <ul className={styles.NavBarItems}>
       {
         props.isLoggedIn ? (
-          <NavItem link="/logout">Logout</NavItem>
+          <NavItem link="/auth/logout">Logout</NavItem>
         ) : (
           <div style={{display: 'inherit'}}>
-            <NavItem link="/login">Login</NavItem>
-            <NavItem link="/register">Register</NavItem>
+            <NavItem link="/auth/login">Login</NavItem>
+            <NavItem link="/auth/register">Register</NavItem>
           </div>
         )
       }
