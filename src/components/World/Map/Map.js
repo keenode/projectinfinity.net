@@ -16,14 +16,14 @@ class Map extends Component {
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
 
-  componentDidMount () {
+  componentDidMount() {
     console.log('[Map] Did Mount')
     this.setupPIXI('canvas-world')
     this.prepareTiles()
     this.map.ticker.add(delta => this.gameLoop(delta));
   }
 
-  setupPIXI (mapSelectorId) {
+  setupPIXI(mapSelectorId) {
     const $gameContainer = document.getElementById('game-container')
     this.map = new PIXI.Application({
       width: $gameContainer.offsetWidth,
@@ -40,12 +40,14 @@ class Map extends Component {
     }
   }
 
-  prepareTiles () {
+  prepareTiles() {
     for (let y = 0; y < this.tilesData.length; y++) {
       for (let x = 0; x < this.tilesData[y].length; x++) {
         const tile = new Tile(x, y, this.tilesData[y][x])
         this.tiles.addChild(tile.draw())
-        this.coords.addChild(tile.drawCoords())
+        if (this.props.mode === 'GameMaster') {
+          this.coords.addChild(tile.drawCoords())
+        }
       }
     }
     this.map.stage.addChild(this.tiles)
@@ -58,11 +60,11 @@ class Map extends Component {
     console.log('generated tiles: ', this.tiles)
   }
 
-  gameLoop (delta) {
+  gameLoop(delta) {
     // console.log(delta)
   }
 
-  render () {
+  render() {
     return (
       <div id="canvas-world" className={styles.Map}></div>
     )

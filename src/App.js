@@ -6,6 +6,7 @@ import Aux from 'react-aux'
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home'
 import Play from './containers/Play/Play'
+import GameMaster from './containers/GameMaster/GameMaster'
 import Login from './containers/Auth/Login/Login'
 import Register from './containers/Auth/Register/Register'
 import Logout from './containers/Auth/Logout/Logout'
@@ -36,6 +37,7 @@ class App extends Component {
     const protectedRoutes = (
       <Aux>
         <Route path="/play" component={Play} />
+        <Route path="/game-master" component={GameMaster} />
         <Route path="/auth/logout" component={Logout} />
       </Aux>
     )
