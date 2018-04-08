@@ -23,7 +23,11 @@ class App extends Component {
       localStorage.setItem('token', token)
       // TODO Pass expires in and figure this out!
       // const expDate = new Date(new Date().getTime() + res.data.expiresIn * 1000)
-      // localStorage.setItem('expDate', expDate)
+      const expDate = new Date(new Date().getTime() + 1209600 * 1000) // 14 days?
+      localStorage.setItem('expDate', expDate)
+      const cleanUri = window.location.protocol + "//" + window.location.host + window.location.pathname
+      window.history.replaceState({}, document.title, cleanUri)
+
       // this.props.onLoginAttempt()
     }
     this.props.onLoginAttempt()

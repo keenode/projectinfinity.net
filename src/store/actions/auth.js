@@ -25,7 +25,7 @@ export const authFail = (error) => {
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('expDate')
-  localStorage.removeItem('userId')
+  // localStorage.removeItem('userId')
   return {
     type: actionTypes.AUTH_LOGOUT
   }
@@ -50,10 +50,12 @@ export const auth = (email, password, isRegister = false) => {
     axios.post(url, authData)
       .then(res => {
         console.log(res)
-        const expDate = new Date(new Date().getTime() + res.data.expiresIn * 1000)
+        // TODO: Get expires time from server
+        // const expDate = new Date(new Date().getTime() + res.data.expiresIn * 1000)
+        const expDate = new Date(new Date().getTime() + 1209600 * 1000) // 14 days?
         localStorage.setItem('token', res.data.tokenId)
         localStorage.setItem('expDate', expDate)
-        localStorage.setItem('userId', res.data.userId)
+        // localStorage.setItem('userId', res.data.userId)
         dispatch(authSuccess(res.data))
         dispatch(checkAuthTimeout(res.data.expiresIn))
       })
@@ -71,17 +73,16 @@ export const authCheckState = () => {
       dispatch(logout())
     } else {
       const expDate = new Date(localStorage.getItem('expDate'))
-      console.log('expDate: ', expDate)
       // TEMP: force to false until I figure out expires
-      // if (expDate <= new Date()) {
-      if (false) {
+      if (expDate <= new Date()) {
+      // if (false) {
         dispatch(logout())
       } else {
         // const userId = localStorage.getItem('userId')
         axios.defaults.headers['Authorization'] = 'Bearer ' + token
         dispatch(authSuccess(token))
         // dispatch(authSuccess(token, userId))
-        // dispatch(checkAuthTimeout((expDate.getTime() - new Date().getTime()) / 1000))
+        dispatch(checkAuthTimeout((expDate.getTime() - new Date().getTime()) / 1000))
       }
     }
   }
