@@ -40,13 +40,14 @@ export const checkAuthTimeout = expiresTime => {
 }
 
 export const auth = (email, password, isRegister = false) => {
+  console.log('inside auth')
   return dispatch => {
     dispatch(authStart())
     const authData = {
       email: email,
       password: password
     }
-    const url = isRegister ? '/auth/register' : '/auth/login'
+    const url = isRegister ? '/api/auth/register' : '/api/auth/login'
     axios.post(url, authData)
       .then(res => {
         console.log(res)

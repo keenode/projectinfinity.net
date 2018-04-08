@@ -1,8 +1,29 @@
 const router = require('express').Router()
 const passport = require('passport')
 
-router.get('/login', function(req, res) {
-  res.send('Auth!')
+router.post('/login',
+  passport.authenticate('local', { session: false }),
+  function(req, res) {
+    console.log('user logged in: ', req.user)
+    res.json({
+      message: 'worked!'
+    })
+})
+
+router.post('/register',
+  passport.authenticate('local', { session: false }),
+  function(req, res) {
+    console.log('user created: ', req.user)
+    if (req.user.error) {
+      res.status(409).json({
+        error: req.user.error
+      })
+    } else {
+      res.json({
+        email: req.user.email,
+        token: req.user.token
+      })
+    }
 })
 
 router.get('/logout', function(req, res) {

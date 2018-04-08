@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import * as actions from '../../../store/actions/index'
 
 import Input from '../../../components/UI/Controls/Input/Input'
 import Button from '../../../components/UI/Button/Button'
@@ -91,6 +94,7 @@ class Login extends Component {
       formData[formElementId] = this.state.loginForm[formElementId].value
     }
     console.log('[loginHandler] formData: ', formData)
+    this.props.onLogin(formData.email, formData.password)
   }
 
   oauthLogin = (service) => {
@@ -136,4 +140,10 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: (email, password) => dispatch(actions.auth(email, password))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login)

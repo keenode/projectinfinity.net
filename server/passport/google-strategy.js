@@ -10,13 +10,13 @@ module.exports = new GoogleStrategy({
   clientSecret: keys.google.clientSecret
 }, (accessToken, refreshToken, profile, done) => {
   // console.log(profile)
-  User.findOne({ googleId: profile.id }).then(currentUser => {
-    if (currentUser) {
-      console.log('user already exists: ', currentUser)
-      jwt.sign({ user: currentUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
-        currentUser.token = token
-        console.log('currentUser: ', currentUser)
-        done(null, currentUser)
+  User.findOne({ googleId: profile.id }).then(existingUser => {
+    if (existingUser) {
+      console.log('user already exists: ', existingUser)
+      jwt.sign({ user: existingUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
+        existingUser.token = token
+        console.log('existingUser: ', existingUser)
+        return done(null, existingUser)
       })
     } else {
       new User({
@@ -28,7 +28,7 @@ module.exports = new GoogleStrategy({
         console.log('new user created: ', newUser)
         jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
           newUser.token = token
-          done(null, newUser)
+          return done(null, newUser)
         })
       })
     }

@@ -5,21 +5,34 @@ const config = require('../config')
 
 module.exports = new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'passwd',
+    passwordField: 'password',
     passReqToCallback: true,
     session: false
   },
   function(req, email, password, done) {
+    console.log('creating new user...')
     const userData = {
       email: email.trim(),
-      password: password.trim(),
-      name: req.body.name.trim()
+      password: password.trim()
     }
   
-    const newUser = new User(userData)
-    newUser.save(err => {
-      if (err) { return done(err) }
-      return done(null)
+    // const newUser = new User(userData)
+    User.findOne({ email: userData.email }).then(existingUser => {
+      if (existingUser) {
+        console.log('user already exists!')
+        return done(null, {
+          error: 'User already exists!'
+        })
+      } else {
+        new User(userData)
+        .save()
+        .then(newUser => {
+          jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
+            newUser.token = token
+            return done(null, newUser)
+          })
+        })
+      }
     })
   }
 )
