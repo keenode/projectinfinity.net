@@ -1,6 +1,9 @@
+/**
+ * Notes:
+ * https://vladimirponomarev.com/blog/authentication-in-react-apps-jwt
+ */
 const express = require('express')
 const bodyParser = require('body-parser')
-const passportSetup = require('./config/passport-setup')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const config = require('./config')
@@ -18,6 +21,9 @@ const SERVER_PORT = process.env.PORT || 9001
 const CLIENT_ORIGIN = 'http://localhost:9000'
 
 app.use(passport.initialize())
+
+const googleStrategy = require('./passport/google-strategy')
+passport.use('google', googleStrategy)
 
 // CORS Middleware
 app.use(function(req, res, next) {

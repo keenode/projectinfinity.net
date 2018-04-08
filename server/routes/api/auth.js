@@ -14,7 +14,7 @@ router.get('/google', passport.authenticate('google', {
 }))
 
 router.get('/google/redirect',
-  passport.authenticate('google'),
+  passport.authenticate('google', { session: false }),
   function (req, res) {
     console.log(req.user)
     res.redirect('http://localhost:9000?token=' + req.user.token)
