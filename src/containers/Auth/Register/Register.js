@@ -62,6 +62,12 @@ class Register extends Component {
     formIsValid: false
   }
 
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push('/')
+    }
+  }
+
   checkValidation(value, rules) {
     let isValid = true
 
@@ -138,10 +144,16 @@ class Register extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    onAuth: (email, password) => dispatch(actions.auth(email, password))
+    isLoggedIn: state.auth.token !== null
   }
 }
 
-export default connect(null, mapDispatchToProps)(Register)
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password) => dispatch(actions.auth(email, password, true))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

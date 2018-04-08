@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Aux from 'react-aux'
 
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home'
@@ -27,30 +28,29 @@ class App extends Component {
       localStorage.setItem('expDate', expDate)
       const cleanUri = window.location.protocol + "//" + window.location.host + window.location.pathname
       window.history.replaceState({}, document.title, cleanUri)
-
-      // this.props.onLoginAttempt()
     }
     this.props.onLoginAttempt()
   }
 
   render() {
-    let routes = (
+    const protectedRoutes = (
+      <Aux>
+        <Route path="/" exact component={Home} />        
+        <Route path="/play" component={Play} />
+        <Route path="/auth/logout" component={Logout} />
+        <Route path="/auth/login" component={Login} />
+        <Route path="/auth/register" component={Register} />
+      </Aux>
+    )
+    
+    const routes = (
       <Switch>      
         <Route path="/" exact component={Home} />      
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/register" component={Register} />
+        {this.props.isLoggedIn ? protectedRoutes : null}
       </Switch>      
     )
-
-    if (this.props.isLoggedIn) {
-      routes = (
-        <Switch>
-          <Route path="/" exact component={Home} />        
-          <Route path="/play" component={Play} />
-          <Route path="/auth/logout" component={Logout} />
-        </Switch>         
-      )
-    }
 
     return (
       <Layout>

@@ -37,8 +37,7 @@ class Login extends Component {
         },
         value: '',
         validation: {
-          required: true,
-          minLength: 6
+          required: true
         },
         valid: false,
         touched: false
@@ -55,6 +54,12 @@ class Login extends Component {
       }
     },
     formIsValid: false
+  }
+
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push('/')
+    }
   }
 
   checkValidation(value, rules) {
@@ -140,10 +145,16 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.token !== null
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: (email, password) => dispatch(actions.auth(email, password))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
