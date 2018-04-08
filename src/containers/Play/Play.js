@@ -7,6 +7,8 @@ import PlayerStatus from '../../components/UI/PlayerStatus/PlayerStatus'
 import Chat from '../../components/UI/Chat/Chat'
 import Modal from '../../components/UI/Modal/Modal'
 
+import CharacterSelect from './CharacterSelect/CharacterSelect'
+
 import * as actions from '../../store/actions'
 
 import styles from './Play.css'
@@ -35,7 +37,7 @@ class Play extends Component {
           <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
         </div>
         <Modal show={this.state.mode === 'CharacterSelect'}>
-          <h2>Modal Contents!</h2>
+          <CharacterSelect />
         </Modal>
       </div>
     )

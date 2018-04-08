@@ -1,0 +1,32 @@
+.CharacterSelect {
+  padding: 15px;
+  background-color: slategrey;
+}
+
+.ListItem {
+  display: flex;
+  padding: 10px;
+}
+
+.Avatar {
+  margin-right: 15px;
+  width: 80px;
+  height: 80px;
+  background-color: #333;
+}
+
+.Info {
+  flex: 1;
+}
+
+.Label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.Stats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
