@@ -1,0 +1,9 @@
+.Modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 30px;
+  color: white;
+  background-color: darkslategray;
+  z-index: 100;
+}

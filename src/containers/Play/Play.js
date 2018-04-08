@@ -5,12 +5,17 @@ import Map from '../../components/World/Map/Map'
 import Button from '../../components/UI/Button/Button'
 import PlayerStatus from '../../components/UI/PlayerStatus/PlayerStatus'
 import Chat from '../../components/UI/Chat/Chat'
+import Modal from '../../components/UI/Modal/Modal'
 
 import * as actions from '../../store/actions'
 
 import styles from './Play.css'
 
 class Play extends Component {
+  state = {
+    mode: 'CharacterSelect'
+  }
+
   componentDidMount () {
     this.props.onInitChatMessages()
   }
@@ -29,6 +34,9 @@ class Play extends Component {
           <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
           <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
         </div>
+        <Modal show={this.state.mode === 'CharacterSelect'}>
+          <h2>Modal Contents!</h2>
+        </Modal>
       </div>
     )
   }
