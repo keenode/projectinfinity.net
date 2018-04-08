@@ -22,7 +22,7 @@ app.use(passport.initialize())
 // CORS Middleware
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', CLIENT_ORIGIN)
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
   next()
 })
 

@@ -16,10 +16,12 @@ module.exports = (req, res, next) => {
 
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
+    console.log('starting auth check...')
+    console.log(decoded)
     // the 401 code is for unauthorized status
     if (err) { return res.sendStatus(401) }
 
-    const userId = decoded.user.id
+    const userId = decoded.user._id
     console.log('determine access for user: ', userId)
 
     // check if a user exists

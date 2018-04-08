@@ -10,8 +10,8 @@ export const authStart = () => {
 export const authSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    tokenId: token,
-    userId: userId
+    token: token
+    // userId: userId
   }
 }
 
@@ -71,12 +71,17 @@ export const authCheckState = () => {
       dispatch(logout())
     } else {
       const expDate = new Date(localStorage.getItem('expDate'))
-      if (expDate <= new Date()) {
+      console.log('expDate: ', expDate)
+      // TEMP: force to false until I figure out expires
+      // if (expDate <= new Date()) {
+      if (false) {
         dispatch(logout())
       } else {
-        const userId = localStorage.getItem('userId')
-        dispatch(authSuccess(token, userId))
-        dispatch(checkAuthTimeout((expDate.getTime() - new Date().getTime()) / 1000))
+        // const userId = localStorage.getItem('userId')
+        axios.defaults.headers['Authorization'] = 'Bearer ' + token
+        dispatch(authSuccess(token))
+        // dispatch(authSuccess(token, userId))
+        // dispatch(checkAuthTimeout((expDate.getTime() - new Date().getTime()) / 1000))
       }
     }
   }

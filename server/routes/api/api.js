@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const authCheck = require('../../middleware/auth-check')
 
 const Ninja = require('../../models/ninja')
 
@@ -35,7 +36,7 @@ router.delete('/ninjas/:id', function (req, res) {
 
 // *** Chat ***
 
-router.get('/chat/messages', function (req, res) {
+router.get('/chat/messages', authCheck, function (req, res) {
   res.send({
     messages: 'Welcome to Project Infinity!'
   })

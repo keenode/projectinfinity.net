@@ -6,12 +6,15 @@ const User = require('../models/user')
 const config = require('../config')
 
 passport.serializeUser((user, done) => {
-  done(null, user.id)
+  console.log('user: ', user)
+  done(null, user)
 })
 
 passport.deserializeUser((id, done) => {
+  console.log('id: ' + id)
   User.findById(id).then(user => {
-    done(null, user.id)
+    done(null, user)
+    // done(null, user.id)
   })
 })
 
@@ -24,10 +27,10 @@ passport.use(
     // console.log(profile)
     User.findOne({ googleId: profile.id }).then(currentUser => {
       if (currentUser) {
-        console.log('user is: ', currentUser)
-        jwt.sign({ currentUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
-          console.log('token: ' + token)
+        console.log('user already exists: ', currentUser)
+        jwt.sign({ user: currentUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
           currentUser.token = token
+          console.log('currentUser: ', currentUser)
           done(null, currentUser)
         })
       } else {
@@ -38,7 +41,10 @@ passport.use(
         .save()
         .then(newUser => {
           console.log('new user created: ', newUser)
-          done(null, newUser)
+          jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
+            newUser.token = token
+            done(null, newUser)
+          })
         })
       }
     })

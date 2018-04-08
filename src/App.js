@@ -17,15 +17,16 @@ class App extends Component {
     const search = this.props.location.search
     const params = new URLSearchParams(search)
     const token = params.get('token')
-    console.log(token)
-
+    
     if (token) {
       console.log('token found, setting token!')
       localStorage.setItem('token', token)
-      // this.props.onTryAutoSignup()
+      // TODO Pass expires in and figure this out!
+      // const expDate = new Date(new Date().getTime() + res.data.expiresIn * 1000)
+      // localStorage.setItem('expDate', expDate)
+      // this.props.onLoginAttempt()
     }
-    // TEMP commented out
-    // this.props.onTryAutoSignup()
+    this.props.onLoginAttempt()
   }
 
   render() {
@@ -63,7 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
+    onLoginAttempt: () => dispatch(actions.authCheckState())
   }
 }
 
