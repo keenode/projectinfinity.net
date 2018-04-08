@@ -8,6 +8,8 @@ export const authStart = () => {
 }
 
 export const authSuccess = (token) => {
+  axios.defaults.headers['Authorization'] = 'Bearer ' + token
+
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: token
@@ -74,7 +76,7 @@ export const authCheckState = () => {
       if (expDate <= new Date()) {
         dispatch(logout())
       } else {
-        axios.defaults.headers['Authorization'] = 'Bearer ' + token
+        // axios.defaults.headers['Authorization'] = 'Bearer ' + token
         dispatch(authSuccess(token))
         dispatch(checkAuthTimeout((expDate.getTime() - new Date().getTime()) / 1000))
       }

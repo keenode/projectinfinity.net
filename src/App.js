@@ -26,7 +26,7 @@ class App extends Component {
       // const expDate = new Date(new Date().getTime() + res.data.expiresIn * 1000)
       const expDate = new Date(new Date().getTime() + 1209600 * 1000) // 14 days?
       localStorage.setItem('expDate', expDate)
-      const cleanUri = window.location.protocol + "//" + window.location.host + window.location.pathname
+      const cleanUri = window.location.protocol + '//' + window.location.host + window.location.pathname
       window.history.replaceState({}, document.title, cleanUri)
     }
     this.props.onLoginAttempt()
@@ -35,17 +35,14 @@ class App extends Component {
   render() {
     const protectedRoutes = (
       <Aux>
-        <Route path="/" exact component={Home} />        
         <Route path="/play" component={Play} />
         <Route path="/auth/logout" component={Logout} />
-        <Route path="/auth/login" component={Login} />
-        <Route path="/auth/register" component={Register} />
       </Aux>
     )
-    
+
     const routes = (
-      <Switch>      
-        <Route path="/" exact component={Home} />      
+      <Switch>
+        <Route path="/" exact component={Home} />
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/register" component={Register} />
         {this.props.isLoggedIn ? protectedRoutes : null}

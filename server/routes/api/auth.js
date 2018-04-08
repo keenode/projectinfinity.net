@@ -2,7 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 
 router.post('/login',
-  passport.authenticate('local', { session: false }),
+  passport.authenticate('local-login', { session: false }),
   function(req, res) {
     console.log('user logged in: ', req.user)
     res.json({
@@ -11,7 +11,7 @@ router.post('/login',
 })
 
 router.post('/register',
-  passport.authenticate('local', { session: false }),
+  passport.authenticate('local-register', { session: false }),
   function(req, res) {
     console.log('user created: ', req.user)
     if (req.user.error) {

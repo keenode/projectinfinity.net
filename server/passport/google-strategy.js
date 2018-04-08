@@ -25,9 +25,9 @@ module.exports = new GoogleStrategy({
       })
       .save()
       .then(newUser => {
-        console.log('new user created: ', newUser)
         jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
           newUser.token = token
+          console.log('new user created: ', newUser)
           return done(null, newUser)
         })
       })

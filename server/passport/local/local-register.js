@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local')
 const jwt = require('jsonwebtoken')
-const User = require('../models/user')
-const config = require('../config')
+const User = require('../../models/user')
+const config = require('../../config')
 
 module.exports = new LocalStrategy({
     usernameField: 'email',
@@ -16,7 +16,6 @@ module.exports = new LocalStrategy({
       password: password.trim()
     }
   
-    // const newUser = new User(userData)
     User.findOne({ email: userData.email }).then(existingUser => {
       if (existingUser) {
         console.log('user already exists!')
@@ -29,6 +28,7 @@ module.exports = new LocalStrategy({
         .then(newUser => {
           jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
             newUser.token = token
+            console.log('new local user: ', newUser)
             return done(null, newUser)
           })
         })
