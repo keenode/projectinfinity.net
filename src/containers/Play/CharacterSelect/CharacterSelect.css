@@ -3,11 +3,6 @@
   background-color: slategrey;
 }
 
-.ListItem {
-  display: flex;
-  padding: 10px;
-}
-
 .Avatar {
   margin-right: 15px;
   width: 80px;

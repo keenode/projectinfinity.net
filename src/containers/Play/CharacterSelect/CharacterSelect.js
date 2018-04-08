@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import Button from '../../../components/UI/Button/Button'
+import List from '../../../components/UI/List/List'
+import ListItem from '../../../components/UI/List/ListItem/ListItem'
 
 import styles from './CharacterSelect.css'
 
@@ -26,18 +28,21 @@ class CharacterSelect extends Component {
         <h3>Character Select</h3>
         Slots Available: {this.state.slotsAvailable} / {this.state.slotsMax}
         <hr />
-        <ul className={styles.List}>
-          <li className={styles.ListItem}>
+        <List>
+          {this.state.characters.map(character => (
+            <ListItem key={character.name}>
               <div className={styles.Avatar}></div>
               <div className={styles.Info}>
-                <span className={styles.Label}>keenode</span>
+                <span className={styles.Label}>{character.name}</span>
                 <div className={styles.Stats}>
-                  <span>Lvl: 1</span>
+                  <span>Lvl: {character.level}</span>
                   <span>Location: Corelisto</span>
                 </div>
               </div>
-          </li>
-        </ul>
+            </ListItem>
+          ))}
+        </List>
+        <hr />
         <Button>Create New Character</Button>
       </div>
     )
