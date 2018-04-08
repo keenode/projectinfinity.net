@@ -23,7 +23,9 @@ const CLIENT_ORIGIN = 'http://localhost:9000'
 app.use(passport.initialize())
 
 const googleStrategy = require('./passport/google-strategy')
+const localStrategy = require('./passport/local-strategy')
 passport.use('google', googleStrategy)
+passport.use('local', localStrategy)
 
 // CORS Middleware
 app.use(function(req, res, next) {
