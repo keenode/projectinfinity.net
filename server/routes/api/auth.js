@@ -5,9 +5,16 @@ router.post('/login',
   passport.authenticate('local-login', { session: false }),
   function(req, res) {
     console.log('user logged in: ', req.user)
-    res.json({
-      message: 'worked!'
-    })
+    if (req.user.error) {
+      res.status(401).json({
+        error: req.user.error
+      })
+    } else {
+      res.json({
+        email: req.user.email,
+        token: req.user.token
+      })
+    }
 })
 
 router.post('/register',

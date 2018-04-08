@@ -10,7 +10,7 @@ module.exports = new LocalStrategy({
     session: false
   },
   function(req, email, password, done) {
-    console.log('creating new user...')
+    console.log('attempting user registration...')
     const userData = {
       email: email.trim(),
       password: password.trim()
@@ -22,17 +22,17 @@ module.exports = new LocalStrategy({
         return done(null, {
           error: 'User already exists!'
         })
-      } else {
-        new User(userData)
-        .save()
-        .then(newUser => {
-          jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
-            newUser.token = token
-            console.log('new local user: ', newUser)
-            return done(null, newUser)
-          })
-        })
       }
+      
+      new User(userData)
+      .save()
+      .then(newUser => {
+        jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
+          newUser.token = token
+          console.log('new local user: ', newUser)
+          return done(null, newUser)
+        })
+      })
     })
   }
 )

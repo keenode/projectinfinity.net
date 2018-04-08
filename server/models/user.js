@@ -11,14 +11,8 @@ const UserSchema = new Schema({
   googleId: String
 })
 
-/**
- * Compare the passed password with the value in the database. A model method.
- *
- * @param {string} password
- * @returns {object} callback
- */
-UserSchema.methods.comparePassword = function comparePassword(password, callback) {
-  bcrypt.compare(password, this.password, callback)
+UserSchema.methods.comparePassword = function comparePassword(password, cb) {
+  bcrypt.compare(password, this.password, cb)
 }
 
 UserSchema.pre('save', function saveHook(next) {

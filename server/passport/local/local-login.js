@@ -10,7 +10,7 @@ module.exports = new LocalStrategy({
     session: false
   },
   function(req, email, password, done) {
-    console.log('creating new user...')
+    console.log('attempting user login...')
     const userData = {
       email: email.trim(),
       password: password.trim()
@@ -18,18 +18,23 @@ module.exports = new LocalStrategy({
   
     // const newUser = new User(userData)
     User.findOne({ email: userData.email }).then(existingUser => {
-      if (existingUser) {
-        console.log('user already exists!')
+      if (!existingUser) {
+        console.log('invalid email or password!')
         return done(null, {
-          error: 'User already exists!'
+          error: 'Invalid email or password!'
         })
       } else {
-        new User(userData)
-        .save()
-        .then(newUser => {
-          jwt.sign({ user: newUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
-            newUser.token = token
-            return done(null, newUser)
+        existingUser.comparePassword(userData.password, (passwordErr, isMatch) => {
+          if (!isMatch) {
+            return done(null, {
+              error: 'Invalid email or password!'
+            })
+          }
+    
+          jwt.sign({ user: existingUser }, config.jwtSecret, { expiresIn: '14 days' }, (err, token) => {
+            existingUser.token = token
+            console.log('logged in as user: ', existingUser)
+            return done(null, existingUser)
           })
         })
       }
