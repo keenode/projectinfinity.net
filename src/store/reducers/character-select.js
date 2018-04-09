@@ -1,24 +1,22 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  messages: []
+  characters: [],
+  slots: 0,
+  slotsMax: 0
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_MESSAGES:
+    case actionTypes.GET_CHARACTER_SELECTION_DATA:
       return {
-        ...state,
-        messages: action.messages
-      }
-    case actionTypes.GET_MESSAGES_ERROR:
-      return {
-        ...state,
-        messages: action.messages
+        characters: action.characters,
+        slots: action.slots,
+        slotsMax: action.slotsMax
       }
     default:
       return state
-    }
+  }
 }
 
 export default reducer

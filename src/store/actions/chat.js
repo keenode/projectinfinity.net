@@ -4,13 +4,13 @@ import axios from '../../axios-instance'
 export const getMessages = (messages) => {
   return {
     type: actionTypes.GET_MESSAGES,
-    messages: messages
+    messages
   }
 }
 
-export const fetchMessagesFailed = () => {
+export const getMessagesError = () => {
   return {
-    type: actionTypes.FETCH_MESSAGES_ERROR
+    type: actionTypes.GET_MESSAGES_ERROR
   }
 }
 
@@ -21,7 +21,7 @@ export const initMessages = () => {
         dispatch(getMessages(res.data.messages))
       })
       .catch(err => {
-        dispatch(fetchMessagesFailed())
+        dispatch(getMessagesError())
       })
   }
 }

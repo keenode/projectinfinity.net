@@ -10,3 +10,6 @@ export {
   authCheckState
 } from './auth'
 export { changePlayMode } from './play'
+export {
+  fetchCharacterSelectionData
+} from './character-select'

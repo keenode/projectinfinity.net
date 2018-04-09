@@ -37,8 +37,33 @@ router.delete('/ninjas/:id', function (req, res) {
 // *** Chat ***
 
 router.get('/chat/messages', authCheck, function (req, res) {
-  res.send({
+  res.json({
     messages: 'Welcome to Project Infinity!'
+  })
+})
+
+// *** Characters ***
+
+router.get('/character-selection', authCheck, function (req, res) {
+  res.json({
+    characters: [
+      {
+        id: 1,
+        name: 'keenode',
+        level: 1,
+        race: 'Human',
+        gender: 'M'
+      },
+      {
+        id: 2,
+        name: 'keenie',
+        level: 4,
+        race: 'Human',
+        gender: 'M'
+      }
+    ],
+    slots: 0,
+    slotsMax: 2
   })
 })
 

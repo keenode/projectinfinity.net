@@ -10,25 +10,8 @@ import * as actions from '../../../store/actions'
 import styles from './CharacterSelect.css'
 
 class CharacterSelect extends Component {
-  state = {
-    characters: [
-      {
-        id: 1,
-        name: 'keenode',
-        level: 1,
-        race: 'Human',
-        gender: 'M'
-      },
-      {
-        id: 2,
-        name: 'keenie',
-        level: 4,
-        race: 'Human',
-        gender: 'M'
-      }
-    ],
-    slotsAvailable: 1,
-    slotsMax: 2
+  componentDidMount() {
+    this.props.onFetchCharacterSelectionData()
   }
 
   selectCharacterHandler = (charId) => {
@@ -43,10 +26,10 @@ class CharacterSelect extends Component {
     return (
       <div className={styles.CharacterSelect}>
         <h3>Character Select</h3>
-        Slots Available: {this.state.slotsAvailable} / {this.state.slotsMax}
+        Slots Available: {this.props.slots} / {this.props.slotsMax}
         <hr />
         <List>
-          {this.state.characters.map(character => (
+          {this.props.characters.map(character => (
             <ListItem key={character.id} clicked={() => { this.selectCharacterHandler(character.id) }}>
               <div className={styles.Avatar}></div>
               <div className={styles.Info}>
@@ -71,12 +54,15 @@ class CharacterSelect extends Component {
 // TODO: Map to characters listing
 const mapStateToProps = state => {
   return {
-    playMode: state.play.mode
+    characters: state.characterSelect.characters,
+    slots: state.characterSelect.slots,
+    slotsMax: state.characterSelect.slotsMax
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    onFetchCharacterSelectionData: () => dispatch(actions.fetchCharacterSelectionData()),
     onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode))
   }
 }
