@@ -36,7 +36,7 @@ class Play extends Component {
           <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
           <Button clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
         </div>
-        <Modal show={this.state.mode === 'CharacterSelect'}>
+        <Modal show={this.props.playMode === 'CharacterSelect'}>
           <CharacterSelect />
         </Modal>
       </div>
@@ -56,7 +56,8 @@ const mapStateToProps = state => {
     },
     chat: {
       messages: state.chat.messages
-    }
+    },
+    playMode: state.play.mode
   }
 }
 

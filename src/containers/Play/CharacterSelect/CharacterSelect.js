@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Button from '../../../components/UI/Button/Button'
 import List from '../../../components/UI/List/List'
 import ListItem from '../../../components/UI/List/ListItem/ListItem'
+
+import * as actions from '../../../store/actions'
 
 import styles from './CharacterSelect.css'
 
@@ -28,12 +31,13 @@ class CharacterSelect extends Component {
     slotsMax: 2
   }
 
-  characterSelectedHandler = (charId) => {
+  selectCharacterHandler = (charId) => {
     console.log('charId: ' + charId)
   }
 
   createCharacterHandler = () => {
     console.log('create character clicked')
+    this.props.onPlayModeChanged('CharacterCreate')
   }
 
   render() {
@@ -44,7 +48,7 @@ class CharacterSelect extends Component {
         <hr />
         <List>
           {this.state.characters.map(character => (
-            <ListItem key={character.id} clicked={() => { this.characterSelectedHandler(character.id) }}>
+            <ListItem key={character.id} clicked={() => { this.selectCharacterHandler(character.id) }}>
               <div className={styles.Avatar}></div>
               <div className={styles.Info}>
                 <span className={styles.Label}>{character.name}</span>
@@ -65,4 +69,17 @@ class CharacterSelect extends Component {
   }
 }
 
-export default CharacterSelect
+// TODO: Map to characters listing
+const mapStateToProps = state => {
+  return {
+    playMode: state.play.mode
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterSelect)

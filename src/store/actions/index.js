@@ -9,3 +9,4 @@ export {
   logout,
   authCheckState
 } from './auth'
+export { changePlayMode } from './play'
