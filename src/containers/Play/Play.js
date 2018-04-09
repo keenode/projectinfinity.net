@@ -8,6 +8,7 @@ import Chat from '../../components/UI/Chat/Chat'
 import Modal from '../../components/UI/Modal/Modal'
 
 import CharacterSelect from './CharacterSelect/CharacterSelect'
+import CharacterCreate from './CharacterCreate/CharacterCreate'
 
 import * as actions from '../../store/actions'
 
@@ -38,6 +39,9 @@ class Play extends Component {
         </div>
         <Modal show={this.props.playMode === 'CharacterSelect'}>
           <CharacterSelect />
+        </Modal>
+        <Modal show={this.props.playMode === 'CharacterCreate'}>
+          <CharacterCreate />
         </Modal>
       </div>
     )

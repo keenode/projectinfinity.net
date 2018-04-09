@@ -35,8 +35,7 @@ class CharacterSelect extends Component {
     console.log('charId: ' + charId)
   }
 
-  createCharacterHandler = () => {
-    console.log('create character clicked')
+  gotoCreateCharacterHandler = () => {
     this.props.onPlayModeChanged('CharacterCreate')
   }
 
@@ -63,7 +62,7 @@ class CharacterSelect extends Component {
           ))}
         </List>
         <hr />
-        <Button clicked={this.createCharacterHandler}>Create Character</Button>
+        <Button clicked={this.gotoCreateCharacterHandler}>Create Character</Button>
       </div>
     )
   }
