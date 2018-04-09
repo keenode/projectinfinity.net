@@ -1,4 +1,4 @@
-.PlayerStatus {
+.CharacterStatus {
   position: absolute;
   left: 15px;
   top: 15px;
@@ -14,10 +14,10 @@
   background-color: slateblue;
 }
 
-.PlayerStatus > span {
+.CharacterStatus > span {
   display: block;
 }
 
-.PlayerStatus b {
+.CharacterStatus b {
   font-weight: 700;
 }

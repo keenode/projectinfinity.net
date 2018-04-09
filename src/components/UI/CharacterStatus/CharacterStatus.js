@@ -1,9 +1,9 @@
 import React from 'react'
 
-import styles from './PlayerStatus.css'
+import styles from './CharacterStatus.css'
 
-const playerStatus = (props) => (
-  <div className={styles.PlayerStatus}>
+const characterStatus = (props) => (
+  <div className={styles.CharacterStatus}>
     <div className={styles.Avatar} />
     <hr />
     <span className={styles.PlayerName}>Keenan Staffieri</span>
@@ -17,4 +17,4 @@ const playerStatus = (props) => (
   </div>
 )
 
-export default playerStatus
+export default characterStatus
