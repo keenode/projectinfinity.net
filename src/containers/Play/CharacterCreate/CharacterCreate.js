@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Button from '../../../components/UI/Button/Button'
-import List from '../../../components/UI/List/List'
-import ListItem from '../../../components/UI/List/ListItem/ListItem'
+import Input from '../../../components/UI/Controls/Input/Input'
 
 import * as actions from '../../../store/actions'
 
@@ -24,7 +23,30 @@ class CharacterCreate extends Component {
         <h3>Character Create</h3>
         <Button clicked={this.backHandler}>Back</Button>
         <hr />
-        stuff
+        <Input 
+          id="input-character-name"
+          elementType="input"
+          label="Character Name"
+          elementConfig={{}} />
+        <Input 
+          id="input-gender"
+          elementType="select"
+          label="Gender"
+          elementConfig={{
+            options: [
+              { value: 'male', displayValue: 'Male' },
+              { value: 'female', displayValue: 'Female' }
+            ]
+          }} />
+          <Input 
+            id="input-race"
+            elementType="select"
+            label="Race"
+            elementConfig={{
+              options: [
+                { value: 'human', displayValue: 'Human' }
+              ]
+            }} />
         <hr />
         <Button clicked={this.startHandler}>Start</Button>
       </div>
