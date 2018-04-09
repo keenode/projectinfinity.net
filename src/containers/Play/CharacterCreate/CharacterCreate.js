@@ -99,7 +99,11 @@ class CharacterCreate extends Component {
 
   createCharacterHandler = (event) => {
     event.preventDefault()
-    console.log('[createCharacterHandler]')
+    const formData = {}
+    for (let formElementId in this.state.createCharacterForm) {
+      formData[formElementId] = this.state.createCharacterForm[formElementId].value
+    }
+    console.log('[createCharacterHandler] formData: ', formData)
     // this.props.onCreateCharacter(formData.name, formData.gender, formData.race)
   }
 
