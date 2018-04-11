@@ -72,7 +72,15 @@ router.post('/characters', authCheck, function (req, res) {
     character: {
       name: 'Keenode',
       gender: 'M',
-      race: 'Human'
+      race: 'Human',
+      vam: {
+        vitality: 100,
+        maxVitality: 200,
+        action: 100,
+        maxAction: 200,
+        mind: 100,
+        maxMind: 200
+      }
     }
   })
 })

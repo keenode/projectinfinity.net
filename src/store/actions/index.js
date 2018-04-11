@@ -1,8 +1,3 @@
-export {
-  updateVitality,
-  updateAction,
-  updateMind
-} from './player'
 export { initMessages } from './chat'
 export {
   auth,
@@ -12,5 +7,8 @@ export {
 export { changePlayMode } from './play'
 export {
   getAvailableCharacters,
-  createCharacter
+  createCharacter,
+  updateVitality,
+  updateAction,
+  updateMind
 } from './character'

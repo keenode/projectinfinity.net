@@ -6,7 +6,7 @@ const characterStatus = (props) => (
   <div className={styles.CharacterStatus}>
     <div className={styles.Avatar} />
     <hr />
-    <span className={styles.PlayerName}>Keenan Staffieri</span>
+    <span className={styles.PlayerName}>{props.name}</span>
     <hr />
     <span><b>Lvl:</b> 1</span>
     <span><b>Lvl Exp:</b> 0 / 1000</span>

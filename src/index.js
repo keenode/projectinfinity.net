@@ -8,7 +8,6 @@ import thunk from 'redux-thunk'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
-import playerReducer from './store/reducers/player'
 import chatReducer from './store/reducers/chat'
 import authReducer from './store/reducers/auth'
 import playReducer from './store/reducers/play'
@@ -18,7 +17,6 @@ import './index.css'
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  player: playerReducer,
   chat: chatReducer,
   play: playReducer,
   character: characterReducer
