@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../../shared/utility'
 
 const initialState = {
-  characters: [],
+  availableCharacters: [],
+  activeCharacter: null,
   slots: 0,
   slotsMax: 0,
   loading: false
@@ -15,7 +16,7 @@ const getAvailableCharactersStart = (state, action) => {
 const getAvailableCharactersSuccess = (state, action) => {
   return updateObject(state, {
       loading: false,
-      characters: action.characters,
+      availableCharacters: action.availableCharacters,
       slots: action.slots,
       slotsMax: action.slotsMax
   })
@@ -30,8 +31,9 @@ const createCharacterStart = (state, action) => {
 }
 
 const createCharacterSuccess = (state, action) => {
-  return updateObject( state, {
-      loading: false
+  return updateObject(state, {
+      loading: false,
+      activeCharacter: action.character
   })
 }
 

@@ -59,7 +59,7 @@ class CharacterSelect extends Component {
 
 const mapStateToProps = state => {
   return {
-    characters: state.character.characters,
+    characters: state.character.availableCharacters,
     slots: state.character.slots,
     slotsMax: state.character.slotsMax
   }

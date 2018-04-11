@@ -69,7 +69,11 @@ router.get('/characters', authCheck, function (req, res) {
 
 router.post('/characters', authCheck, function (req, res) {
   res.json({
-    message: 'Works!'
+    character: {
+      name: 'Keenode',
+      gender: 'M',
+      race: 'Human'
+    }
   })
 })
 

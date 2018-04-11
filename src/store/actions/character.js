@@ -4,7 +4,7 @@ import axios from '../../axios-instance'
 export const getAvailableCharactersSuccess = data => {
   return {
     type: actionTypes.GET_AVAILABLE_CHARACTERS_SUCCESS,
-    characters: data.characters,
+    availableCharacters: data.characters,
     slots: data.slots,
     slotsMax: data.slotsMax
   }
@@ -35,10 +35,10 @@ export const getAvailableCharacters = () => {
   }
 }
 
-export const createCharacterSuccess = characterData => {
+export const createCharacterSuccess = character => {
   return {
     type: actionTypes.CREATE_CHARACTER_SUCCESS,
-    characterData
+    character
   }
 }
 
@@ -60,7 +60,7 @@ export const createCharacter = characterData => {
     dispatch(createCharacterStart())
     axios.post('/api/characters', characterData)
       .then(res => {
-        dispatch(createCharacterSuccess(res.data))
+        dispatch(createCharacterSuccess(res.data.character))
       })
       .catch(err => {
         dispatch(createCharacterError(err))
