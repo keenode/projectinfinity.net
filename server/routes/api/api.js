@@ -73,13 +73,16 @@ router.post('/characters', authCheck, function (req, res) {
       name: 'Keenode',
       gender: 'M',
       race: 'Human',
+      level: 22,
+      exp: 100,
+      expMax: 2000,
       vam: {
         vitality: 100,
-        maxVitality: 200,
+        vitalityMax: 200,
         action: 100,
-        maxAction: 200,
+        actionMax: 200,
         mind: 100,
-        maxMind: 200
+        mindMax: 200
       }
     }
   })

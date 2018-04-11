@@ -27,7 +27,7 @@ class Play extends Component {
     return (
       <div id="game-container" className={styles.GameContainer}>
         <Map />
-        <CharacterStatus name={this.props.name} vam={this.props.vam} />
+        <CharacterStatus character={this.props.character} />
         <Chat messages={this.props.chat.messages} />
         <div className={styles.TestActions}>
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
@@ -50,14 +50,19 @@ class Play extends Component {
 
 const mapStateToProps = state => {
   return {
-    name: state.character.name,
-    vam: {
-      vitality: state.character.vam.vitality,
-      maxVitality: state.character.vam.maxVitality,
-      action: state.character.vam.action,
-      maxAction: state.character.vam.maxAction,
-      mind: state.character.vam.mind,
-      maxMind: state.character.vam.maxMind
+    character: {
+      name: state.character.name,
+      level: state.character.level,
+      exp: state.character.exp,
+      expMax: state.character.expMax,
+      vam: {
+        vitality: state.character.vam.vitality,
+        vitalityMax: state.character.vam.vitalityMax,
+        action: state.character.vam.action,
+        actionMax: state.character.vam.actionMax,
+        mind: state.character.vam.mind,
+        mindMax: state.character.vam.mindMax
+      }
     },
     chat: {
       messages: state.chat.messages

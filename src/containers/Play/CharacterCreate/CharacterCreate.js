@@ -105,6 +105,8 @@ class CharacterCreate extends Component {
     }
     console.log('[createCharacterHandler] formData: ', formData)
     this.props.onCreateCharacter(formData.name, formData.gender, formData.race)
+    // TODO: Handle loading state before changing mode
+    this.props.onPlayModeChanged('Playing')
   }
 
   render() {

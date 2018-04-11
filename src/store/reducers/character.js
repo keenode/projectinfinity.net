@@ -8,11 +8,11 @@ const initialState = {
   race: null,
   vam: {
     vitality: 0,
-    maxVitality: 0,
+    vitalityMax: 0,
     action: 0,
-    maxAction: 0,
+    actionMax: 0,
     mind: 0,
-    maxMind: 0
+    mindMax: 0
   },
   slots: 0,
   slotsMax: 0,
@@ -43,10 +43,13 @@ const createCharacterStart = (state, action) => {
 const createCharacterSuccess = (state, action) => {
   return updateObject(state, {
       loading: false,
-      vam: action.character.vam,
       name: action.character.name,
       gender: action.character.gender,
-      race: action.character.race
+      race: action.character.race,
+      level: action.character.level,
+      exp: action.character.exp,
+      expMax: action.character.expMax,
+      vam: action.character.vam
   })
 }
 
