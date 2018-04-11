@@ -11,7 +11,7 @@ import styles from './CharacterSelect.css'
 
 class CharacterSelect extends Component {
   componentDidMount() {
-    this.props.onFetchCharacterSelectionData()
+    this.props.onGetAvailableCharacters()
   }
 
   selectCharacterHandler = (charId) => {
@@ -57,18 +57,17 @@ class CharacterSelect extends Component {
   }
 }
 
-// TODO: Map to characters listing
 const mapStateToProps = state => {
   return {
-    characters: state.characterSelect.characters,
-    slots: state.characterSelect.slots,
-    slotsMax: state.characterSelect.slotsMax
+    characters: state.character.characters,
+    slots: state.character.slots,
+    slotsMax: state.character.slotsMax
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchCharacterSelectionData: () => dispatch(actions.fetchCharacterSelectionData()),
+    onGetAvailableCharacters: () => dispatch(actions.getAvailableCharacters()),
     onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode))
   }
 }

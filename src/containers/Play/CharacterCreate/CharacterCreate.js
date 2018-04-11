@@ -104,7 +104,7 @@ class CharacterCreate extends Component {
       formData[formElementId] = this.state.createCharacterForm[formElementId].value
     }
     console.log('[createCharacterHandler] formData: ', formData)
-    // this.props.onCreateCharacter(formData.name, formData.gender, formData.race)
+    this.props.onCreateCharacter(formData.name, formData.gender, formData.race)
   }
 
   render() {
@@ -144,7 +144,8 @@ class CharacterCreate extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode))
+    onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode)),
+    onCreateCharacter: characterData => dispatch(actions.createCharacter(characterData))
   }
 }
 

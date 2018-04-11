@@ -44,7 +44,7 @@ router.get('/chat/messages', authCheck, function (req, res) {
 
 // *** Characters ***
 
-router.get('/character-selection', authCheck, function (req, res) {
+router.get('/characters', authCheck, function (req, res) {
   res.json({
     characters: [
       {
@@ -64,6 +64,12 @@ router.get('/character-selection', authCheck, function (req, res) {
     ],
     slots: 0,
     slotsMax: 2
+  })
+})
+
+router.post('/characters', authCheck, function (req, res) {
+  res.json({
+    message: 'Works!'
   })
 })
 

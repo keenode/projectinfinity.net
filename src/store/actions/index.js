@@ -11,5 +11,6 @@ export {
 } from './auth'
 export { changePlayMode } from './play'
 export {
-  fetchCharacterSelectionData
-} from './character-select'
+  getAvailableCharacters,
+  createCharacter
+} from './character'

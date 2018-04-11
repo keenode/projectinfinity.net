@@ -12,7 +12,7 @@ import playerReducer from './store/reducers/player'
 import chatReducer from './store/reducers/chat'
 import authReducer from './store/reducers/auth'
 import playReducer from './store/reducers/play'
-import characterSelectReducer from './store/reducers/character-select'
+import characterReducer from './store/reducers/character'
 
 import './index.css'
 
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   player: playerReducer,
   chat: chatReducer,
   play: playReducer,
-  characterSelect: characterSelectReducer
+  character: characterReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
