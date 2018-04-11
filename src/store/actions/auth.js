@@ -7,7 +7,7 @@ export const authStart = () => {
   }
 }
 
-export const authSuccess = (token) => {
+export const authSuccess = token => {
   axios.defaults.headers['Authorization'] = 'Bearer ' + token
 
   return {
@@ -16,9 +16,9 @@ export const authSuccess = (token) => {
   }
 }
 
-export const authFail = (error) => {
+export const authError = error => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: actionTypes.AUTH_ERROR,
     error: error
   }
 }
@@ -61,7 +61,7 @@ export const auth = (email, password, isRegistering = false) => {
       })
       .catch(err => {
         console.log(err)
-        dispatch(authFail(err))
+        dispatch(authError(err))
       })
   }
 }
