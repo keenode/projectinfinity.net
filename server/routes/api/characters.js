@@ -3,25 +3,12 @@ const authCheck = require('../../middleware/auth-check')
 const Character = require('../../models/character')
 
 router.get('/characters', authCheck, function (req, res) {
-  res.json({
-    characters: [
-      {
-        id: 1,
-        name: 'keenode',
-        level: 1,
-        race: 'Human',
-        gender: 'M'
-      },
-      {
-        id: 2,
-        name: 'keenie',
-        level: 4,
-        race: 'Human',
-        gender: 'M'
-      }
-    ],
-    slots: 0,
-    slotsMax: 2
+  Character.find().then(function (characters) {
+    res.json({
+      characters,
+      slots: 0,
+      slotsMax: 2
+    })
   })
 })
 

@@ -34,7 +34,7 @@ class CharacterSelect extends Component {
         <hr />
         <List>
           {this.props.characters.map(character => (
-            <ListItem key={character.id}>
+            <ListItem key={character._id}>
               <div className={styles.Avatar}></div>
               <div className={styles.Info}>
                 <span className={styles.Label}>{character.name}</span>
