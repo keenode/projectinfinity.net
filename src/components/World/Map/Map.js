@@ -18,9 +18,11 @@ class Map extends Component {
 
   componentDidMount() {
     console.log('[Map] Did Mount')
-    this.setupPIXI('canvas-world')
-    this.prepareTiles()
-    this.map.ticker.add(delta => this.gameLoop(delta));
+    setTimeout(() => {
+      this.setupPIXI('canvas-world')
+      this.prepareTiles()
+      this.map.ticker.add(delta => this.gameLoop(delta));
+    }, 200)
   }
 
   setupPIXI(mapSelectorId) {

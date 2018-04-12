@@ -54,11 +54,14 @@ table {
  :root {
 	--theme-color-white: #EAEAEA;
 	--theme-color-black: #050404;
-	--theme-bgcolor: #2f2f2f;
+	--theme-bgcolor: #212327;
 	--theme-font-default: 'Varela Round', Helvetica, Arial, sans-serif;
 	--theme-font-callout: 'Kanit', Helvetica, Arial, sans-serif;
 	--ui-bgcolor: #3b3e47;
 	--ui-foregcolor: #4a4e57;
+	--ui-titlebar-height: 30px;
+	--ui-navbar-height: 50px;
+	--ui-navbar-height-minimal: 30px;
 	--ui-info-text-color: #aeb7ce;
 	--ui-border: 1px solid rgba(255, 255, 255, 0.2);
 	--ui-btn-primary-color: #0d739b;

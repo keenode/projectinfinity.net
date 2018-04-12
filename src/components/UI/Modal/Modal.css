@@ -1,7 +1,7 @@
 .Modal {
   position: absolute;
   left: 50%;
-  top: 30px;
+  top: 50px;
   width: 50%;
   padding: 10px;
   background-color: var(--ui-bgcolor);

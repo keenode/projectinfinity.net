@@ -1,3 +1,3 @@
-.ModalHeader {
-
+.ModalHeader h3 {
+  user-select: none;
 }
