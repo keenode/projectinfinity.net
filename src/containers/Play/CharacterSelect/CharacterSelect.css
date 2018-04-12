@@ -25,3 +25,12 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.InfoText {
+  display: inline-block;
+  margin: 5px 0;
+	color: var(--ui-info-text-color);
+  font-size: 12px;
+  letter-spacing: 1px;
+  user-select: none;
+}

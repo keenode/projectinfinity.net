@@ -3,8 +3,7 @@
   left: 50%;
   top: 30px;
   width: 50%;
-  padding: 30px;
-  color: white;
+  padding: 10px;
   background-color: var(--ui-bgcolor);
   border: var(--ui-border);
   transform: translateX(-50%);

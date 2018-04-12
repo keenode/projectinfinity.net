@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Button from '../../../components/UI/Button/Button'
 import List from '../../../components/UI/List/List'
 import ListItem from '../../../components/UI/List/ListItem/ListItem'
+import ModalHeader from '../../../components/UI/Modal/ModalHeader/ModalHeader'
+import ModalFooter from '../../../components/UI/Modal/ModalFooter/ModalFooter'
 
 import * as actions from '../../../store/actions'
 
@@ -32,8 +34,7 @@ class CharacterSelect extends Component {
   render() {
     return (
       <div className={styles.CharacterSelect}>
-        <h3>Character Select</h3>
-        Slots Available: {this.props.slots} / {this.props.slotsMax}
+        <ModalHeader title="Character Select" />
         <List>
           {this.props.characters.map(character => (
             <ListItem key={character._id}>
@@ -51,7 +52,10 @@ class CharacterSelect extends Component {
             </ListItem>
           ))}
         </List>
-        <Button clicked={this.gotoCreateCharacterHandler}>Create Character</Button>
+        <ModalFooter>
+          <span className={styles.InfoText}>Slots Available: {this.props.slots} / {this.props.slotsMax}</span>          
+          <Button clicked={this.gotoCreateCharacterHandler}>Create Character</Button>
+        </ModalFooter>
       </div>
     )
   }

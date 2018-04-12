@@ -59,10 +59,13 @@ table {
 	--theme-font-callout: 'Kanit', Helvetica, Arial, sans-serif;
 	--ui-bgcolor: #3b3e47;
 	--ui-foregcolor: #4a4e57;
+	--ui-info-text-color: #aeb7ce;
 	--ui-border: 1px solid rgba(255, 255, 255, 0.2);
 	--ui-btn-primary-color: #0d739b;
+	--ui-btn-primary-color-hover: #1781ac;
 	--ui-btn-secondary-color: gray;
 	--ui-btn-danger-color: #DB5461;
+	--ui-btn-danger-color-hover: #e46673;
 }
 
 /* #16BAC5  - nice light blue */

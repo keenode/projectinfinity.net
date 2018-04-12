@@ -5,10 +5,21 @@
   color: var(--ui-color-white);
   letter-spacing: 1px;
   background-color: var(--ui-btn-primary-color);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
   border: 0;
+  transition: all 200ms ease;
+}
+
+.Button:hover {
+  background-color: var(--ui-btn-primary-color-hover);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
 }
 
 .Button.Danger {
   background-color: var(--ui-btn-danger-color);
+}
+
+.Button.Danger:hover {
+  background-color: var(--ui-btn-danger-color-hover);
 }
