@@ -2,9 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   height: var(--ui-navbar-height);
   background-color: var(--ui-bgcolor);
   transition: all 200ms ease-out;
+  z-index: 200;
 }
 
 .NavBar.Minimal {

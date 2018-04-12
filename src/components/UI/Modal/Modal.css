@@ -7,5 +7,5 @@
   background-color: var(--ui-bgcolor);
   border: var(--ui-border);
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 110;
 }
