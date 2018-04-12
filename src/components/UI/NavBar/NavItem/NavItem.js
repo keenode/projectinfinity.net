@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import styles from './NavItem.css'
 
-const navItem = (props) => (
+const navItem = props => (
   <li className={styles.NavItem}>
     <NavLink 
       to={props.link}

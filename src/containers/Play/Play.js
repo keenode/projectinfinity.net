@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Map from '../../components/World/Map/Map'
 import Button from '../../components/UI/Button/Button'
 import CharacterStatus from '../../components/UI/CharacterStatus/CharacterStatus'
+import ExamineSidebar from '../../components/UI/ExamineSidebar/ExamineSidebar'
+import TileInfo from '../../components/UI/ExamineSidebar/TileInfo/TileInfo'
 import Chat from '../../components/UI/Chat/Chat'
 import Modal from '../../components/UI/Modal/Modal'
 
@@ -28,6 +30,9 @@ class Play extends Component {
       <div id="game-container" className={styles.GameContainer}>
         <Map />
         <CharacterStatus character={this.props.character} />
+        <ExamineSidebar>
+          <TileInfo />
+        </ExamineSidebar>
         <Chat messages={this.props.chat.messages} />
         <div className={styles.TestActions}>
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>

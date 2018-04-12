@@ -1,0 +1,13 @@
+.TileInfo {
+  padding: 15px;
+  width: 100%;
+  height: 150px;
+  background-color: var(--ui-foregcolor);
+  box-sizing: border-box;
+}
+
+.Tile {
+  width: 80px;
+  height: 80px;
+  background-color: var(--theme-color-black);
+}

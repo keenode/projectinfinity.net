@@ -1,0 +1,9 @@
+.ExamineSidebar {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 400px;
+  height: 80vh;
+  padding: 10px;
+  background-color: var(--ui-bgcolor);
+}
