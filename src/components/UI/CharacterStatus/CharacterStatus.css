@@ -3,15 +3,15 @@
   left: 15px;
   top: 15px;
   width: 200px;
-  background-color: darkgrey;
-  padding: 20px;
+  background-color: var(--ui-bgcolor-glass);
+  padding: 10px;
   z-index: 10;
 }
 
 .Avatar {
   width: 80px;
   height: 80px;
-  background-color: slateblue;
+  background-color: var(--theme-color-black);
 }
 
 .CharacterStatus > span {

@@ -1,0 +1,11 @@
+.Sidebar {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 400px;
+  z-index: 10;
+}
+
+.Sidebar > div {
+  margin-bottom: 15px;
+}

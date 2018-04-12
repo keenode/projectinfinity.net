@@ -1,7 +1,6 @@
 import React from 'react'
 
 import styles from './TileInfo.css'
-import Tile from '../../../World/Map/Tile/Tile';
 
 const tileInfo = props => (
   <div className={styles.TileInfo}>

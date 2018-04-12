@@ -1,0 +1,6 @@
+.ExamineOptions {
+  padding: 10px;  
+  width: 100%;
+  background-color: var(--ui-bgcolor-glass);
+  box-sizing: border-box;
+}

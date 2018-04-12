@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import Map from '../../components/World/Map/Map'
 import Button from '../../components/UI/Button/Button'
 import CharacterStatus from '../../components/UI/CharacterStatus/CharacterStatus'
-import ExamineSidebar from '../../components/UI/ExamineSidebar/ExamineSidebar'
-import TileInfo from '../../components/UI/ExamineSidebar/TileInfo/TileInfo'
-import InteractionPane from '../../components/UI/ExamineSidebar/InteractionPane/InteractionPane'
-import WorldInfo from '../../components/UI/WorldInfo/WorldInfo'
+import Sidebar from '../../components/UI/Sidebar/Sidebar'
+import ExamineOptions from '../../components/UI/Sidebar/ExamineOptions/ExamineOptions'
+import TileInfo from '../../components/UI/Sidebar/ExamineOptions/TileInfo/TileInfo'
+import InteractionPane from '../../components/UI/Sidebar/ExamineOptions/InteractionPane/InteractionPane'
+import WorldInfo from '../../components/UI/Sidebar/WorldInfo/WorldInfo'
 import Chat from '../../components/UI/Chat/Chat'
 import Modal from '../../components/UI/Modal/Modal'
 
@@ -32,11 +33,13 @@ class Play extends Component {
       <div id="game-container" className={styles.GameContainer}>
         <Map />
         <CharacterStatus character={this.props.character} />
-        <WorldInfo />
-        <ExamineSidebar>
-          <TileInfo />
-          <InteractionPane />
-        </ExamineSidebar>
+        <Sidebar>
+          <WorldInfo />
+          <ExamineOptions>
+            <TileInfo />
+            <InteractionPane />
+          </ExamineOptions>
+        </Sidebar>
         <Chat messages={this.props.chat.messages} />
         <div className={styles.TestActions}>
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
