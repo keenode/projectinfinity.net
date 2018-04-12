@@ -34,7 +34,6 @@ class CharacterSelect extends Component {
       <div className={styles.CharacterSelect}>
         <h3>Character Select</h3>
         Slots Available: {this.props.slots} / {this.props.slotsMax}
-        <hr />
         <List>
           {this.props.characters.map(character => (
             <ListItem key={character._id}>
@@ -45,7 +44,6 @@ class CharacterSelect extends Component {
                   <span>Lvl: {character.level}</span>
                   <span>Race: {character.race}</span>
                   <span>Gender: {character.gender}</span>
-                  <span>Location: Corelisto</span>
                 </div>
                 <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
                 <Button btnType="Danger" clicked={() => { this.deleteCharacterHandler(character._id) }}>Delete</Button>
@@ -53,7 +51,6 @@ class CharacterSelect extends Component {
             </ListItem>
           ))}
         </List>
-        <hr />
         <Button clicked={this.gotoCreateCharacterHandler}>Create Character</Button>
       </div>
     )

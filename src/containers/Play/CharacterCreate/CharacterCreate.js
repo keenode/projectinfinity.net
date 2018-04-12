@@ -123,7 +123,6 @@ class CharacterCreate extends Component {
       <div className={styles.CharacterCreate}>
         <h3>Character Create</h3>
         <Button clicked={this.backHandler}>Back</Button>
-        <hr />
         <form onSubmit={this.createCharacterHandler}>
           {formElementsArray.map(formElement => (
             <Input 
@@ -138,7 +137,6 @@ class CharacterCreate extends Component {
               touched={formElement.config.touched}
               changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
           ))}
-          <hr />
           <Button type="submit" disabled={!this.state.formIsValid}>Start</Button>
         </form>
       </div>
