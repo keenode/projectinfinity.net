@@ -110,7 +110,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_CHARACTER_SUCCESS: return deleteCharacterSuccess(state, action)
     case actionTypes.DELETE_CHARACTER_ERROR: return deleteCharacterError(state, action)
     case actionTypes.UPDATE_VITALITY:
-      const newVitality = checkBounds(state.vam.vitality, state.vam.maxVitality, action.changeAmt)
+      const newVitality = checkBounds(state.vam.vitality, state.vam.vitalityMax, action.changeAmt)
       return updateObject(state, {
         vam: {
           ...state.vam,
@@ -118,7 +118,7 @@ const reducer = (state = initialState, action) => {
         }
       })
     case actionTypes.UPDATE_ACTION:
-      const newAction = checkBounds(state.vam.action, state.vam.maxAction, action.changeAmt)
+      const newAction = checkBounds(state.vam.action, state.vam.actionMax, action.changeAmt)
       return updateObject(state, {
         vam: {
           ...state.vam,
@@ -126,7 +126,7 @@ const reducer = (state = initialState, action) => {
         }
       })
       case actionTypes.UPDATE_MIND:
-        const newMind = checkBounds(state.vam.mind, state.vam.maxMind, action.changeAmt)
+        const newMind = checkBounds(state.vam.mind, state.vam.mindMax, action.changeAmt)
         return updateObject(state, {
           vam: {
             ...state.vam,
