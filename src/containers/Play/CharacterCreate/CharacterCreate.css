@@ -1,4 +1,4 @@
 .CharacterCreate {
   padding: 15px;
-  background-color: saddlebrown;
+  background-color: var(--ui-foregcolor);
 }

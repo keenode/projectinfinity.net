@@ -30,7 +30,7 @@ class Map extends Component {
       height: $gameContainer.offsetHeight,
       // antialias: true
     })
-    this.map.renderer.backgroundColor = 0x061639
+    this.map.renderer.backgroundColor = 0x0F0A0A
     this.map.renderer.autoResize = true
 
     document.getElementById(mapSelectorId).appendChild(this.map.view)

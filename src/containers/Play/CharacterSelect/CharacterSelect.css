@@ -1,6 +1,6 @@
 .CharacterSelect {
   padding: 15px;
-  background-color: slategrey;
+  background-color: var(--ui-foregcolor);
 }
 
 .Avatar {
