@@ -16,6 +16,8 @@ class CharacterSelect extends Component {
 
   selectCharacterHandler = (charId) => {
     console.log('[selectCharacterHandler]: ' + charId)
+    this.props.onSelectCharacter(charId)
+    this.props.onPlayModeChanged('Playing')
   }
 
   gotoCreateCharacterHandler = () => {
@@ -69,6 +71,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onGetAvailableCharacters: () => dispatch(actions.getAvailableCharacters()),
+    onSelectCharacter: charId => dispatch(actions.selectCharacter(charId)),
     onDeleteCharacter: charId => dispatch(actions.deleteCharacter(charId)),
     onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode))
   }

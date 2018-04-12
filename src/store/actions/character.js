@@ -35,10 +35,42 @@ export const getAvailableCharacters = () => {
   }
 }
 
-export const createCharacterSuccess = character => {
+export const selectCharacterSuccess = selectedCharacter => {
+  return {
+    type: actionTypes.SELECT_CHARACTER_SUCCESS,
+    character: selectedCharacter
+  }
+}
+
+export const selectCharacterError = () => {
+  return {
+    type: actionTypes.SELECT_CHARACTER_ERROR
+  }
+}
+
+export const selectCharacterStart = () => {
+  return {
+    type: actionTypes.SELECT_CHARACTER_START
+  }
+}
+
+export const selectCharacter = charId => {
+  return dispatch => {
+    dispatch(selectCharacterStart())
+    axios.get('/api/characters/' + charId)
+      .then(res => {
+        dispatch(selectCharacterSuccess(res.data.character))
+      })
+      .catch(err => {
+        dispatch(selectCharacterError())
+      })
+  }
+}
+
+export const createCharacterSuccess = createdCharacter => {
   return {
     type: actionTypes.CREATE_CHARACTER_SUCCESS,
-    character
+    character: createdCharacter
   }
 }
 

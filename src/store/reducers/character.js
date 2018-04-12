@@ -36,6 +36,27 @@ const getAvailableCharactersError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
+const selectCharacterStart = (state, action) => {
+  return updateObject(state, { loading: true })
+}
+
+const selectCharacterSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    name: action.character.name,
+    gender: action.character.gender,
+    race: action.character.race,
+    level: action.character.level,
+    exp: action.character.exp,
+    expMax: action.character.expMax,
+    vam: action.character.vam
+  })
+}
+
+const selectCharacterError = (state, action) => {
+  return updateObject(state, { loading: false })
+}
+
 const createCharacterStart = (state, action) => {
   return updateObject(state, { loading: true })
 }
@@ -79,6 +100,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_AVAILABLE_CHARACTERS_START: return getAvailableCharactersStart(state, action)
     case actionTypes.GET_AVAILABLE_CHARACTERS_SUCCESS: return getAvailableCharactersSuccess(state, action)
     case actionTypes.GET_AVAILABLE_CHARACTERS_ERROR: return getAvailableCharactersError(state, action)
+    case actionTypes.SELECT_CHARACTER_START: return selectCharacterStart(state, action)
+    case actionTypes.SELECT_CHARACTER_SUCCESS: return selectCharacterSuccess(state, action)
+    case actionTypes.SELECT_CHARACTER_ERROR: return selectCharacterError(state, action)
     case actionTypes.CREATE_CHARACTER_START: return createCharacterStart(state, action)
     case actionTypes.CREATE_CHARACTER_SUCCESS: return createCharacterSuccess(state, action)
     case actionTypes.CREATE_CHARACTER_ERROR: return createCharacterError(state, action)

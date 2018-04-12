@@ -12,6 +12,12 @@ router.get('/characters', authCheck, function (req, res) {
   })
 })
 
+router.get('/characters/:id', authCheck, function (req, res) {
+  Character.findOne({ _id: req.params.id }).then(function (character) {
+    res.json({ character })
+  })
+})
+
 router.post('/characters', authCheck, function (req, res) {
   new Character({
     name: req.body.name,
