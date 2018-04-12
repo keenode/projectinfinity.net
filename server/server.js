@@ -1,14 +1,9 @@
-/**
- * Notes:
- * https://vladimirponomarev.com/blog/authentication-in-react-apps-jwt
- */
 const express = require('express')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const config = require('./config')
 const db = require('./db')
-const authCheck = require('./middleware/auth-check')
 
 const app = express()
 
@@ -47,32 +42,6 @@ app.get('/api/mock-login', function(req, res) {
     res.json({ token })
   })
 })
-
-app.get('/api/protected', authCheck, function(req, res) {
-  // jwt.verify(req.token, config.jwtSecret, function(err, data) {
-    // console.log(err)
-    // if (err) {
-    //   res.sendStatus(403)
-    // } else {
-      res.json({
-        message: 'protected!',
-        // data
-      })
-    // }
-  // })
-})
-
-// function verifyToken(req, res, next) {
-//   const bearerHeader = req.headers['authorization']
-//   if (typeof bearerHeader !== 'undefined') {
-//     const bearer = bearerHeader.split(' ')
-//     const bearerToken = bearer[1]
-//     req.token = bearerToken
-//     next()
-//   } else {
-//     res.sendStatus(403)
-//   }
-// }
 
 app.use('/api', routes)
 app.use('/api/auth', authRoutes)

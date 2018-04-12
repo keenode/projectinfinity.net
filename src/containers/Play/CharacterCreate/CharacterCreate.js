@@ -32,6 +32,7 @@ class CharacterCreate extends Component {
         elementConfig: {
           name: 'gender',
           options: [
+            { value: 0, displayValue: '- Select -' },
             { value: 'male', displayValue: 'Male' },
             { value: 'female', displayValue: 'Female' }
           ]
@@ -49,6 +50,7 @@ class CharacterCreate extends Component {
         elementConfig: {
           name: 'race',
           options: [
+            { value: 0, displayValue: '- Select -' },
             { value: 'human', displayValue: 'Human' }
           ]
         },
@@ -104,7 +106,7 @@ class CharacterCreate extends Component {
       formData[formElementId] = this.state.createCharacterForm[formElementId].value
     }
     console.log('[createCharacterHandler] formData: ', formData)
-    this.props.onCreateCharacter(formData.name, formData.gender, formData.race)
+    this.props.onCreateCharacter(formData)
     // TODO: Handle loading state before changing mode
     this.props.onPlayModeChanged('Playing')
   }

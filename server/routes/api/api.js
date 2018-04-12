@@ -1,6 +1,11 @@
 const router = require('express').Router()
-const authCheck = require('../../middleware/auth-check')
+const charactersRoutes = require('./characters')
+const chatRoutes = require('./chat')
 
+router.use(charactersRoutes)
+router.use(chatRoutes)
+
+// EXL Tutorial Routes...
 const Ninja = require('../../models/ninja')
 
 router.get('/ninjas', function (req, res) {
@@ -32,60 +37,6 @@ router.delete('/ninjas/:id', function (req, res) {
     .then(function (ninja) {
       res.send(ninja)
     })
-})
-
-// *** Chat ***
-
-router.get('/chat/messages', authCheck, function (req, res) {
-  res.json({
-    messages: 'Welcome to Project Infinity!'
-  })
-})
-
-// *** Characters ***
-
-router.get('/characters', authCheck, function (req, res) {
-  res.json({
-    characters: [
-      {
-        id: 1,
-        name: 'keenode',
-        level: 1,
-        race: 'Human',
-        gender: 'M'
-      },
-      {
-        id: 2,
-        name: 'keenie',
-        level: 4,
-        race: 'Human',
-        gender: 'M'
-      }
-    ],
-    slots: 0,
-    slotsMax: 2
-  })
-})
-
-router.post('/characters', authCheck, function (req, res) {
-  res.json({
-    character: {
-      name: 'Keenode',
-      gender: 'M',
-      race: 'Human',
-      level: 22,
-      exp: 100,
-      expMax: 2000,
-      vam: {
-        vitality: 100,
-        vitalityMax: 200,
-        action: 100,
-        actionMax: 200,
-        mind: 100,
-        mindMax: 200
-      }
-    }
-  })
 })
 
 module.exports = router
