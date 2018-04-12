@@ -137,7 +137,7 @@ class CharacterCreate extends Component {
               touched={formElement.config.touched}
               changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
           ))}
-          <Button type="submit" disabled={!this.state.formIsValid}>Start</Button>
+          <Button type="submit" disabled={!this.state.formIsValid}>Start Adventure</Button>
         </form>
       </div>
     )

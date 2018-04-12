@@ -8,6 +8,7 @@
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
   border: 0;
+  user-select: none;
   transition: all 200ms ease;
 }
 
@@ -22,4 +23,9 @@
 
 .Button.Danger:hover {
   background-color: var(--ui-btn-danger-color-hover);
+}
+
+.Button:disabled {
+  background-color: var(--ui-btn-disabled-color);
+  cursor: not-allowed;
 }

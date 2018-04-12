@@ -1,10 +1,20 @@
 .NavItem a {
   display: inline-block;
   color: var(--theme-color-white);
-  padding: 15px;
+  padding: 15px 20px;
+  font-family: var(	--theme-font-callout);
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 1px;
   text-decoration: none;
+  transition: all 200ms ease;
+}
+
+.NavItem a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .NavItem a.active {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: default;
 }

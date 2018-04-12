@@ -66,6 +66,7 @@ table {
 	--ui-btn-secondary-color: gray;
 	--ui-btn-danger-color: #DB5461;
 	--ui-btn-danger-color-hover: #e46673;
+	--ui-btn-disabled-color: #5c5d5f;
 }
 
 /* #16BAC5  - nice light blue */
