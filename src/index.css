@@ -106,3 +106,16 @@ h3 {
 p {
 	margin-bottom: 20px;
 }
+
+:global(.fade-in) :global {
+	animation: fade-in 400ms ease-in 200ms forwards;    
+}
+
+@keyframes :global(fade-in) {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

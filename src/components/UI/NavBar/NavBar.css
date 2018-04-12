@@ -11,6 +11,11 @@
   height: var(--ui-navbar-height-minimal);
 }
 
+.NavBar.Minimal a {
+  color: var(--ui-info-text-color);
+  transition: color 200ms ease;
+}
+
 .NavBarItems {
   display: flex;
   height: 100%;

@@ -68,7 +68,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div id="canvas-world" className={styles.Map}></div>
+      <div id="canvas-world" className={[styles.Map, 'fade-in'].join(' ')}></div>
     )
   }
 }
