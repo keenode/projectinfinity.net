@@ -24,6 +24,7 @@ class CharacterSelect extends Component {
 
   deleteCharacterHandler = (charId) => {
     console.log('[deleteCharacterHandler]: ' + charId)
+    this.props.onDeleteCharacter(charId)
   }
 
   render() {
@@ -44,8 +45,8 @@ class CharacterSelect extends Component {
                   <span>Gender: {character.gender}</span>
                   <span>Location: Corelisto</span>
                 </div>
-                <Button clicked={() => { this.selectCharacterHandler(character.id) }}>Play</Button>
-                <Button clicked={() => { this.deleteCharacterHandler(character.id) }}>Delete</Button>
+                <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
+                <Button clicked={() => { this.deleteCharacterHandler(character._id) }}>Delete</Button>
               </div>
             </ListItem>
           ))}
@@ -68,6 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onGetAvailableCharacters: () => dispatch(actions.getAvailableCharacters()),
+    onDeleteCharacter: charId => dispatch(actions.deleteCharacter(charId)),
     onPlayModeChanged: mode => dispatch(actions.changePlayMode(mode))
   }
 }

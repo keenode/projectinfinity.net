@@ -8,6 +8,7 @@ export { changePlayMode } from './play'
 export {
   getAvailableCharacters,
   createCharacter,
+  deleteCharacter,
   updateVitality,
   updateAction,
   updateMind

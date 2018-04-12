@@ -57,6 +57,23 @@ const createCharacterError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
+const deleteCharacterStart = (state, action) => {
+  return updateObject(state, { loading: true })
+}
+
+const deleteCharacterSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    availableCharacters: [
+      ...state.availableCharacters.filter(character => character._id !== action.deletedCharacter._id)
+    ]
+  })
+}
+
+const deleteCharacterError = (state, action) => {
+  return updateObject(state, { loading: false })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_AVAILABLE_CHARACTERS_START: return getAvailableCharactersStart(state, action)
@@ -65,6 +82,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CREATE_CHARACTER_START: return createCharacterStart(state, action)
     case actionTypes.CREATE_CHARACTER_SUCCESS: return createCharacterSuccess(state, action)
     case actionTypes.CREATE_CHARACTER_ERROR: return createCharacterError(state, action)
+    case actionTypes.DELETE_CHARACTER_START: return deleteCharacterStart(state, action)
+    case actionTypes.DELETE_CHARACTER_SUCCESS: return deleteCharacterSuccess(state, action)
+    case actionTypes.DELETE_CHARACTER_ERROR: return deleteCharacterError(state, action)
     case actionTypes.UPDATE_VITALITY:
       const newVitality = checkBounds(state.vam.vitality, state.vam.maxVitality, action.changeAmt)
       return updateObject(state, {

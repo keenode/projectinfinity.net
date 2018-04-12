@@ -18,7 +18,7 @@ export const getAvailableCharactersError = () => {
 
 export const getAvailableCharactersStart = () => {
   return {
-      type: actionTypes.GET_AVAILABLE_CHARACTERS_START
+    type: actionTypes.GET_AVAILABLE_CHARACTERS_START
   }
 }
 
@@ -51,7 +51,7 @@ export const createCharacterError = error => {
 
 export const createCharacterStart = () => {
   return {
-      type: actionTypes.CREATE_CHARACTER_START
+    type: actionTypes.CREATE_CHARACTER_START
   }
 }
 
@@ -64,6 +64,39 @@ export const createCharacter = characterData => {
       })
       .catch(err => {
         dispatch(createCharacterError(err))
+      })
+  }
+}
+
+export const deleteCharacterSuccess = deletedCharacter => {
+  return {
+    type: actionTypes.DELETE_CHARACTER_SUCCESS,
+    deletedCharacter
+  }
+}
+
+export const deleteCharacterError = error => {
+  return {
+    type: actionTypes.DELETE_CHARACTER_ERROR,
+    error
+  }
+}
+
+export const deleteCharacterStart = () => {
+  return {
+    type: actionTypes.DELETE_CHARACTER_START
+  }
+}
+
+export const deleteCharacter = charId => {
+  return dispatch => {
+    dispatch(createCharacterStart())
+    axios.delete('/api/characters/' + charId)
+      .then(res => {
+        dispatch(deleteCharacterSuccess(res.data.character))
+      })
+      .catch(err => {
+        dispatch(deleteCharacterError(err))
       })
   }
 }

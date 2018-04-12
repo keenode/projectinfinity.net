@@ -38,4 +38,11 @@ router.post('/characters', authCheck, function (req, res) {
   })
 })
 
+router.delete('/characters/:id', function (req, res) {
+  Character.findByIdAndRemove({ _id: req.params.id })
+    .then(function (character) {
+      res.json({ character })
+    })
+})
+
 module.exports = router
