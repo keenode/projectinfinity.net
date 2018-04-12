@@ -1,0 +1,34 @@
+.WorldInfo {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 10px;
+  width: 400px;
+  background-color: var(--ui-bgcolor-glass);
+}
+
+.WorldInfoInner {
+  padding: 15px;
+  width: 100%;
+  background-color: var(--ui-foregcolor);
+  box-sizing: border-box;  
+}
+
+.MiniMap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ui-info-text-color);
+  font-size: 12px;
+  background-color: var(--theme-color-black);
+  width: 100%;
+  height: 150px;
+}
+
+.DateTimeWeather {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--ui-info-text-color);
+  font-size: 12px;
+}

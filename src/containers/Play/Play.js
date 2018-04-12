@@ -6,6 +6,8 @@ import Button from '../../components/UI/Button/Button'
 import CharacterStatus from '../../components/UI/CharacterStatus/CharacterStatus'
 import ExamineSidebar from '../../components/UI/ExamineSidebar/ExamineSidebar'
 import TileInfo from '../../components/UI/ExamineSidebar/TileInfo/TileInfo'
+import InteractionPane from '../../components/UI/ExamineSidebar/InteractionPane/InteractionPane'
+import WorldInfo from '../../components/UI/WorldInfo/WorldInfo'
 import Chat from '../../components/UI/Chat/Chat'
 import Modal from '../../components/UI/Modal/Modal'
 
@@ -30,8 +32,10 @@ class Play extends Component {
       <div id="game-container" className={styles.GameContainer}>
         <Map />
         <CharacterStatus character={this.props.character} />
+        <WorldInfo />
         <ExamineSidebar>
           <TileInfo />
+          <InteractionPane />
         </ExamineSidebar>
         <Chat messages={this.props.chat.messages} />
         <div className={styles.TestActions}>
