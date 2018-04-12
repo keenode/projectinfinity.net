@@ -55,6 +55,8 @@ table {
 	--theme-color-white: #EAEAEA;
 	--theme-color-black: #050404;
 	--theme-bgcolor: #2f2f2f;
+	--theme-font-default: 'Varela Round', Helvetica, Arial, sans-serif;
+	--theme-font-callout: 'Kanit', Helvetica, Arial, sans-serif;
 	--ui-bgcolor: #3b3e47;
 	--ui-foregcolor: #4a4e57;
 	--ui-border: 1px solid rgba(255, 255, 255, 0.2);
@@ -66,7 +68,34 @@ table {
 /* #16BAC5  - nice light blue */
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: var(--theme-font-default);
 	color: var(--theme-color-white);
+	line-height: 1.5;
 	background-color: var(--theme-bgcolor);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--theme-font-callout);
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 300;
+}
+
+h3 {
+	margin-bottom: 20px;
+	font-size: 32px;
+}
+
+p {
+	margin-bottom: 20px;
 }
