@@ -55,10 +55,10 @@ table {
 	--theme-color-white: #EAEAEA;
 	--theme-color-black: #050404;
 	--theme-bgcolor: #2f2f2f;
-	--ui-bgcolor: #232630;
-	--ui-foregcolor: #31353f;
+	--ui-bgcolor: #3b3e47;
+	--ui-foregcolor: #4a4e57;
 	--ui-border: 1px solid rgba(255, 255, 255, 0.2);
-	--ui-btn-primary-color: #05668D;
+	--ui-btn-primary-color: #0d739b;
 	--ui-btn-secondary-color: gray;
 	--ui-btn-danger-color: #DB5461;
 }

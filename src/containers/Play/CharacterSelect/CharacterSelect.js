@@ -48,7 +48,7 @@ class CharacterSelect extends Component {
                   <span>Location: Corelisto</span>
                 </div>
                 <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
-                <Button clicked={() => { this.deleteCharacterHandler(character._id) }}>Delete</Button>
+                <Button btnType="Danger" clicked={() => { this.deleteCharacterHandler(character._id) }}>Delete</Button>
               </div>
             </ListItem>
           ))}
