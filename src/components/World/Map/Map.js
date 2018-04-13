@@ -27,7 +27,7 @@ class Map extends Component {
       height: $gameContainer.offsetHeight,
       // antialias: true
     })
-    this.map.renderer.backgroundColor = 0x0F0A0A
+    this.map.renderer.backgroundColor = 0x050404
     this.map.renderer.autoResize = true
 
     document.getElementById(mapSelectorId).appendChild(this.map.view)
@@ -50,10 +50,10 @@ class Map extends Component {
     this.map.stage.addChild(this.tiles)
     this.map.stage.addChild(this.coords)
     // temp positioning...
-    this.tiles.x = 300
-    this.tiles.y = 100
-    this.coords.x = 300
-    this.coords.y = 100
+    // this.tiles.x = 300
+    // this.tiles.y = 100
+    // this.coords.x = 300
+    // this.coords.y = 100
     console.log('generated tiles: ', this.tiles)
   }
 
