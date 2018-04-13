@@ -63,6 +63,7 @@ class Map extends Component {
 
   gameLoop(delta) {
     // console.log(delta)
+    this.camera.update(delta)
   }
 
   render() {

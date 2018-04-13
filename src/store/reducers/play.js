@@ -1,8 +1,8 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  mode: 'CharacterSelect'
-  // mode: 'Playing'
+  // mode: 'CharacterSelect'
+  mode: 'Playing'
 }
 
 const reducer = (state = initialState, action) => {
