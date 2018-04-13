@@ -42,12 +42,12 @@ class Play extends Component {
         </Sidebar>
         <Chat messages={this.props.chat.messages} />
         <div className={styles.TestActions}>
-          <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button>
-          <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button><br />
-          <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button>
-          <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button><br />
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button>
+          <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button><br />
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button>
+          <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button><br />
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button>
           <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
-          <Button btnType="Danger" clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button><br />
         </div>
         <Modal show={this.props.playMode === 'CharacterSelect'}>
           <CharacterSelect />

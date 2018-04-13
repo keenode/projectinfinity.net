@@ -13,6 +13,7 @@
   width: 80px;
   height: 80px;
   background-color: var(--theme-color-black);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .NameVitals {
@@ -23,7 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-left: 13px;
+  margin: 0 0 3px 13px;
 }
 
 .Name {
