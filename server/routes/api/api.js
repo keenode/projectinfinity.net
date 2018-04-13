@@ -1,8 +1,10 @@
 const router = require('express').Router()
 const charactersRoutes = require('./characters')
+const worldsRoutes = require('./worlds')
 const chatRoutes = require('./chat')
 
 router.use(charactersRoutes)
+router.use(worldsRoutes)
 router.use(chatRoutes)
 
 // EXL Tutorial Routes...

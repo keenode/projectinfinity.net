@@ -27,7 +27,7 @@ export const getWorld = worldId => {
     dispatch(getWorldStart())
     axios.get('/api/worlds/' + worldId)
       .then(res => {
-        dispatch(getWorldSuccess(res.data.tiles))
+        dispatch(getWorldSuccess(res.data.world.tiles))
       })
       .catch(err => {
         dispatch(getWorldError())

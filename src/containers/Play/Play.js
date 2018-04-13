@@ -32,9 +32,10 @@ class Play extends Component {
   }
   
   render () {
+    const map = this.props.world.tiles.length > 0 ? <Map tilesData={this.props.world.tiles} /> : null
     return (
       <div id="game-container" className={styles.GameContainer}>
-        <Map tiles={this.props.world.tiles} />
+        {map}
         <CharacterStatus character={this.props.character} />
         <HotToolbar />
         <Sidebar>

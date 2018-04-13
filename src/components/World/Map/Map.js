@@ -7,18 +7,12 @@ import Tile from './Tile/Tile'
 import styles from './Map.css'
 
 class Map extends Component {
-  tilesData = [
-    [0, 0, 1, 1, 0],
-    [0, 0, 1, 1, 0],
-    [0, 1, 1, 1, 1],
-    [0, 0, 1, 0, 0]
-  ]
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
 
   componentDidMount() {
     console.log('[Map] Did Mount')
-    console.log('tiles: ', this.props.tiles)
+    console.log('tiles: ', this.props.tilesData)
     setTimeout(() => {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
@@ -44,9 +38,9 @@ class Map extends Component {
   }
 
   prepareTiles() {
-    for (let y = 0; y < this.tilesData.length; y++) {
-      for (let x = 0; x < this.tilesData[y].length; x++) {
-        const tile = new Tile(x, y, this.tilesData[y][x])
+    for (let y = 0; y < this.props.tilesData.length; y++) {
+      for (let x = 0; x < this.props.tilesData[y].length; x++) {
+        const tile = new Tile(x, y, this.props.tilesData[y][x])
         this.tiles.addChild(tile.draw())
         if (this.props.mode === 'GameMaster') {
           this.coords.addChild(tile.drawCoords())
