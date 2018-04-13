@@ -18,6 +18,7 @@ class Map extends Component {
 
   componentDidMount() {
     console.log('[Map] Did Mount')
+    console.log('tiles: ', this.props.tiles)
     setTimeout(() => {
       this.setupPIXI('canvas-world')
       this.prepareTiles()

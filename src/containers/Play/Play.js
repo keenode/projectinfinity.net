@@ -27,13 +27,14 @@ class Play extends Component {
   }
 
   componentDidMount () {
+    this.props.onLoadWorld()
     this.props.onInitChatMessages()
   }
   
   render () {
     return (
       <div id="game-container" className={styles.GameContainer}>
-        <Map />
+        <Map tiles={this.props.world.tiles} />
         <CharacterStatus character={this.props.character} />
         <HotToolbar />
         <Sidebar>
@@ -80,6 +81,9 @@ const mapStateToProps = state => {
         mindMax: state.character.vam.mindMax
       }
     },
+    world: {
+      tiles: state.world.tiles
+    },
     chat: {
       messages: state.chat.messages
     },
@@ -89,9 +93,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateVitality: (changeAmt) => dispatch(actions.updateVitality(changeAmt)),
-    onUpdateAction: (changeAmt) => dispatch(actions.updateAction(changeAmt)),
-    onUpdateMind: (changeAmt) => dispatch(actions.updateMind(changeAmt)),
+    onUpdateVitality: changeAmt => dispatch(actions.updateVitality(changeAmt)),
+    onUpdateAction: changeAmt => dispatch(actions.updateAction(changeAmt)),
+    onUpdateMind: changeAmt => dispatch(actions.updateMind(changeAmt)),
+    onLoadWorld: () => dispatch(actions.getWorld()),
     onInitChatMessages: () => dispatch(actions.initMessages())
   }
 }

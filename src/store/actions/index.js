@@ -14,3 +14,6 @@ export {
   updateAction,
   updateMind
 } from './character'
+export {
+  getWorld
+} from './world'
