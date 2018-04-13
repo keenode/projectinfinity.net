@@ -1,0 +1,57 @@
+.VAM {
+
+}
+
+.Meter {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.MeterLabel {
+  width: 15px;
+  font-family: var(--theme-font-callout);
+  font-size: 10px;
+  user-select: none;
+}
+
+.MeterBar {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 15px;
+  background-color: var(--theme-color-black);
+}
+
+.MeterFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  transition: width 200ms ease-in-out;
+}
+
+.MeterFillVitality {
+  background-color: #db2e2e;
+}
+
+.MeterFillAction {
+  background-color: #21bd2e;
+}
+
+.MeterFillMind {
+  background-color: #2777e0;
+}
+
+.MeterBarText {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  font-family: var(--theme-font-callout);  
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-align: center;
+  user-select: none;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.9);
+}
