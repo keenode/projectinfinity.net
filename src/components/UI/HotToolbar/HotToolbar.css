@@ -1,0 +1,34 @@
+.HotToolbar {
+  position: absolute;
+  left: calc(50% - 300px);
+  top: 15px;
+  padding: 4px;
+  width: 600px;
+  height: 64px;
+  background-color: var(--ui-bgcolor-glass);
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.Slots {
+  display: flex;
+  height: 100%;
+}
+
+.Slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: 3px;
+  color: var(--ui-info-text-color);
+  background-color: var(--ui-foregcolor);
+  border: 1px solid transparent;
+  user-select: none;
+  transition: all 200ms ease;
+}
+
+.Slot:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) inset;
+  border-color: rgba(255, 255, 255, 0.1);
+}

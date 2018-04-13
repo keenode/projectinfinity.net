@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Map from '../../components/World/Map/Map'
 import Button from '../../components/UI/Button/Button'
 import CharacterStatus from '../../components/UI/CharacterStatus/CharacterStatus'
+import HotToolbar from '../../components/UI/HotToolbar/HotToolbar'
 import Sidebar from '../../components/UI/Sidebar/Sidebar'
 import ExamineOptions from '../../components/UI/Sidebar/ExamineOptions/ExamineOptions'
 import TileInfo from '../../components/UI/Sidebar/ExamineOptions/TileInfo/TileInfo'
@@ -33,6 +34,7 @@ class Play extends Component {
       <div id="game-container" className={styles.GameContainer}>
         <Map />
         <CharacterStatus character={this.props.character} />
+        <HotToolbar />
         <Sidebar>
           <WorldInfo />
           <ExamineOptions>
