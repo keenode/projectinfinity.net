@@ -1,5 +1,5 @@
 .GameContainer {
   position: relative;
   width: 100%;
-  height: calc(100vh - 	var(--ui-titlebar-height) - var(--ui-navbar-height-minimal));
+  height: calc(100vh - var(--ui-titlebar-height) - var(--ui-navbar-height-minimal));
 }

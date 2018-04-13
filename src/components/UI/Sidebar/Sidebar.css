@@ -9,3 +9,7 @@
 .Sidebar > div {
   margin-bottom: 15px;
 }
+
+.Sidebar > div:last-child {
+  margin-bottom: 0;
+}
