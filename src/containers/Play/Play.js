@@ -10,6 +10,7 @@ import ExamineOptions from '../../components/UI/Sidebar/ExamineOptions/ExamineOp
 import TileInfo from '../../components/UI/Sidebar/ExamineOptions/TileInfo/TileInfo'
 import InteractionPane from '../../components/UI/Sidebar/ExamineOptions/InteractionPane/InteractionPane'
 import WorldInfo from '../../components/UI/Sidebar/WorldInfo/WorldInfo'
+import MenuBox from '../../components/UI/MenuBox/MenuBox'
 import Chat from '../../components/UI/Chat/Chat'
 import Modal from '../../components/UI/Modal/Modal'
 
@@ -43,6 +44,7 @@ class Play extends Component {
           </ExamineOptions>
         </Sidebar>
         <Chat messages={this.props.chat.messages} />
+        <MenuBox />
         <div className={styles.TestActions}>
           <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button><br />
