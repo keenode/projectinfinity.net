@@ -4,9 +4,48 @@
   bottom: 15px;
   width: 600px;
   height: 200px;
-  padding: 15px;
+  padding: 10px;
   color: #ccc;
-  background-color: #1a1a1a;
-  border: 1px solid #666;
+  background-color: var(--ui-bgcolor-glass);
   box-sizing: border-box;
+}
+
+.ChatRoomTabs {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: -29px;
+}
+
+.ChatRoomTab {
+  padding: 5px 10px;
+  font-size: 13px;
+  background-color: var(--ui-foregcolor);
+  opacity: 0.6;
+  user-select: none;
+  transition: opacity 200ms ease;
+}
+
+.ChatRoomTab:hover {
+  opacity: 0.8;
+}
+
+.ChatRoomTabActive {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.MessagesContainer {
+  height: 100%;
+  letter-spacing: 1px;
+  overflow-y: scroll;
+}
+
+.Message {
+  font-size: 15px;
+}
+
+.MessageTimestamp {
+  color: var(--ui-info-text-color);
+  font-size: 13px;
 }
