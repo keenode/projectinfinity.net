@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js'
 class Tile {
   TILE_SIZE = 80
 
-  constructor (x, y, data) {
+  constructor(x, y, data) {
     console.log('[Tile] constructed')
     this.xCoord = x
     this.yCoord = y
@@ -12,7 +12,7 @@ class Tile {
     this.data = data
   }
 
-  drawCoords () {
+  drawCoords() {
     const style = new PIXI.TextStyle({
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
       fontSize: 16,
@@ -26,9 +26,9 @@ class Tile {
     return coordsText
   }
 
-  draw () {
+  draw() {
     const rect = new PIXI.Graphics()
-    const tileColor = this.data === 1 ? 0x009900 : 0x000099
+    const tileColor = this.data === 1 ? 0x59a928 : 0x4486dc
     rect.beginFill(tileColor)
     rect.lineStyle(1, 0x333333, 0.15)
     rect.drawRect(this.xPos, this.yPos, this.TILE_SIZE, this.TILE_SIZE)

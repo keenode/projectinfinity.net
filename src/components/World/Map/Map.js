@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import * as PIXI from 'pixi.js'
 
-// import MapRenderer from './MapRenderer'
+import Camera from '../Camera/Camera';
 import Tile from './Tile/Tile'
 
 import styles from './Map.css'
 
 class Map extends Component {
+  camera = new Camera()
+  map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
 
@@ -16,24 +18,24 @@ class Map extends Component {
     setTimeout(() => {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
-      this.map.ticker.add(delta => this.gameLoop(delta));
+      this.mapApp.ticker.add(delta => this.gameLoop(delta));
     }, 200)
   }
 
   setupPIXI(mapSelectorId) {
     const $gameContainer = document.getElementById('game-container')
-    this.map = new PIXI.Application({
+    this.mapApp = new PIXI.Application({
       width: $gameContainer.offsetWidth,
       height: $gameContainer.offsetHeight,
       // antialias: true
     })
-    this.map.renderer.backgroundColor = 0x050404
-    this.map.renderer.autoResize = true
+    this.mapApp.renderer.backgroundColor = 0x050404
+    this.mapApp.renderer.autoResize = true
 
-    document.getElementById(mapSelectorId).appendChild(this.map.view)
+    document.getElementById(mapSelectorId).appendChild(this.mapApp.view)
 
     window.onresize = () => {
-      this.map.renderer.resize($gameContainer.offsetWidth, $gameContainer.offsetHeight)      
+      this.mapApp.renderer.resize($gameContainer.offsetWidth, $gameContainer.offsetHeight)      
     }
   }
 
@@ -47,8 +49,10 @@ class Map extends Component {
         }
       }
     }
-    this.map.stage.addChild(this.tiles)
-    this.map.stage.addChild(this.coords)
+    this.map.addChild(this.tiles)
+    this.map.addChild(this.coords)
+    this.mapApp.stage.addChild(this.map)
+    this.camera.assignScene(this.map)
     // temp positioning...
     // this.tiles.x = 300
     // this.tiles.y = 100
