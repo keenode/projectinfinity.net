@@ -1,10 +1,14 @@
 .VAM {
-
+  width: 300px;
 }
 
 .Meter {
   display: flex;
   margin-bottom: 5px;
+}
+
+.Meter:last-child {
+  margin-bottom: 0;
 }
 
 .MeterLabel {

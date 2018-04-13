@@ -58,7 +58,7 @@ table {
 	--theme-font-default: 'Varela Round', Helvetica, Arial, sans-serif;
 	--theme-font-callout: 'Kanit', Helvetica, Arial, sans-serif;
 	--ui-bgcolor: #3b3e47;
-	--ui-bgcolor-glass: hsla(225, 9%, 25%, 0.5);
+	--ui-bgcolor-glass: rgba(58, 60, 69, 0.5);
 	--ui-foregcolor: #4a4e57;
 	--ui-titlebar-height: 30px;
 	--ui-navbar-height: 50px;

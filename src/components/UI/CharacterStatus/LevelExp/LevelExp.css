@@ -1,0 +1,22 @@
+.LevelExp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 10px;
+  width: 60px;
+  height: 60px;
+  font-family: var(--theme-font-callout);
+  font-size: 26px;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+  background-color: var(--ui-bgcolor);
+  border-radius: 100%;
+  user-select: none;
+}
+
+:global(.CircularProgressbar) :global {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
