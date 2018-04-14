@@ -102,6 +102,11 @@ h3 {
 	letter-spacing: 2px;
 }
 
+h1 {
+	margin-bottom: 30px;
+	font-size: 42px;
+}
+
 h3 {
 	margin-bottom: 20px;
 	font-size: 32px;
@@ -109,6 +114,12 @@ h3 {
 
 p {
 	margin-bottom: 20px;
+}
+
+:global(.grid-container) {
+	margin: 0 auto;
+	width: 90%;
+	max-width: 1440px;
 }
 
 :global(.fade-in) :global {

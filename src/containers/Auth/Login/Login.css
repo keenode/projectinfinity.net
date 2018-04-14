@@ -1,4 +1,36 @@
 .Login {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  background-color: var(--ui-foregcolor);
+}
+
+.Login h1 {
+  text-align: center;
+}
+
+.SocialLogin {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 50px auto;
+  max-width: 40%;
+}
+
+.LoginForm {
+  margin: 0 auto;
+  max-width: 40%;
   padding: 30px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.LoginForm input {
+  width: 100%;
+}
+
+.LoginForm footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.LoginForm button {
+  min-width: 150px;
 }
