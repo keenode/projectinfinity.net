@@ -37,6 +37,16 @@ class Map extends Component {
     window.onresize = () => {
       this.mapApp.renderer.resize($gameContainer.offsetWidth, $gameContainer.offsetHeight)      
     }
+
+    // Add FPS counter
+    const style = new PIXI.TextStyle({
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      fontSize: 20,
+      fill: 'yellow'
+    })
+    this.fpsText = new PIXI.Text('', style)
+    this.fpsText.x = 15
+    this.fpsText.y = 140
   }
 
   prepareTiles() {
@@ -52,6 +62,7 @@ class Map extends Component {
     this.map.addChild(this.tiles)
     this.map.addChild(this.coords)
     this.mapApp.stage.addChild(this.map)
+    this.mapApp.stage.addChild(this.fpsText)    
     this.camera.assignScene(this.map)
     // temp positioning...
     // this.tiles.x = 300
@@ -62,8 +73,8 @@ class Map extends Component {
   }
 
   gameLoop(delta) {
-    // console.log(delta)
     this.camera.update(delta)
+    this.fpsText.text = Math.round(this.mapApp.ticker.FPS) + ' FPS'
   }
 
   render() {
