@@ -35,9 +35,8 @@ class CharacterCreate extends Component {
           elementConfig: {
             name: 'gender',
             options: [
-              { value: 0, displayValue: '- Select -' },
-              { value: 'male', displayValue: 'Male' },
-              { value: 'female', displayValue: 'Female' }
+              { value: 'male', label: 'Male' },
+              { value: 'female', label: 'Female' }
             ]
           },
           validation: {
@@ -53,8 +52,7 @@ class CharacterCreate extends Component {
           elementConfig: {
             name: 'race',
             options: [
-              { value: 0, displayValue: '- Select -' },
-              { value: 'human', displayValue: 'Human' }
+              { value: 'human', label: 'Human' }
             ]
           },
           validation: {
@@ -77,6 +75,7 @@ class CharacterCreate extends Component {
   }
 
   inputChangedHandler = (event, inputId) => {
+    return
     const updatedForm = {
       ...this.state.form.fields
     }

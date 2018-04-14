@@ -3,13 +3,24 @@
   margin-bottom: 15px;
 }
 
+.InputField:last-child {
+  margin-bottom: 0;
+}
+
 .InputField input {
-  padding: 10px;
+  padding: 0 20px;
+  height: 50px;
+  min-width: 40%;
   color: var(--theme-color-white);
   font-size: 18px;
   letter-spacing: 1px;
   background-color: var(--ui-input-color);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+}
+
+.InputField input:focus {
+  background-color: var(--ui-input-color-focused);
 }
 
 .Label {
@@ -22,4 +33,94 @@
 
 .Invalid input {
   border: 1px solid var(--ui-btn-danger-color);
+}
+
+:global(.Select) {
+  display: inline-block;
+  position: relative;
+  min-width: 40%;
+}
+
+:global(.Select input) {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+}
+
+:global(.Select.is-focused .Select-control) {
+  background-color: var(--ui-input-color-focused);
+}
+
+:global(.Select-control) {
+  padding: 10px;
+  height: 50px;
+  background-color: var(--ui-input-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+:global(.Select-placeholder) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ui-info-text-color);
+  letter-spacing: 1px;
+  cursor: default;
+}
+
+:global(.Select-input) {
+  padding: 0;
+  height: 0;
+}
+
+:global(.Select-multi-value-wrapper) {
+  padding: 0 !important;
+}
+
+:global(.Select-menu-outer) {
+  background-color: var(--ui-input-color-focused);
+  border: 1px solid rgba(255, 255, 255, 0.2);  
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+:global(.Select-option) {
+  padding: 10px;
+  letter-spacing: 1px;
+  background-color: var(--ui-input-color-focused);
+  cursor: default;
+}
+
+:global(.Select-option:hover) {
+  background-color: var(--ui-btn-primary-color-hover);
+}
+
+:global(.Select-arrow) {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 2.5px;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: relative;
+}
+
+:global(.Select-arrow-zone) {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+:global(.Select.is-open > .Select-control .Select-arrow) {
+  top: -2px;
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
 }
