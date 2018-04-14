@@ -75,14 +75,13 @@ class CharacterCreate extends Component {
   }
 
   inputChangedHandler = (event, inputId) => {
-    return
     const updatedForm = {
       ...this.state.form.fields
     }
     const updatedFormElement = {
       ...updatedForm[inputId]
     }
-    updatedFormElement.value = event.target.value
+    updatedFormElement.value = event.hasOwnProperty('target') ? event.target.value : event.value
     updatedFormElement.valid = this.checkValidation(updatedFormElement.value, updatedFormElement.validation)
     updatedFormElement.touched = true
     updatedForm[inputId] = updatedFormElement
@@ -108,8 +107,8 @@ class CharacterCreate extends Component {
   createCharacterHandler = event => {
     event.preventDefault()
     const formData = {}
-    for (let formElementId in this.state.form) {
-      formData[formElementId] = this.state.form[formElementId].value
+    for (let formElementId in this.state.form.fields) {
+      formData[formElementId] = this.state.form.fields[formElementId].value
     }
     console.log('[createCharacterHandler] formData: ', formData)
     this.props.onCreateCharacter(formData)
@@ -133,7 +132,7 @@ class CharacterCreate extends Component {
             {formFields.map(formElement => (
               <InputField 
                 key={formElement.id}
-                id={'input-' + formElement.id}
+                id={formElement.id}
                 elementType={formElement.config.elementType}
                 label={formElement.config.label}
                 elementConfig={formElement.config.elementConfig}

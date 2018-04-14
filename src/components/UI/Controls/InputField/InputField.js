@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 
-// import 'react-select/dist/react-select.css'
 import styles from './InputField.css'
 
 const inputField = props => {
@@ -20,7 +19,8 @@ const inputField = props => {
       inputElement = <textarea id={props.id} {...props.elementConfig} onChange={props.changed} />
       break
     case 'select':
-      console.log('select namne: ' + props.elementConfig.name)
+      console.log('select name: ' + props.elementConfig.name)
+      console.log('select value: ' + props.value)
       inputElement = (
         <Select
           name={props.elementConfig.name}
@@ -31,11 +31,6 @@ const inputField = props => {
           placeholder="- Select -"
         />
       )
-      // <select id={props.id} value={props.value} onChange={props.changed}>
-      //   {props.elementConfig.options.map(option => (
-      //     <option key={option.value} value={option.value}>{option.displayValue}</option>
-      //   ))}
-      // </select>
       break
     default:
       inputElement = <input id={props.id} {...props.elementConfig} value={props.value} onChange={props.changed} />
