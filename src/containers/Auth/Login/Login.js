@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import * as actions from '../../../store/actions/index'
 
-import Input from '../../../components/UI/Controls/Input/Input'
+import InputField from '../../../components/UI/Controls/InputField/InputField'
 import Button from '../../../components/UI/Button/Button'
 
 import styles from './Login.css'
@@ -92,7 +92,7 @@ class Login extends Component {
     this.setState({ loginForm: updatedLoginForm, formIsValid: formIsValid })
   }
 
-  loginHandler = (event) => {
+  loginHandler = event => {
     event.preventDefault()
     const formData = {}
     for (let formElementId in this.state.loginForm) {
@@ -102,7 +102,7 @@ class Login extends Component {
     this.props.onLogin(formData.email, formData.password)
   }
 
-  oauthLogin = (service) => {
+  oauthLogin = service => {
     if (service === 'google') {
       console.log('Logging in with Google...')
       window.location = 'http://localhost:9001/api/auth/google'
@@ -126,7 +126,7 @@ class Login extends Component {
         <hr />
         <form onSubmit={this.loginHandler}>
           {formElementsArray.map(formElement => (
-            <Input 
+            <InputField 
               key={formElement.id}
               id={'input-' + formElement.id}
               elementType={formElement.config.elementType}

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import styles from './Input.css'
+import styles from './InputField.css'
 
-const input = (props) => {
+const inputField = props => {
   let inputElement = null
-  const inputStyles = [styles.Input]
+  const inputStyles = [styles.InputField]
 
   if (props.invalid && props.shouldValidate && props.touched) {
     inputStyles.push(styles.Invalid)
@@ -38,4 +38,4 @@ const input = (props) => {
   )
 }
 
-export default input
+export default inputField

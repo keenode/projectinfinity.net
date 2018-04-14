@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Input from '../../../components/UI/Controls/Input/Input'
+import InputField from '../../../components/UI/Controls/InputField/InputField'
 import Button from '../../../components/UI/Button/Button'
 
 import styles from './Register.css'
@@ -98,7 +98,7 @@ class Register extends Component {
     this.setState({ registerForm: updatedregisterForm, formIsValid: formIsValid })
   }
 
-  registrationHandler = (event) => {
+  registrationHandler = event => {
     event.preventDefault()
     const formData = {}
     for (let formElementId in this.state.registerForm) {
@@ -125,7 +125,7 @@ class Register extends Component {
         <hr />
         <form onSubmit={this.registrationHandler}>
           {formElementsArray.map(formElement => (
-            <Input 
+            <InputField 
               key={formElement.id}
               id={'input-' + formElement.id}
               elementType={formElement.config.elementType}

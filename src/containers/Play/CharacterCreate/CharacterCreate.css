@@ -5,4 +5,5 @@
 .FormFields {
   padding: 10px;
   background-color: var(--ui-foregcolor);
+  text-align: center;  
 }

@@ -1,9 +1,9 @@
-.Input {
+.InputField {
   padding: 5px;
   margin-bottom: 15px;
 }
 
-.Input label {
+.InputField label {
   display: block;
 }
 

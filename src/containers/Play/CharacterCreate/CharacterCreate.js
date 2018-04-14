@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Button from '../../../components/UI/Button/Button'
-import Input from '../../../components/UI/Controls/Input/Input'
+import InputField from '../../../components/UI/Controls/InputField/InputField'
 import ModalHeader from '../../../components/UI/Modal/ModalHeader/ModalHeader'
 import ModalFooter from '../../../components/UI/Modal/ModalFooter/ModalFooter'
 
@@ -128,7 +128,7 @@ class CharacterCreate extends Component {
         <form onSubmit={this.createCharacterHandler}>
           <div className={styles.FormFields}>
             {formElementsArray.map(formElement => (
-              <Input 
+              <InputField 
                 key={formElement.id}
                 id={'input-' + formElement.id}
                 elementType={formElement.config.elementType}
