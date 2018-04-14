@@ -30,6 +30,12 @@ class Play extends Component {
     this.props.onLoadWorld()
     this.props.onInitChatMessages()
   }
+
+  componentDidUpdate() {
+    if (this.props.playMode === 'CharacterCreate') {
+      document.getElementById('name').focus()
+    }
+  }
   
   render () {
     const map = this.props.world.tiles.length > 0 ? <Map tilesData={this.props.world.tiles} /> : null

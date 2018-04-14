@@ -67,8 +67,12 @@ class CharacterCreate extends Component {
     }
   }
 
+  componentDidMount() {
+    this.originalState = { ...this.state }
+    console.log('this.originalState: ', this.originalState)
+  }
+
   inputChangedHandler = (event, controlName) => {
-    console.log(controlName)
     const value = event.hasOwnProperty('target') ? event.target.value : event.value
     const updatedControls = updateObject(this.state.form.controls, {
       [controlName]: updateObject(this.state.form.controls[controlName], {
@@ -84,13 +88,13 @@ class CharacterCreate extends Component {
     this.setState({form: { controls: updatedControls, isValid: formIsValid }})
   }
 
-  backHandler = e => {
-    e.preventDefault()
+  backHandler = () => {
+    this.setState(this.originalState)
     this.props.onPlayModeChanged('CharacterSelect')
   }
 
-  createCharacterHandler = event => {
-    event.preventDefault()
+  createCharacterHandler = e => {
+    e.preventDefault()
     const formData = {}
     for (let formElementId in this.state.form.controls) {
       formData[formElementId] = this.state.form.controls[formElementId].value
@@ -126,13 +130,13 @@ class CharacterCreate extends Component {
 
     return (
       <div className={styles.CharacterCreate}>
-        <ModalHeader title="Character Create" />
+        <ModalHeader title="Create New Character" />
         <form onSubmit={this.createCharacterHandler}>
           <div className={styles.FormControls}>
             {form}
           </div>
           <ModalFooter>
-            <Button clicked={this.backHandler}>Back</Button>            
+            <Button type="button" clicked={this.backHandler}>Back</Button>            
             <Button type="submit" disabled={!this.state.form.isValid}>Start Adventure</Button>
           </ModalFooter>
         </form>

@@ -22,7 +22,7 @@ class CharacterSelect extends Component {
     this.props.onPlayModeChanged('Playing')
   }
 
-  gotoCreateCharacterHandler = () => {
+  gotoCreateNewCharacterHandler = () => {
     this.props.onPlayModeChanged('CharacterCreate')
   }
 
@@ -34,7 +34,7 @@ class CharacterSelect extends Component {
   render() {
     return (
       <div className={styles.CharacterSelect}>
-        <ModalHeader title="Character Select" />
+        <ModalHeader title="Select Character" />
         <div className={styles.CharactersScrollRegion}>
           <List>
             {this.props.characters.map(character => (
@@ -59,7 +59,7 @@ class CharacterSelect extends Component {
         </div>
         <ModalFooter>
           <span className={styles.InfoText}>Slots Available: {this.props.slots} / {this.props.slotsMax}</span>          
-          <Button clicked={this.gotoCreateCharacterHandler}>Create Character</Button>
+          <Button clicked={this.gotoCreateNewCharacterHandler}>Create New Character</Button>
         </ModalFooter>
       </div>
     )
