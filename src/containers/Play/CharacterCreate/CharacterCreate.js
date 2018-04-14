@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import Button from '../../../components/UI/Button/Button'
 import Input from '../../../components/UI/Controls/Input/Input'
+import ModalHeader from '../../../components/UI/Modal/ModalHeader/ModalHeader'
+import ModalFooter from '../../../components/UI/Modal/ModalFooter/ModalFooter'
 
 import * as actions from '../../../store/actions'
 
@@ -95,7 +97,8 @@ class CharacterCreate extends Component {
     this.setState({ createCharacterForm: updatedForm, formIsValid: formIsValid })
   }
 
-  backHandler = () => {
+  backHandler = e => {
+    e.preventDefault()
     this.props.onPlayModeChanged('CharacterSelect')
   }
 
@@ -121,23 +124,27 @@ class CharacterCreate extends Component {
     }
     return (
       <div className={styles.CharacterCreate}>
-        <h3>Character Create</h3>
-        <Button clicked={this.backHandler}>Back</Button>
+        <ModalHeader title="Character Create" />
         <form onSubmit={this.createCharacterHandler}>
-          {formElementsArray.map(formElement => (
-            <Input 
-              key={formElement.id}
-              id={'input-' + formElement.id}
-              elementType={formElement.config.elementType}
-              label={formElement.config.label}
-              elementConfig={formElement.config.elementConfig}
-              value={formElement.config.value}
-              invalid={!formElement.config.valid}
-              shouldValidate={formElement.config.validation}
-              touched={formElement.config.touched}
-              changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
-          ))}
-          <Button type="submit" disabled={!this.state.formIsValid}>Start Adventure</Button>
+          <div className={styles.FormFields}>
+            {formElementsArray.map(formElement => (
+              <Input 
+                key={formElement.id}
+                id={'input-' + formElement.id}
+                elementType={formElement.config.elementType}
+                label={formElement.config.label}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
+            ))}
+          </div>
+          <ModalFooter>
+            <Button clicked={this.backHandler}>Back</Button>            
+            <Button type="submit" disabled={!this.state.formIsValid}>Start Adventure</Button>
+          </ModalFooter>
         </form>
       </div>
     )

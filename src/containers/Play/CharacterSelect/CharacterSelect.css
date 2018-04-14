@@ -2,11 +2,17 @@
   padding: 15px;
 }
 
+.CharactersScrollRegion {
+  height: 440px;
+  overflow-y: scroll;
+}
+
 .Avatar {
   margin-right: 20px;
   width: 80px;
   height: 80px;
   background-color: var(--theme-color-black);
+  border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .Info {
@@ -34,6 +40,7 @@
 
 .Details {
   color: var(--ui-info-text-color);
+  text-transform: capitalize;
 }
 
 .Actions {

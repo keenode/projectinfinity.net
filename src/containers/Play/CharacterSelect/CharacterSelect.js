@@ -35,26 +35,28 @@ class CharacterSelect extends Component {
     return (
       <div className={styles.CharacterSelect}>
         <ModalHeader title="Character Select" />
-        <List>
-          {this.props.characters.map(character => (
-            <ListItem key={character._id}>
-              <div className={styles.Avatar}></div>
-              <div className={styles.Info}>
-                <div className={styles.Stats}>
-                  <span className={styles.Label}>{character.name}</span>
-                  <div className={styles.Details}>
-                    <span>Level {character.level}</span><br />
-                    <span>{character.race}, {character.gender}</span>
+        <div className={styles.CharactersScrollRegion}>
+          <List>
+            {this.props.characters.map(character => (
+              <ListItem key={character._id}>
+                <div className={styles.Avatar}></div>
+                <div className={styles.Info}>
+                  <div className={styles.Stats}>
+                    <span className={styles.Label}>{character.name}</span>
+                    <div className={styles.Details}>
+                      <span>Level {character.level}</span><br />
+                      <span>{character.race}, {character.gender}</span>
+                    </div>
+                  </div>
+                  <div className={styles.Actions}>
+                    <Button btnType="Subtle" clicked={() => { this.deleteCharacterHandler(character._id) }} style={{ marginRight: '20px' }}>Delete</Button>
+                    <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
                   </div>
                 </div>
-                <div className={styles.Actions}>
-                  <Button btnType="Subtle" clicked={() => { this.deleteCharacterHandler(character._id) }} style={{ marginRight: '20px' }}>Delete</Button>
-                  <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
-                </div>
-              </div>
-            </ListItem>
-          ))}
-        </List>
+              </ListItem>
+            ))}
+          </List>
+        </div>
         <ModalFooter>
           <span className={styles.InfoText}>Slots Available: {this.props.slots} / {this.props.slotsMax}</span>          
           <Button clicked={this.gotoCreateCharacterHandler}>Create Character</Button>

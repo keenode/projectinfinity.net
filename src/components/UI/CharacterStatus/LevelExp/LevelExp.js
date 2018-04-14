@@ -9,7 +9,7 @@ const levelExp = props => (
     <CircularProgressbar
       percentage={(props.exp / props.expMax) * 100}
       className={styles.CircleExp}
-      strokeWidth="6"
+      strokeWidth="8"
       textForPercentage=''
       initialAnimation="true"
       styles={{
