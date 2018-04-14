@@ -2,12 +2,12 @@
   padding: 15px;
 }
 
-.FormFields {
+.FormControls {
   padding: 10px;
   background-color: var(--ui-foregcolor);
   text-align: center;
 }
 
-.FormFields input {
+.FormControls input {
   text-align: center;
 }

@@ -7,6 +7,7 @@ import ModalHeader from '../../../components/UI/Modal/ModalHeader/ModalHeader'
 import ModalFooter from '../../../components/UI/Modal/ModalFooter/ModalFooter'
 
 import * as actions from '../../../store/actions'
+import { updateObject, checkValidity } from '../../../shared/utility'
 
 import styles from './CharacterCreate.css'
 
@@ -14,7 +15,7 @@ class CharacterCreate extends Component {
   state = {
     form: {
       isValid: false,
-      fields: {
+      controls: {
         name: {
           label: 'Character Name',
           elementType: 'input',
@@ -66,37 +67,21 @@ class CharacterCreate extends Component {
     }
   }
 
-  checkValidation(value, rules) {
-    let isValid = true
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid
-    }
-    return isValid
-  }
-
-  inputChangedHandler = (event, inputId) => {
-    const updatedForm = {
-      ...this.state.form.fields
-    }
-    const updatedFormElement = {
-      ...updatedForm[inputId]
-    }
-    updatedFormElement.value = event.hasOwnProperty('target') ? event.target.value : event.value
-    updatedFormElement.valid = this.checkValidation(updatedFormElement.value, updatedFormElement.validation)
-    updatedFormElement.touched = true
-    updatedForm[inputId] = updatedFormElement
-
-    let formIsValid = true
-    for (let inputId in updatedForm) {
-      formIsValid = updatedForm[inputId].valid && formIsValid
-    }
-
-    this.setState({
-      form: {
-        isValid: formIsValid,
-        fields: updatedForm
-      }
+  inputChangedHandler = (event, controlName) => {
+    console.log(controlName)
+    const value = event.hasOwnProperty('target') ? event.target.value : event.value
+    const updatedControls = updateObject(this.state.form.controls, {
+      [controlName]: updateObject(this.state.form.controls[controlName], {
+        value,
+        valid: checkValidity(value, this.state.form.controls[controlName].validation),
+        touched: true
+      })
     })
+    let formIsValid = true
+    for (let controlName in updatedControls) {
+      formIsValid = updatedControls[controlName].valid && formIsValid
+    }
+    this.setState({form: { controls: updatedControls, isValid: formIsValid }})
   }
 
   backHandler = e => {
@@ -107,8 +92,8 @@ class CharacterCreate extends Component {
   createCharacterHandler = event => {
     event.preventDefault()
     const formData = {}
-    for (let formElementId in this.state.form.fields) {
-      formData[formElementId] = this.state.form.fields[formElementId].value
+    for (let formElementId in this.state.form.controls) {
+      formData[formElementId] = this.state.form.controls[formElementId].value
     }
     console.log('[createCharacterHandler] formData: ', formData)
     this.props.onCreateCharacter(formData)
@@ -117,31 +102,34 @@ class CharacterCreate extends Component {
   }
 
   render() {
-    const formFields = []
-    for (let key in this.state.form.fields) {
-      formFields.push({
+    const formControls = []
+    for (let key in this.state.form.controls) {
+      formControls.push({
         id: key,
-        config: this.state.form.fields[key]
+        config: this.state.form.controls[key]
       })
     }
+
+    const form = formControls.map(formElement => (
+      <InputField 
+        key={formElement.id}
+        id={formElement.id}
+        elementType={formElement.config.elementType}
+        label={formElement.config.label}
+        elementConfig={formElement.config.elementConfig}
+        value={formElement.config.value}
+        invalid={!formElement.config.valid}
+        shouldValidate={formElement.config.validation}
+        touched={formElement.config.touched}
+        changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
+    ))
+
     return (
       <div className={styles.CharacterCreate}>
         <ModalHeader title="Character Create" />
         <form onSubmit={this.createCharacterHandler}>
-          <div className={styles.FormFields}>
-            {formFields.map(formElement => (
-              <InputField 
-                key={formElement.id}
-                id={formElement.id}
-                elementType={formElement.config.elementType}
-                label={formElement.config.label}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changed={(event) => { this.inputChangedHandler(event, formElement.id) }} />
-            ))}
+          <div className={styles.FormControls}>
+            {form}
           </div>
           <ModalFooter>
             <Button clicked={this.backHandler}>Back</Button>            
