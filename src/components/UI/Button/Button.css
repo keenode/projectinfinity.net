@@ -25,6 +25,18 @@
   background-color: var(--ui-btn-danger-color-hover);
 }
 
+.Button.Subtle {
+  padding: 0;
+  font-weight: 300;
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid transparent;
+}
+
+.Button.Subtle:hover {
+  border-color: var(--ui-color-white); 
+}
+
 .Button:disabled {
   background-color: var(--ui-btn-disabled-color);
   cursor: not-allowed;

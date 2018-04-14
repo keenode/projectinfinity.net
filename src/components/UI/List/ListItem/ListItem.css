@@ -2,10 +2,12 @@
   display: flex;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: var(--ui-foregcolor);  
+  border: 1px solid rgba(255, 255, 255, 0.2);
   user-select: none;
+  transition: border-color 200ms ease;
 }
 
 .ListItem:hover {
-  background-color:  rgba(255, 255, 255, 0.07);
+  border-color:  rgba(255, 255, 255, 0.5);
 }

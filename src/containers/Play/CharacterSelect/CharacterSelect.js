@@ -40,14 +40,17 @@ class CharacterSelect extends Component {
             <ListItem key={character._id}>
               <div className={styles.Avatar}></div>
               <div className={styles.Info}>
-                <span className={styles.Label}>{character.name}</span>
                 <div className={styles.Stats}>
-                  <span>Lvl: {character.level}</span>
-                  <span>Race: {character.race}</span>
-                  <span>Gender: {character.gender}</span>
+                  <span className={styles.Label}>{character.name}</span>
+                  <div className={styles.Details}>
+                    <span>Level {character.level}</span><br />
+                    <span>{character.race}, {character.gender}</span>
+                  </div>
                 </div>
-                <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
-                <Button btnType="Danger" clicked={() => { this.deleteCharacterHandler(character._id) }}>Delete</Button>
+                <div className={styles.Actions}>
+                  <Button btnType="Subtle" clicked={() => { this.deleteCharacterHandler(character._id) }} style={{ marginRight: '20px' }}>Delete</Button>
+                  <Button clicked={() => { this.selectCharacterHandler(character._id) }}>Play</Button>
+                </div>
               </div>
             </ListItem>
           ))}
