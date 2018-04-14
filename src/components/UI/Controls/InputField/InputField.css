@@ -21,6 +21,8 @@
 
 .InputField input:focus {
   background-color: var(--ui-input-color-focused);
+  border-color: rgba(255, 255, 255, 0.4);
+  outline: none;
 }
 
 .Label {
@@ -49,6 +51,7 @@
 
 :global(.Select.is-focused .Select-control) {
   background-color: var(--ui-input-color-focused);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 :global(.Select-control) {
@@ -64,7 +67,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
   color: var(--ui-info-text-color);
+  letter-spacing: 1px;
+  cursor: default;
+}
+
+:global(.Select-value) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   letter-spacing: 1px;
   cursor: default;
 }
@@ -80,7 +93,7 @@
 
 :global(.Select-menu-outer) {
   background-color: var(--ui-input-color-focused);
-  border: 1px solid rgba(255, 255, 255, 0.2);  
+  border: 1px solid rgba(255, 255, 255, 0.4);  
   box-sizing: border-box;
   margin-top: -1px;
   max-height: 200px;
@@ -123,4 +136,8 @@
   top: -2px;
   border-color: transparent transparent #999;
   border-width: 0 5px 5px;
+}
+
+:global(.Select-clear-zone) {
+  display: none;
 }

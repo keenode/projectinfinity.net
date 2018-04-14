@@ -19,8 +19,6 @@ const inputField = props => {
       inputElement = <textarea id={props.id} {...props.elementConfig} onChange={props.changed} />
       break
     case 'select':
-      console.log('select name: ' + props.elementConfig.name)
-      console.log('select value: ' + props.value)
       inputElement = (
         <Select
           name={props.elementConfig.name}

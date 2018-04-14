@@ -43,7 +43,7 @@ class CharacterCreate extends Component {
             required: true
           },
           value: '',
-          valid: true,
+          valid: false,
           touched: false
         },
         race: {
@@ -59,7 +59,7 @@ class CharacterCreate extends Component {
             required: true
           },
           value: '',
-          valid: true,
+          valid: false,
           touched: false
         }
       }
