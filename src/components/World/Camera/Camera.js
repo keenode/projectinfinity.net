@@ -4,7 +4,7 @@ class Camera {
   vy = 0
   accel = 1.0
   maxVel = 20.0
-  friction = 0.25
+  friction = 0.35
   moving = {
     up: false,
     down: false,
@@ -20,19 +20,15 @@ class Camera {
 
   handleKeyDown(e) {
     if (e.which === 87 || e.which === 38) {
-      console.log('up')
       this.moving.up = true
     }
     else if (e.which === 83 || e.which === 40) {
-      console.log('down')
       this.moving.down = true
     }
     else if (e.which === 65 || e.which === 37) {
-      console.log('left')
       this.moving.left = true
     }
     else if (e.which === 68 || e.which === 39) {
-      console.log('right')
       this.moving.right = true
     }
   }
@@ -77,12 +73,12 @@ class Camera {
     this.vx = Math.abs(this.vx) > this.maxVel ? this.maxVel * dirFactorX : this.vx
     this.vy = Math.abs(this.vy) > this.maxVel ? this.maxVel * dirFactorY : this.vy
 
-    console.log('vy: ' + this.vy)
-    console.log('vx: ' + this.vx)
+    // console.log('vy: ' + this.vy)
+    // console.log('vx: ' + this.vx)
 
     // Set position
-    this.scene.x += this.vx * delta
-    this.scene.y += this.vy * delta
+    this.scene.x += Math.round(this.vx) * delta
+    this.scene.y += Math.round(this.vy) * delta
   }
 
   assignScene(scene) {
