@@ -11,15 +11,15 @@ const inputField = props => {
   }
 
   switch (props.elementType) {
-    case ('input'):
+    case 'input':
       inputElement = <input id={props.id} {...props.elementConfig} value={props.value} onChange={props.changed} />
       break
-    case ('textarea'):
+    case 'textarea':
       inputElement = <textarea id={props.id} {...props.elementConfig} onChange={props.changed} />
       break
-    case ('select'):
+    case 'select':
       inputElement = (
-        <select value={props.value} onChange={props.changed}>
+        <select id={props.id} value={props.value} onChange={props.changed}>
           {props.elementConfig.options.map(option => (
             <option key={option.value} value={option.value}>{option.displayValue}</option>
           ))}
@@ -32,7 +32,7 @@ const inputField = props => {
 
   return (
     <div className={inputStyles.join(' ')}>
-      <label htmlFor={props.id}>{props.label}</label>
+      <label className={styles.Label} htmlFor={props.id}>{props.label}</label>
       {inputElement}
     </div>
   )

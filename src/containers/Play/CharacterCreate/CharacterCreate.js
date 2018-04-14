@@ -12,74 +12,73 @@ import styles from './CharacterCreate.css'
 
 class CharacterCreate extends Component {
   state = {
-    createCharacterForm: {
-      name: {
-        elementType: 'input',
-        label: 'Character Name',
-        elementConfig: {
-          type: 'text',
-          name: 'name',
-          placeholder: 'Character Name'
+    form: {
+      isValid: false,
+      fields: {
+        name: {
+          label: 'Character Name',
+          elementType: 'input',
+          elementConfig: {
+            type: 'text',
+            name: 'name'
+          },
+          validation: {
+            required: true
+          },
+          value: '',
+          valid: false,
+          touched: false
         },
-        value: '',
-        validation: {
-          required: true
+        gender: {
+          label: 'Gender',
+          elementType: 'select',
+          elementConfig: {
+            name: 'gender',
+            options: [
+              { value: 0, displayValue: '- Select -' },
+              { value: 'male', displayValue: 'Male' },
+              { value: 'female', displayValue: 'Female' }
+            ]
+          },
+          validation: {
+            required: true
+          },
+          value: '',
+          valid: true,
+          touched: false
         },
-        valid: false,
-        touched: false
-      },
-      gender: {
-        elementType: 'select',
-        label: 'Gender',
-        elementConfig: {
-          name: 'gender',
-          options: [
-            { value: 0, displayValue: '- Select -' },
-            { value: 'male', displayValue: 'Male' },
-            { value: 'female', displayValue: 'Female' }
-          ]
-        },
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: true,
-        touched: false
-      },
-      race: {
-        elementType: 'select',
-        label: 'Race',
-        elementConfig: {
-          name: 'race',
-          options: [
-            { value: 0, displayValue: '- Select -' },
-            { value: 'human', displayValue: 'Human' }
-          ]
-        },
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: true,
-        touched: false
-      },
-    },
-    formIsValid: false
+        race: {
+          label: 'Race',
+          elementType: 'select',
+          elementConfig: {
+            name: 'race',
+            options: [
+              { value: 0, displayValue: '- Select -' },
+              { value: 'human', displayValue: 'Human' }
+            ]
+          },
+          validation: {
+            required: true
+          },
+          value: '',
+          valid: true,
+          touched: false
+        }
+      }
+    }
   }
 
   checkValidation(value, rules) {
     let isValid = true
-
     if (rules.required) {
       isValid = value.trim() !== '' && isValid
     }
-
     return isValid
   }
 
   inputChangedHandler = (event, inputId) => {
     const updatedForm = {
-      ...this.state.createCharacterForm
+      ...this.state.form.fields
     }
     const updatedFormElement = {
       ...updatedForm[inputId]
@@ -94,7 +93,12 @@ class CharacterCreate extends Component {
       formIsValid = updatedForm[inputId].valid && formIsValid
     }
 
-    this.setState({ createCharacterForm: updatedForm, formIsValid: formIsValid })
+    this.setState({
+      form: {
+        isValid: formIsValid,
+        fields: updatedForm
+      }
+    })
   }
 
   backHandler = e => {
@@ -102,11 +106,11 @@ class CharacterCreate extends Component {
     this.props.onPlayModeChanged('CharacterSelect')
   }
 
-  createCharacterHandler = (event) => {
+  createCharacterHandler = event => {
     event.preventDefault()
     const formData = {}
-    for (let formElementId in this.state.createCharacterForm) {
-      formData[formElementId] = this.state.createCharacterForm[formElementId].value
+    for (let formElementId in this.state.form) {
+      formData[formElementId] = this.state.form[formElementId].value
     }
     console.log('[createCharacterHandler] formData: ', formData)
     this.props.onCreateCharacter(formData)
@@ -115,11 +119,11 @@ class CharacterCreate extends Component {
   }
 
   render() {
-    const formElementsArray = []
-    for (let key in this.state.createCharacterForm) {
-      formElementsArray.push({
+    const formFields = []
+    for (let key in this.state.form.fields) {
+      formFields.push({
         id: key,
-        config: this.state.createCharacterForm[key]
+        config: this.state.form.fields[key]
       })
     }
     return (
@@ -127,7 +131,7 @@ class CharacterCreate extends Component {
         <ModalHeader title="Character Create" />
         <form onSubmit={this.createCharacterHandler}>
           <div className={styles.FormFields}>
-            {formElementsArray.map(formElement => (
+            {formFields.map(formElement => (
               <InputField 
                 key={formElement.id}
                 id={'input-' + formElement.id}
@@ -143,7 +147,7 @@ class CharacterCreate extends Component {
           </div>
           <ModalFooter>
             <Button clicked={this.backHandler}>Back</Button>            
-            <Button type="submit" disabled={!this.state.formIsValid}>Start Adventure</Button>
+            <Button type="submit" disabled={!this.state.form.isValid}>Start Adventure</Button>
           </ModalFooter>
         </form>
       </div>
