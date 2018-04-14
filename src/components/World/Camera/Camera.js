@@ -2,8 +2,8 @@ class Camera {
   scene = null
   vx = 0
   vy = 0
-  accel = 2.0
-  maxVel = 10.0
+  accel = 1.0
+  maxVel = 20.0
   friction = 0.25
   moving = {
     up: false,
