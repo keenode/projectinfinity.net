@@ -83,8 +83,8 @@ class Login extends Component {
     this.setState({form: { controls: updatedControls, isValid: formIsValid }})
   }
 
-  loginHandler = event => {
-    event.preventDefault()
+  loginHandler = e => {
+    e.preventDefault()
     const formData = {}
     for (let formControl in this.state.form.controls) {
       formData[formControl] = this.state.form.controls[formControl].value

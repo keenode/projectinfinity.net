@@ -31,6 +31,7 @@
   color: var(	--ui-info-text-color);
   font-size: 13px;
   letter-spacing: 1px;
+  user-select: none;
 }
 
 .Invalid input {
@@ -71,6 +72,7 @@
   color: var(--ui-info-text-color);
   letter-spacing: 1px;
   cursor: default;
+  user-select: none;
 }
 
 :global(.Select-value) {
@@ -80,6 +82,7 @@
   height: 100%;
   letter-spacing: 1px;
   cursor: default;
+  user-select: none;
 }
 
 :global(.Select-input) {
@@ -110,6 +113,7 @@
   letter-spacing: 1px;
   background-color: var(--ui-input-color-focused);
   cursor: default;
+  user-select: none;
 }
 
 :global(.Select-option:hover) {
