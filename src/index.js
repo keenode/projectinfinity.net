@@ -1,6 +1,6 @@
 /**
  * TODO:
- * - add logic to place players on tiles and bind to state
+ * - add logic to handle clicking on player tile to move
  * - store and retreive player map positions to the database
  */
 

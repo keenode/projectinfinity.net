@@ -3,6 +3,7 @@ import * as PIXI from 'pixi.js'
 
 import Camera from '../Camera/Camera';
 import Tile from './Tile/Tile'
+import Character from '../Character/Character'
 
 import styles from './Map.css'
 
@@ -11,6 +12,7 @@ class Map extends Component {
   map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
+  character = new PIXI.Container()
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -18,6 +20,7 @@ class Map extends Component {
     setTimeout(() => {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
+      this.placeCharacter()
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
     }, 200)
   }
@@ -65,6 +68,12 @@ class Map extends Component {
     this.mapApp.stage.addChild(this.fpsText)    
     this.camera.assignScene(this.map)
     console.log('generated tiles: ', this.tiles)
+  }
+
+  placeCharacter() {
+    const character = new Character(this.props.characterData.coords.x, this.props.characterData.coords.y).draw()
+    this.character.addChild(character)
+    this.map.addChild(this.character)
   }
 
   gameLoop(delta) {

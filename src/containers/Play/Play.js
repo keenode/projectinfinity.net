@@ -38,7 +38,7 @@ class Play extends Component {
   }
   
   render () {
-    const map = this.props.world.tiles.length > 0 ? <Map tilesData={this.props.world.tiles} /> : null
+    const map = this.props.world.tiles.length > 0 ? <Map characterData={{ coords: { x: 4, y: 3 } }} tilesData={this.props.world.tiles} /> : null
     return (
       <div id="game-container" className={styles.GameContainer}>
         {map}
