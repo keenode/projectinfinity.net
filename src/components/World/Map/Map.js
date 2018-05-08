@@ -4,6 +4,7 @@ import * as PIXI from 'pixi.js'
 import Camera from '../Camera/Camera';
 import Tile from './Tile/Tile'
 import Character from '../Character/Character'
+import MoveChoiceUI from '../Character/MoveChoiceUI'
 
 import styles from './Map.css'
 
@@ -12,7 +13,6 @@ class Map extends Component {
   map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
-  character = new PIXI.Container()
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -21,6 +21,7 @@ class Map extends Component {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
       this.placeCharacter()
+      this.addEvents()
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
     }, 200)
   }
@@ -71,9 +72,17 @@ class Map extends Component {
   }
 
   placeCharacter() {
-    const character = new Character(this.props.characterData.coords.x, this.props.characterData.coords.y).draw()
-    this.character.addChild(character)
-    this.map.addChild(this.character)
+    this.character = new Character(this.props.characterData.coords.x, this.props.characterData.coords.y)
+    this.map.addChild(this.character.PIXIContainer)
+
+    // TEMP: placement of move choice ui
+    this.map.addChild(new MoveChoiceUI(this.character).draw())
+  }
+
+  addEvents() {
+    this.character.PIXIContainer.on('click', event => {
+      console.log('character clicked ', event)
+    })
   }
 
   gameLoop(delta) {
