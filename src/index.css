@@ -75,8 +75,6 @@ table {
 	--ui-btn-disabled-color: #5c5d5f;
 }
 
-/* #16BAC5  - nice light blue */
-
 body {
 	font-family: var(--theme-font-default);
 	color: var(--theme-color-white);

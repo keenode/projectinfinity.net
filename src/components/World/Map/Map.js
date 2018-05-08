@@ -64,11 +64,6 @@ class Map extends Component {
     this.mapApp.stage.addChild(this.map)
     this.mapApp.stage.addChild(this.fpsText)    
     this.camera.assignScene(this.map)
-    // temp positioning...
-    // this.tiles.x = 300
-    // this.tiles.y = 100
-    // this.coords.x = 300
-    // this.coords.y = 100
     console.log('generated tiles: ', this.tiles)
   }
 

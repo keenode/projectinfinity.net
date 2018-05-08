@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * - add logic to place players on tiles and bind to state
+ * - store and retreive player map positions to the database
+ */
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
