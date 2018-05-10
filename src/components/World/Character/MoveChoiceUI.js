@@ -4,33 +4,68 @@ class MoveChoiceUI {
   // TODO: refactor so this setting is in its own config
   TILE_SIZE = 80
   isActive = false
+  PIXIContainerTiles =  new PIXI.Container()
   PIXIContainer = new PIXI.Container()
 
   constructor(character) {
     console.log('[MoveChoiceUI] constructed')
     this.xPos = character.xPos
     this.yPos = character.yPos
-    this.PIXIContainer.addChild(this.draw())
+    this.tiles = [
+      {
+        label: 'Up Left',
+        graphics: this.drawTile(this.xPos - this.TILE_SIZE, this.yPos - this.TILE_SIZE)
+      },
+      {
+        label: 'Up',
+        graphics: this.drawTile(this.xPos, this.yPos - this.TILE_SIZE)
+      },
+      {
+        label: 'Up Right',
+        graphics: this.drawTile(this.xPos + this.TILE_SIZE, this.yPos - this.TILE_SIZE)
+      },
+      {
+        label: 'Left',
+        graphics: this.drawTile(this.xPos - this.TILE_SIZE, this.yPos)
+      },
+      {
+        label: 'Right',
+        graphics: this.drawTile(this.xPos + this.TILE_SIZE, this.yPos)
+      },
+      {
+        label: 'Down Left',
+        graphics: this.drawTile(this.xPos - this.TILE_SIZE, this.yPos + this.TILE_SIZE)
+      },
+      {
+        label: 'Down',
+        graphics: this.drawTile(this.xPos, this.yPos + this.TILE_SIZE)
+      },
+      {
+        label: 'Down Right',
+        graphics: this.drawTile(this.xPos + this.TILE_SIZE, this.yPos + this.TILE_SIZE)
+      }
+    ]
+    for (let i = 0; i < this.tiles.length; i++) {
+      this.tiles[i].graphics.interactive = true
+      this.PIXIContainerTiles.addChild(this.tiles[i].graphics)
+    }
+    this.PIXIContainer.addChild(this.PIXIContainerTiles)
     this.PIXIContainer.addChild(this.drawUIText())
-    this.PIXIContainer.interactive = true
   }
 
   toggle() {
     this.isActive = !this.isActive
   }
 
-  draw() {
+  getTileLabel(index) {
+    return this.tiles[index].label
+  }
+
+  drawTile(xPos, yPos) {
     const rect = new PIXI.Graphics()
     rect.beginFill(0x0000ff, 0.15)
     rect.lineStyle(1, 0xffffff, 0.75)
-    rect.drawRect(this.xPos - this.TILE_SIZE, this.yPos - this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos, this.yPos - this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos + this.TILE_SIZE, this.yPos - this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos - this.TILE_SIZE, this.yPos, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos + this.TILE_SIZE, this.yPos, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos - this.TILE_SIZE, this.yPos + this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos, this.yPos + this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE)
-    rect.drawRect(this.xPos + this.TILE_SIZE, this.yPos + this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE)
+    rect.drawRect(xPos, yPos, this.TILE_SIZE, this.TILE_SIZE)
     rect.endFill()
     return rect
   }

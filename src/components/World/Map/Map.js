@@ -9,6 +9,7 @@ import MoveChoiceUI from '../Character/MoveChoiceUI'
 import styles from './Map.css'
 
 class Map extends Component {
+  TILE_SIZE = 80
   camera = new Camera()
   map = new PIXI.Container()
   tiles = new PIXI.Container()
@@ -88,6 +89,13 @@ class Map extends Component {
         this.map.removeChild(this.moveChoiceUI.PIXIContainer)
       }
     })
+
+    for (let i = 0; i < this.moveChoiceUI.PIXIContainerTiles.children.length; i++) {
+      const moveChoiceGfx = this.moveChoiceUI.PIXIContainerTiles.getChildAt(i)
+      moveChoiceGfx.on('click', event => {
+        console.log('MOVE: ' + this.moveChoiceUI.getTileLabel(i))
+      })
+    }
   }
 
   gameLoop(delta) {
