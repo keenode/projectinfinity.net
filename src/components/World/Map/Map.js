@@ -13,6 +13,8 @@ class Map extends Component {
   map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
+  character = null
+  moveChoiceUI = null
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -74,14 +76,17 @@ class Map extends Component {
   placeCharacter() {
     this.character = new Character(this.props.characterData.coords.x, this.props.characterData.coords.y)
     this.map.addChild(this.character.PIXIContainer)
-
-    // TEMP: placement of move choice ui
-    this.map.addChild(new MoveChoiceUI(this.character).PIXIContainer)
+    this.moveChoiceUI = new MoveChoiceUI(this.character)
   }
 
   addEvents() {
     this.character.PIXIContainer.on('click', event => {
-      console.log('character clicked ', event)
+      this.moveChoiceUI.toggle()
+      if (this.moveChoiceUI.isActive) {
+        this.map.addChild(this.moveChoiceUI.PIXIContainer)
+      } else {
+        this.map.removeChild(this.moveChoiceUI.PIXIContainer)
+      }
     })
   }
 

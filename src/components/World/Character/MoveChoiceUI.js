@@ -3,6 +3,7 @@ import * as PIXI from 'pixi.js'
 class MoveChoiceUI {
   // TODO: refactor so this setting is in its own config
   TILE_SIZE = 80
+  isActive = false
   PIXIContainer = new PIXI.Container()
 
   constructor(character) {
@@ -12,6 +13,10 @@ class MoveChoiceUI {
     this.PIXIContainer.addChild(this.draw())
     this.PIXIContainer.addChild(this.drawUIText())
     this.PIXIContainer.interactive = true
+  }
+
+  toggle() {
+    this.isActive = !this.isActive
   }
 
   draw() {
