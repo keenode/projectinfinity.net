@@ -76,7 +76,7 @@ class Map extends Component {
     this.map.addChild(this.character.PIXIContainer)
 
     // TEMP: placement of move choice ui
-    this.map.addChild(new MoveChoiceUI(this.character).draw())
+    this.map.addChild(new MoveChoiceUI(this.character).PIXIContainer)
   }
 
   addEvents() {

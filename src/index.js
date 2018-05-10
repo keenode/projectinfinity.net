@@ -1,4 +1,6 @@
 /**
+ * Start Mongo:
+ * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * - add logic to handle clicking on player tile to move
  * - store and retreive player map positions to the database
