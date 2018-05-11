@@ -4,7 +4,6 @@ import * as PIXI from 'pixi.js'
 import Camera from '../Camera/Camera';
 import Tile from './Tile/Tile'
 import Character from '../Character/Character'
-import MoveChoiceUI from '../Character/MoveChoiceUI'
 
 import styles from './Map.css'
 
@@ -15,7 +14,6 @@ class Map extends Component {
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
   character = null
-  moveChoiceUI = null
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -24,7 +22,6 @@ class Map extends Component {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
       this.placeCharacter()
-      this.addEvents()
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
     }, 200)
   }
@@ -77,25 +74,6 @@ class Map extends Component {
   placeCharacter() {
     this.character = new Character(this.props.characterData.coords.x, this.props.characterData.coords.y)
     this.map.addChild(this.character.PIXIContainer)
-    this.moveChoiceUI = new MoveChoiceUI(this.character)
-  }
-
-  addEvents() {
-    this.character.PIXIContainer.on('click', event => {
-      this.moveChoiceUI.toggle()
-      if (this.moveChoiceUI.isActive) {
-        this.map.addChild(this.moveChoiceUI.PIXIContainer)
-      } else {
-        this.map.removeChild(this.moveChoiceUI.PIXIContainer)
-      }
-    })
-
-    for (let i = 0; i < this.moveChoiceUI.PIXIContainerTiles.children.length; i++) {
-      const moveChoiceGfx = this.moveChoiceUI.PIXIContainerTiles.getChildAt(i)
-      moveChoiceGfx.on('click', event => {
-        console.log('MOVE: ' + this.moveChoiceUI.getTileLabel(i))
-      })
-    }
   }
 
   gameLoop(delta) {

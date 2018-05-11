@@ -7,10 +7,10 @@ class MoveChoiceUI {
   PIXIContainerTiles =  new PIXI.Container()
   PIXIContainer = new PIXI.Container()
 
-  constructor(character) {
+  constructor(xPos, yPos) {
     console.log('[MoveChoiceUI] constructed')
-    this.xPos = character.xPos
-    this.yPos = character.yPos
+    this.xPos = xPos
+    this.yPos = yPos
     this.tiles = [
       {
         label: 'Up Left',
