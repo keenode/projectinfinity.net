@@ -14,6 +14,10 @@ const initialState = {
     mind: 0,
     mindMax: 0
   },
+  position: {
+    x: 2,
+    y: 3
+  },
   slots: 0,
   slotsMax: 0,
   loading: false

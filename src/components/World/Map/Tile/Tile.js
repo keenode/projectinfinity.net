@@ -1,5 +1,9 @@
 import * as PIXI from 'pixi.js'
 
+/**
+ * TODO: Make tiles clickable (interactive) and adjust container x / y pos to be like Character
+ */
+
 class Tile {
   TILE_SIZE = 80
 

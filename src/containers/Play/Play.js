@@ -38,7 +38,7 @@ class Play extends Component {
   }
   
   render () {
-    const map = this.props.world.tiles.length > 0 ? <Map characterData={{ coords: { x: 4, y: 3 } }} tilesData={this.props.world.tiles} /> : null
+    const map = this.props.world.tiles.length > 0 ? <Map characterData={{coords: this.props.character.position }} tilesData={this.props.world.tiles} /> : null
     return (
       <div id="game-container" className={styles.GameContainer}>
         {map}
@@ -86,6 +86,10 @@ const mapStateToProps = state => {
         actionMax: state.character.vam.actionMax,
         mind: state.character.vam.mind,
         mindMax: state.character.vam.mindMax
+      },
+      position: {
+        x: 2,
+        y: 3
       }
     },
     world: {

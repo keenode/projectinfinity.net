@@ -2,8 +2,8 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - add logic to handle clicking on player tile to move
  * - store and retreive player map positions to the database
+ * - Add click listeners to tiles on map and console log some info
  */
 
 import React from 'react'
