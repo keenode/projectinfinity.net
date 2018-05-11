@@ -7,42 +7,40 @@ class MoveChoiceUI {
   PIXIContainerTiles =  new PIXI.Container()
   PIXIContainer = new PIXI.Container()
 
-  constructor(xPos, yPos) {
+  constructor() {
     console.log('[MoveChoiceUI] constructed')
-    this.xPos = xPos
-    this.yPos = yPos
     this.tiles = [
       {
         label: 'Up Left',
-        graphics: this.drawTile(this.xPos - this.TILE_SIZE, this.yPos - this.TILE_SIZE)
+        graphics: this.drawTile(-this.TILE_SIZE, -this.TILE_SIZE)
       },
       {
         label: 'Up',
-        graphics: this.drawTile(this.xPos, this.yPos - this.TILE_SIZE)
+        graphics: this.drawTile(0, -this.TILE_SIZE)
       },
       {
         label: 'Up Right',
-        graphics: this.drawTile(this.xPos + this.TILE_SIZE, this.yPos - this.TILE_SIZE)
+        graphics: this.drawTile(this.TILE_SIZE, -this.TILE_SIZE)
       },
       {
         label: 'Left',
-        graphics: this.drawTile(this.xPos - this.TILE_SIZE, this.yPos)
+        graphics: this.drawTile(-this.TILE_SIZE, 0)
       },
       {
         label: 'Right',
-        graphics: this.drawTile(this.xPos + this.TILE_SIZE, this.yPos)
+        graphics: this.drawTile(this.TILE_SIZE, 0)
       },
       {
         label: 'Down Left',
-        graphics: this.drawTile(this.xPos - this.TILE_SIZE, this.yPos + this.TILE_SIZE)
+        graphics: this.drawTile(-this.TILE_SIZE, this.TILE_SIZE)
       },
       {
         label: 'Down',
-        graphics: this.drawTile(this.xPos, this.yPos + this.TILE_SIZE)
+        graphics: this.drawTile(0, this.TILE_SIZE)
       },
       {
         label: 'Down Right',
-        graphics: this.drawTile(this.xPos + this.TILE_SIZE, this.yPos + this.TILE_SIZE)
+        graphics: this.drawTile(this.TILE_SIZE, this.TILE_SIZE)
       }
     ]
     for (let i = 0; i < this.tiles.length; i++) {
@@ -75,14 +73,14 @@ class MoveChoiceUI {
     const centerXMod = this.TILE_SIZE * 0.37
     const centerYMod = this.TILE_SIZE * 0.25
     const uiTextPositions = [
-      { label: '7', x: this.xPos + centerXMod - this.TILE_SIZE, y: this.yPos + centerYMod - this.TILE_SIZE },
-      { label: '8', x: this.xPos + centerXMod, y: this.yPos + centerYMod - this.TILE_SIZE },
-      { label: '9', x: this.xPos + centerXMod + this.TILE_SIZE, y: this.yPos + centerYMod - this.TILE_SIZE },
-      { label: '4', x: this.xPos + centerXMod - this.TILE_SIZE, y: this.yPos + centerYMod },
-      { label: '6', x: this.xPos + centerXMod + this.TILE_SIZE, y: this.yPos + centerYMod },
-      { label: '1', x: this.xPos + centerXMod - this.TILE_SIZE, y: this.yPos + centerYMod + this.TILE_SIZE },
-      { label: '2', x: this.xPos + centerXMod, y: this.yPos + centerYMod + this.TILE_SIZE },
-      { label: '3', x: this.xPos + centerXMod + this.TILE_SIZE, y: this.yPos + centerYMod + this.TILE_SIZE }
+      { label: '7', x: centerXMod - this.TILE_SIZE, y: centerYMod - this.TILE_SIZE },
+      { label: '8', x: centerXMod, y: centerYMod - this.TILE_SIZE },
+      { label: '9', x: centerXMod + this.TILE_SIZE, y: centerYMod - this.TILE_SIZE },
+      { label: '4', x: centerXMod - this.TILE_SIZE, y: centerYMod },
+      { label: '6', x: centerXMod + this.TILE_SIZE, y: centerYMod },
+      { label: '1', x: centerXMod - this.TILE_SIZE, y: centerYMod + this.TILE_SIZE },
+      { label: '2', x: centerXMod, y: centerYMod + this.TILE_SIZE },
+      { label: '3', x: centerXMod + this.TILE_SIZE, y: centerYMod + this.TILE_SIZE }
     ]
     const style = new PIXI.TextStyle({
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
