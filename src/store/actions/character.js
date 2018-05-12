@@ -122,7 +122,7 @@ export const deleteCharacterStart = () => {
 
 export const deleteCharacter = charId => {
   return dispatch => {
-    dispatch(createCharacterStart())
+    dispatch(deleteCharacterStart())
     axios.delete('/api/characters/' + charId)
       .then(res => {
         dispatch(deleteCharacterSuccess(res.data.character))
@@ -151,5 +151,41 @@ export const updateMind = changeAmt => {
   return {
     type: actionTypes.UPDATE_MIND,
     changeAmt
+  }
+}
+
+export const updatePositionSuccess = newPosition => {
+  return {
+    type: actionTypes.UPDATE_POSITION_SUCCESS,
+    newPosition
+  }
+}
+
+export const updatePositionError = error => {
+  return {
+    type: actionTypes.UPDATE_POSITION_ERROR,
+    error
+  }
+}
+
+export const updatePositionStart = () => {
+  return {
+    type: actionTypes.UPDATE_POSITION_START
+  }
+}
+
+export const updatePosition = reqPosition => {
+  //TODO: charId will be current character
+  // const charId = null
+  return dispatch => {
+    dispatch(updatePositionStart())
+    dispatch(updatePositionSuccess({ x: 1, y: 1 }))
+    // axios.put('/api/characters/' + charId, reqPosition)
+    //   .then(res => {
+    //     dispatch(updatePositionSuccess(res.data.character.position))
+    //   })
+    //   .catch(err => {
+    //     dispatch(updatePositionError(err))
+    //   })
   }
 }

@@ -12,7 +12,8 @@ export {
   deleteCharacter,
   updateVitality,
   updateAction,
-  updateMind
+  updateMind,
+  updatePosition
 } from './character'
 export {
   getWorld

@@ -20,7 +20,8 @@ const initialState = {
   },
   slots: 0,
   slotsMax: 0,
-  loading: false
+  loading: false,
+  isMoving: false
 }
 
 const getAvailableCharactersStart = (state, action) => {
@@ -96,6 +97,24 @@ const deleteCharacterSuccess = (state, action) => {
 }
 
 const deleteCharacterError = (state, action) => {
+  return updateObject(state, { isMoving: false })
+}
+
+const updatePositionStart = (state, action) => {
+  return updateObject(state, { isMoving: true })
+}
+
+const updatePositionSuccess = (state, action) => {
+  return updateObject(state, {
+    isMoving: false,
+    position: {
+      x: action.newPosition.x,
+      y: action.newPosition.y
+    }
+  })
+}
+
+const updatePositionError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
@@ -137,6 +156,9 @@ const reducer = (state = initialState, action) => {
             mind: newMind 
           }
         })
+      case actionTypes.UPDATE_POSITION_START: return updatePositionStart(state, action)
+      case actionTypes.UPDATE_POSITION_SUCCESS: return updatePositionSuccess(state, action)
+      case actionTypes.UPDATE_POSITION_ERROR: return updatePositionError(state, action)
     default:
       return state
   }
