@@ -195,20 +195,90 @@ export const updateVitalityError = error => {
 /*
  * UPDATE_ACTION
  */
-export const updateAction = changeAmt => {
+export const updateAction = (charId, changeAmt, originalVAM) => {
+  const newAction = checkBounds(originalVAM.action, originalVAM.actionMax, changeAmt)
+  return dispatch => {
+    if (originalVAM.action === newAction) {
+      dispatch(updateActionSuccess(newAction))
+    } else {
+      const updatedVAM = {
+        ...originalVAM,
+        action: newAction
+      }
+      dispatch(updateActionStart())
+      axios.put('/api/characters/' + charId, { vam: updatedVAM })
+        .then(res => {
+          dispatch(updateActionSuccess(res.data.character.vam.action))
+        })
+        .catch(err => {
+          dispatch(updateActionError(err))
+        })
+    }
+  }
+}
+
+export const updateActionStart = () => {
   return {
-    type: actionTypes.UPDATE_ACTION,
-    changeAmt
+    type: actionTypes.UPDATE_ACTION_START
+  }
+}
+
+export const updateActionSuccess = updatedAction => {
+  return {
+    type: actionTypes.UPDATE_ACTION_SUCCESS,
+    updatedAction
+  }
+}
+
+export const updateActionError = error => {
+  return {
+    type: actionTypes.UPDATE_ACTION_ERROR,
+    error
   }
 }
 
 /*
  * UPDATE_MIND
  */
-export const updateMind = changeAmt => {
+export const updateMind = (charId, changeAmt, originalVAM) => {
+  const newMind = checkBounds(originalVAM.mind, originalVAM.mindMax, changeAmt)
+  return dispatch => {
+    if (originalVAM.action === newMind) {
+      dispatch(updateMindSuccess(newMind))
+    } else {
+      const updatedVAM = {
+        ...originalVAM,
+        mind: newMind
+      }
+      dispatch(updateMindStart())
+      axios.put('/api/characters/' + charId, { vam: updatedVAM })
+        .then(res => {
+          dispatch(updateMindSuccess(res.data.character.vam.mind))
+        })
+        .catch(err => {
+          dispatch(updateMindError(err))
+        })
+    }
+  }
+}
+
+export const updateMindStart = () => {
   return {
-    type: actionTypes.UPDATE_MIND,
-    changeAmt
+    type: actionTypes.UPDATE_MIND_START
+  }
+}
+
+export const updateMindSuccess = updatedMind => {
+  return {
+    type: actionTypes.UPDATE_MIND_SUCCESS,
+    updatedMind
+  }
+}
+
+export const updateMindError = error => {
+  return {
+    type: actionTypes.UPDATE_MIND_ERROR,
+    error
   }
 }
 

@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
-import { updateObject, checkBounds } from '../../shared/utility'
+import { updateObject } from '../../shared/utility'
 
 const initialState = {
   availableCharacters: [],
@@ -136,7 +136,49 @@ const updateVitalitySuccess = (state, action) => {
 }
 
 const updateVitalityError = (state, action) => {
-  return updateObject(state, { loading: false })
+  return updateObject(state, { vamIsUpdating: false })
+}
+
+/*
+ * Update Action
+ */
+const updateActionStart = (state, action) => {
+  return updateObject(state, { vamIsUpdating: true })
+}
+
+const updateActionSuccess = (state, action) => {
+  return updateObject(state, {
+    vamIsUpdating: false,
+    vam: {
+      ...state.vam,
+      action: action.updatedAction
+    }
+  })
+}
+
+const updateActionError = (state, action) => {
+  return updateObject(state, { vamIsUpdating: false })
+}
+
+/*
+ * Update Mind
+ */
+const updateMindStart = (state, action) => {
+  return updateObject(state, { vamIsUpdating: true })
+}
+
+const updateMindSuccess = (state, action) => {
+  return updateObject(state, {
+    vamIsUpdating: false,
+    vam: {
+      ...state.vam,
+      mind: action.updatedMind
+    }
+  })
+}
+
+const updateMindError = (state, action) => {
+  return updateObject(state, { vamIsUpdating: false })
 }
 
 /*
@@ -180,25 +222,15 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPDATE_VITALITY_START: return updateVitalityStart(state, action)
     case actionTypes.UPDATE_VITALITY_SUCCESS: return updateVitalitySuccess(state, action)
     case actionTypes.UPDATE_VITALITY_ERROR: return updateVitalityError(state, action)
-    case actionTypes.UPDATE_ACTION:
-      const newAction = checkBounds(state.vam.action, state.vam.actionMax, action.changeAmt)
-      return updateObject(state, {
-        vam: {
-          ...state.vam,
-          action: newAction 
-        }
-      })
-      case actionTypes.UPDATE_MIND:
-        const newMind = checkBounds(state.vam.mind, state.vam.mindMax, action.changeAmt)
-        return updateObject(state, {
-          vam: {
-            ...state.vam,
-            mind: newMind 
-          }
-        })
-      case actionTypes.UPDATE_POSITION_START: return updatePositionStart(state, action)
-      case actionTypes.UPDATE_POSITION_SUCCESS: return updatePositionSuccess(state, action)
-      case actionTypes.UPDATE_POSITION_ERROR: return updatePositionError(state, action)
+    case actionTypes.UPDATE_ACTION_START: return updateActionStart(state, action)
+    case actionTypes.UPDATE_ACTION_SUCCESS: return updateActionSuccess(state, action)
+    case actionTypes.UPDATE_ACTION_ERROR: return updateActionError(state, action)
+    case actionTypes.UPDATE_MIND_START: return updateMindStart(state, action)
+    case actionTypes.UPDATE_MIND_SUCCESS: return updateMindSuccess(state, action)
+    case actionTypes.UPDATE_MIND_ERROR: return updateMindError(state, action)
+    case actionTypes.UPDATE_POSITION_START: return updatePositionStart(state, action)
+    case actionTypes.UPDATE_POSITION_SUCCESS: return updatePositionSuccess(state, action)
+    case actionTypes.UPDATE_POSITION_ERROR: return updatePositionError(state, action)
     default:
       return state
   }

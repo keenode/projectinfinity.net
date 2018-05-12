@@ -63,10 +63,10 @@ class Play extends Component {
         <div className={styles.TestActions}>
           <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(this.props.character.id, -5, this.props.character.vam) }}>-5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(this.props.character.id, 5, this.props.character.vam) }}>+5 Vitality</Button><br />
-          <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button>
-          <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button><br />
-          <Button btnType="Danger" clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button>
-          <Button clicked={() => { this.props.onUpdateMind(5) }}>+5 Mind</Button>
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(this.props.character.id, -5, this.props.character.vam) }}>-5 Action</Button>
+          <Button clicked={() => { this.props.onUpdateAction(this.props.character.id, 5, this.props.character.vam) }}>+5 Action</Button><br />
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateMind(this.props.character.id, -5, this.props.character.vam) }}>-5 Mind</Button>
+          <Button clicked={() => { this.props.onUpdateMind(this.props.character.id, 5, this.props.character.vam) }}>+5 Mind</Button>
         </div>
         <Modal show={this.props.playMode === 'CharacterSelect'}>
           <CharacterSelect />
@@ -109,9 +109,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateVitality: (charId, reqVitality, curVAM) => dispatch(actions.updateVitality(charId, reqVitality, curVAM)),
-    onUpdateAction: changeAmt => dispatch(actions.updateAction(changeAmt)),
-    onUpdateMind: changeAmt => dispatch(actions.updateMind(changeAmt)),
+    onUpdateVitality: (charId, changeAmt, curVAM) => dispatch(actions.updateVitality(charId, changeAmt, curVAM)),
+    onUpdateAction: (charId, changeAmt, curVAM) => dispatch(actions.updateAction(charId, changeAmt, curVAM)),
+    onUpdateMind: (charId, changeAmt, curVAM) => dispatch(actions.updateMind(charId, changeAmt, curVAM)),
     onUpdatePosition: (charId, reqX, reqY) => dispatch(actions.updatePosition(charId, reqX, reqY)),
     onLoadWorld: () => dispatch(actions.getWorld()),
     onInitChatMessages: () => dispatch(actions.initMessages())
