@@ -16,8 +16,8 @@ class CharacterSelect extends Component {
     this.props.onGetAvailableCharacters()
   }
 
-  selectCharacterHandler = (charId) => {
-    console.log('[selectCharacterHandler]: ' + charId)
+  selectCharacterHandler = charId => {
+    console.log('[selectCharacterHandler] id: ' + charId)
     this.props.onSelectCharacter(charId)
     this.props.onPlayModeChanged('Playing')
   }

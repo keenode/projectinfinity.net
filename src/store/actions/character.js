@@ -36,6 +36,7 @@ export const getAvailableCharacters = () => {
 }
 
 export const selectCharacterSuccess = selectedCharacter => {
+  console.log('selectedCharacter: ', selectedCharacter)
   return {
     type: actionTypes.SELECT_CHARACTER_SUCCESS,
     character: selectedCharacter

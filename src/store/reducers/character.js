@@ -3,6 +3,7 @@ import { updateObject, checkBounds } from '../../shared/utility'
 
 const initialState = {
   availableCharacters: [],
+  characterId: null,
   name: null,
   gender: null,
   race: null,
@@ -48,6 +49,7 @@ const selectCharacterStart = (state, action) => {
 const selectCharacterSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
+    characterId: action.character._id,
     name: action.character.name,
     gender: action.character.gender,
     race: action.character.race,
