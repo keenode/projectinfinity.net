@@ -13,7 +13,7 @@ class Map extends Component {
   map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
-  character = null
+  character = new Character()
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -21,9 +21,13 @@ class Map extends Component {
     setTimeout(() => {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
-      this.placeCharacter()
+      this.map.addChild(this.character.PIXIContainer)
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
     }, 200)
+  }
+
+  componentDidUpdate() {
+    this.character.updatePosition(this.props.characterData.coords.x, this.props.characterData.coords.y)
   }
 
   setupPIXI(mapSelectorId) {
@@ -69,11 +73,6 @@ class Map extends Component {
     this.mapApp.stage.addChild(this.fpsText)    
     this.camera.assignScene(this.map)
     console.log('generated tiles: ', this.tiles)
-  }
-
-  placeCharacter() {
-    this.character = new Character(this.props.characterData.coords.x, this.props.characterData.coords.y)
-    this.map.addChild(this.character.PIXIContainer)
   }
 
   gameLoop(delta) {

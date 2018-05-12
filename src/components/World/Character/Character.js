@@ -8,15 +8,10 @@ class Character {
   PIXIContainer = new PIXI.Container()
   moveChoiceUI = null
 
-  constructor(x, y) {
+  constructor() {
     console.log('[Character] constructed')
-    // this.xCoord = x
-    // this.yCoord = y
-    this.PIXIContainer.x = x * this.TILE_SIZE
-    this.PIXIContainer.y = y * this.TILE_SIZE
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
-
     this.moveChoiceUI = new MoveChoiceUI()
     this.addEvents()
   }
@@ -38,28 +33,28 @@ class Character {
         console.log('MOVE: ' + moveDir)
         switch (moveDir) {
           case 'Up Left':
-            this.move(-1, -1)
+            this.triggerMoveEvent(-1, -1)
             break
           case 'Up':
-            this.move(0, -1)
+            this.triggerMoveEvent(0, -1)
             break
           case 'Up Right':
-            this.move(1, -1)
+            this.triggerMoveEvent(1, -1)
             break
           case 'Left':
-            this.move(-1, 0)
+            this.triggerMoveEvent(-1, 0)
             break;
           case 'Right':
-            this.move(1, 0)
+            this.triggerMoveEvent(1, 0)
             break
           case 'Down Left':
-            this.move(-1, 1)
+            this.triggerMoveEvent(-1, 1)
             break
           case 'Down':
-            this.move(0, 1)
+            this.triggerMoveEvent(0, 1)
             break
           case 'Down Right':
-            this.move(1, 1)
+            this.triggerMoveEvent(1, 1)
             break
           default:
             console.log('Not a valid movement direction.')
@@ -68,11 +63,14 @@ class Character {
     }
   }
 
-  move(xMov, yMov) {
-    this.PIXIContainer.x += xMov * this.TILE_SIZE
-    this.PIXIContainer.y += yMov * this.TILE_SIZE
-    const moveEvent = new CustomEvent('CHARACTER_MOVED', { detail: { x: xMov, y: yMov } })
+  triggerMoveEvent(changeX, changeY) {
+    const moveEvent = new CustomEvent('CHARACTER_MOVED', { detail: { changeX, changeY } })
     document.dispatchEvent(moveEvent)
+  }
+
+  updatePosition(x, y) {
+    this.PIXIContainer.x = x * this.TILE_SIZE
+    this.PIXIContainer.y = y * this.TILE_SIZE
   }
 
   draw() {

@@ -32,7 +32,9 @@ class Play extends Component {
 
     document.addEventListener('CHARACTER_MOVED', e => {
       console.log('CHARACTER_MOVED: ', e)
-      this.props.onUpdatePosition(e.detail.x, e.detail.y)
+      const reqX = this.props.character.position.x + e.detail.changeX
+      const reqY = this.props.character.position.y + e.detail.changeY
+      this.props.onUpdatePosition(reqX, reqY)
     }, false)
   }
 
@@ -92,10 +94,7 @@ const mapStateToProps = state => {
         mind: state.character.vam.mind,
         mindMax: state.character.vam.mindMax
       },
-      position: {
-        x: 2,
-        y: 3
-      }
+      position: state.character.position
     },
     world: {
       tiles: state.world.tiles
