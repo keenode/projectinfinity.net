@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-instance'
+import { checkBounds } from '../../shared/utility'
 
 /*
  * GET_AVAILABLE_CHARACTERS
@@ -149,15 +150,50 @@ export const deleteCharacterError = error => {
 /*
  * UPDATE_VITALITY
  */
-export const updateVitality = changeAmt => {
+export const updateVitality = (charId, changeAmt, originalVAM) => {
+  const newVitality = checkBounds(originalVAM.vitality, originalVAM.vitalityMax, changeAmt)
+  return dispatch => {
+    if (originalVAM.vitality === newVitality) {
+      dispatch(updateVitalitySuccess(newVitality))
+    } else {
+      const updatedVAM = {
+        ...originalVAM,
+        vitality: newVitality
+      }
+      dispatch(updateVitalityStart())
+      axios.put('/api/characters/' + charId, { vam: updatedVAM })
+        .then(res => {
+          dispatch(updateVitalitySuccess(res.data.character.vam.vitality))
+        })
+        .catch(err => {
+          dispatch(updateVitalityError(err))
+        })
+    }
+  }
+}
+
+export const updateVitalityStart = () => {
   return {
-    type: actionTypes.UPDATE_VITALITY,
-    changeAmt
+    type: actionTypes.UPDATE_VITALITY_START
+  }
+}
+
+export const updateVitalitySuccess = updatedVitality => {
+  return {
+    type: actionTypes.UPDATE_VITALITY_SUCCESS,
+    updatedVitality
+  }
+}
+
+export const updateVitalityError = error => {
+  return {
+    type: actionTypes.UPDATE_VITALITY_ERROR,
+    error
   }
 }
 
 /*
- * UPDATE_VITALITY
+ * UPDATE_ACTION
  */
 export const updateAction = changeAmt => {
   return {
@@ -198,10 +234,10 @@ export const updatePositionStart = () => {
   }
 }
 
-export const updatePositionSuccess = newPosition => {
+export const updatePositionSuccess = updatedPosition => {
   return {
     type: actionTypes.UPDATE_POSITION_SUCCESS,
-    newPosition
+    updatedPosition
   }
 }
 

@@ -61,8 +61,8 @@ class Play extends Component {
         <Chat messages={this.props.chat.messages} />
         <MenuBox />
         <div className={styles.TestActions}>
-          <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button>
-          <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button><br />
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(this.props.character.id, -5, this.props.character.vam) }}>-5 Vitality</Button>
+          <Button clicked={() => { this.props.onUpdateVitality(this.props.character.id, 5, this.props.character.vam) }}>+5 Vitality</Button><br />
           <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button>
           <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button><br />
           <Button btnType="Danger" clicked={() => { this.props.onUpdateMind(-5) }}>-5 Mind</Button>
@@ -109,7 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateVitality: changeAmt => dispatch(actions.updateVitality(changeAmt)),
+    onUpdateVitality: (charId, reqVitality, curVAM) => dispatch(actions.updateVitality(charId, reqVitality, curVAM)),
     onUpdateAction: changeAmt => dispatch(actions.updateAction(changeAmt)),
     onUpdateMind: changeAmt => dispatch(actions.updateMind(changeAmt)),
     onUpdatePosition: (charId, reqX, reqY) => dispatch(actions.updatePosition(charId, reqX, reqY)),

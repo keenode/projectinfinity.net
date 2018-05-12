@@ -22,6 +22,7 @@ const initialState = {
   slots: 0,
   slotsMax: 0,
   loading: false,
+  vamIsUpdating: false,
   isMoving: false
 }
 
@@ -118,6 +119,27 @@ const deleteCharacterError = (state, action) => {
 }
 
 /*
+ * Update Vitality
+ */
+const updateVitalityStart = (state, action) => {
+  return updateObject(state, { vamIsUpdating: true })
+}
+
+const updateVitalitySuccess = (state, action) => {
+  return updateObject(state, {
+    vamIsUpdating: false,
+    vam: {
+      ...state.vam,
+      vitality: action.updatedVitality
+    }
+  })
+}
+
+const updateVitalityError = (state, action) => {
+  return updateObject(state, { loading: false })
+}
+
+/*
  * Update Position
  */
 const updatePositionStart = (state, action) => {
@@ -128,8 +150,8 @@ const updatePositionSuccess = (state, action) => {
   return updateObject(state, {
     isMoving: false,
     position: {
-      x: action.newPosition.x,
-      y: action.newPosition.y
+      x: action.updatedPosition.x,
+      y: action.updatedPosition.y
     }
   })
 }
@@ -155,14 +177,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_CHARACTER_START: return deleteCharacterStart(state, action)
     case actionTypes.DELETE_CHARACTER_SUCCESS: return deleteCharacterSuccess(state, action)
     case actionTypes.DELETE_CHARACTER_ERROR: return deleteCharacterError(state, action)
-    case actionTypes.UPDATE_VITALITY:
-      const newVitality = checkBounds(state.vam.vitality, state.vam.vitalityMax, action.changeAmt)
-      return updateObject(state, {
-        vam: {
-          ...state.vam,
-          vitality: newVitality 
-        }
-      })
+    case actionTypes.UPDATE_VITALITY_START: return updateVitalityStart(state, action)
+    case actionTypes.UPDATE_VITALITY_SUCCESS: return updateVitalitySuccess(state, action)
+    case actionTypes.UPDATE_VITALITY_ERROR: return updateVitalityError(state, action)
     case actionTypes.UPDATE_ACTION:
       const newAction = checkBounds(state.vam.action, state.vam.actionMax, action.changeAmt)
       return updateObject(state, {

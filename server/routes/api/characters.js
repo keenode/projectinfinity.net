@@ -49,7 +49,7 @@ router.post('/characters', authCheck, function (req, res) {
 })
 
 router.put('/characters/:id', authCheck, function (req, res) {
-  console.log('updating character position: ', req.body)
+  console.log('updating character: ', req.body)
   Character.findByIdAndUpdate({ _id: req.params.id }, req.body)
     .then(function () {
       Character.findOne({ _id: req.params.id })
