@@ -2,8 +2,13 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - store and retreive player map positions to the database
  * - Add click listeners to tiles on map and console log some info
+ * - Update map data to include info about tile such as terrain type, etc.
+ * - Add player name text on character display tile
+ * - Render all other players on the map
+ * - Style up info contents of right-hand panel a bit better
+ * - Update right-hand panel with current tile info
+ * - Update right-hand panel with character listing
  */
 
 import React from 'react'
