@@ -31,10 +31,10 @@ class Play extends Component {
     this.props.onInitChatMessages()
 
     document.addEventListener('CHARACTER_MOVED', e => {
-      console.log('CHARACTER_MOVED: ', e)
+      console.log('CHARACTER_MOVED: ', e.detail)
       const reqX = this.props.character.position.x + e.detail.changeX
       const reqY = this.props.character.position.y + e.detail.changeY
-      this.props.onUpdatePosition(reqX, reqY)
+      this.props.onUpdatePosition(this.props.character.id, reqX, reqY)
     }, false)
   }
 
@@ -82,6 +82,7 @@ class Play extends Component {
 const mapStateToProps = state => {
   return {
     character: {
+      id: state.character.id,
       name: state.character.name,
       level: state.character.level,
       exp: state.character.exp,
@@ -111,7 +112,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateVitality: changeAmt => dispatch(actions.updateVitality(changeAmt)),
     onUpdateAction: changeAmt => dispatch(actions.updateAction(changeAmt)),
     onUpdateMind: changeAmt => dispatch(actions.updateMind(changeAmt)),
-    onUpdatePosition: (reqX, reqY) => dispatch(actions.updatePosition(reqX, reqY)),
+    onUpdatePosition: (charId, reqX, reqY) => dispatch(actions.updatePosition(charId, reqX, reqY)),
     onLoadWorld: () => dispatch(actions.getWorld()),
     onInitChatMessages: () => dispatch(actions.initMessages())
   }

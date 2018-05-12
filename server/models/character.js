@@ -51,6 +51,10 @@ const CharacterSchema = new Schema({
       type: Number,
       required: true
     }
+  },
+  position: {
+    x: Number,
+    y: Number
   }
 })
 

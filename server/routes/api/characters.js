@@ -33,6 +33,10 @@ router.post('/characters', authCheck, function (req, res) {
       actionMax: 100,
       mind: 100,
       mindMax: 100
+    },
+    position: {
+      x: 0,
+      y: 0
     }
   })
   .save()
@@ -42,6 +46,17 @@ router.post('/characters', authCheck, function (req, res) {
       character: newCharacter
     })
   })
+})
+
+router.put('/characters/:id', authCheck, function (req, res) {
+  console.log('updating character position: ', req.body)
+  Character.findByIdAndUpdate({ _id: req.params.id }, req.body)
+    .then(function () {
+      Character.findOne({ _id: req.params.id })
+        .then(function (character) {
+          res.json({ character })
+        })
+    })
 })
 
 router.delete('/characters/:id', function (req, res) {

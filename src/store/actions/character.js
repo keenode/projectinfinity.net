@@ -175,18 +175,15 @@ export const updatePositionStart = () => {
   }
 }
 
-export const updatePosition = (reqX, reqY) => {
-  //TODO: charId will be current character
-  // const charId = null
+export const updatePosition = (charId, reqX, reqY) => {
   return dispatch => {
     dispatch(updatePositionStart())
-    dispatch(updatePositionSuccess({ x: reqX, y: reqY }))
-    // axios.put('/api/characters/' + charId, reqPosition)
-    //   .then(res => {
-    //     dispatch(updatePositionSuccess(res.data.character.position))
-    //   })
-    //   .catch(err => {
-    //     dispatch(updatePositionError(err))
-    //   })
+    axios.put('/api/characters/' + charId, { position: { x: reqX, y: reqY } })
+      .then(res => {
+        dispatch(updatePositionSuccess(res.data.character.position))
+      })
+      .catch(err => {
+        dispatch(updatePositionError(err))
+      })
   }
 }

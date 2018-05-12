@@ -3,7 +3,7 @@ import { updateObject, checkBounds } from '../../shared/utility'
 
 const initialState = {
   availableCharacters: [],
-  characterId: null,
+  id: null,
   name: null,
   gender: null,
   race: null,
@@ -16,8 +16,8 @@ const initialState = {
     mindMax: 0
   },
   position: {
-    x: 2,
-    y: 3
+    x: 0,
+    y: 0
   },
   slots: 0,
   slotsMax: 0,
@@ -49,14 +49,15 @@ const selectCharacterStart = (state, action) => {
 const selectCharacterSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
-    characterId: action.character._id,
+    id: action.character._id,
     name: action.character.name,
     gender: action.character.gender,
     race: action.character.race,
     level: action.character.level,
     exp: action.character.exp,
     expMax: action.character.expMax,
-    vam: action.character.vam
+    vam: action.character.vam,
+    position: action.character.position
   })
 }
 
@@ -71,13 +72,15 @@ const createCharacterStart = (state, action) => {
 const createCharacterSuccess = (state, action) => {
   return updateObject(state, {
       loading: false,
+      id: action.character._id,
       name: action.character.name,
       gender: action.character.gender,
       race: action.character.race,
       level: action.character.level,
       exp: action.character.exp,
       expMax: action.character.expMax,
-      vam: action.character.vam
+      vam: action.character.vam,
+      position: action.character.position
   })
 }
 
