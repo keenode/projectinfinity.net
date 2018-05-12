@@ -71,6 +71,8 @@ class Character {
   move(xMov, yMov) {
     this.PIXIContainer.x += xMov * this.TILE_SIZE
     this.PIXIContainer.y += yMov * this.TILE_SIZE
+    const moveEvent = new CustomEvent('CHARACTER_MOVED', { detail: { x: xMov, y: yMov } })
+    document.dispatchEvent(moveEvent)
   }
 
   draw() {

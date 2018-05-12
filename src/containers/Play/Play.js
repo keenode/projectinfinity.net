@@ -29,6 +29,11 @@ class Play extends Component {
   componentDidMount () {
     this.props.onLoadWorld()
     this.props.onInitChatMessages()
+
+    document.addEventListener('CHARACTER_MOVED', e => {
+      console.log('CHARACTER_MOVED: ', e)
+      this.props.onUpdatePosition(e.detail.x, e.detail.y)
+    }, false)
   }
 
   componentDidUpdate() {
@@ -54,7 +59,7 @@ class Play extends Component {
         <Chat messages={this.props.chat.messages} />
         <MenuBox />
         <div className={styles.TestActions}>
-          <Button btnType="Danger" clicked={() => { /*this.props.onUpdateVitality(-5)*/this.props.onUpdatePosition(1, 1) }}>-5 Vitality</Button>
+          <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(-5) }}>-5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(5) }}>+5 Vitality</Button><br />
           <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(-5) }}>-5 Action</Button>
           <Button clicked={() => { this.props.onUpdateAction(5) }}>+5 Action</Button><br />
@@ -107,7 +112,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateVitality: changeAmt => dispatch(actions.updateVitality(changeAmt)),
     onUpdateAction: changeAmt => dispatch(actions.updateAction(changeAmt)),
     onUpdateMind: changeAmt => dispatch(actions.updateMind(changeAmt)),
-    onUpdatePosition: reqPosition => dispatch(actions.updatePosition(reqPosition)),
+    onUpdatePosition: (reqX, reqY) => dispatch(actions.updatePosition(reqX, reqY)),
     onLoadWorld: () => dispatch(actions.getWorld()),
     onInitChatMessages: () => dispatch(actions.initMessages())
   }
