@@ -25,6 +25,9 @@ const initialState = {
   isMoving: false
 }
 
+/*
+ * Get Available Characters
+ */
 const getAvailableCharactersStart = (state, action) => {
   return updateObject(state, { loading: true })
 }
@@ -42,6 +45,9 @@ const getAvailableCharactersError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
+/*
+ * Select Character
+ */
 const selectCharacterStart = (state, action) => {
   return updateObject(state, { loading: true })
 }
@@ -65,6 +71,9 @@ const selectCharacterError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
+/*
+ * Create Character
+ */
 const createCharacterStart = (state, action) => {
   return updateObject(state, { loading: true })
 }
@@ -88,6 +97,9 @@ const createCharacterError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
+/*
+ * Delete Character
+ */
 const deleteCharacterStart = (state, action) => {
   return updateObject(state, { loading: true })
 }
@@ -105,6 +117,9 @@ const deleteCharacterError = (state, action) => {
   return updateObject(state, { isMoving: false })
 }
 
+/*
+ * Update Position
+ */
 const updatePositionStart = (state, action) => {
   return updateObject(state, { isMoving: true })
 }
@@ -123,6 +138,9 @@ const updatePositionError = (state, action) => {
   return updateObject(state, { loading: false })
 }
 
+/*
+ * Reducer Switch
+ */
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_AVAILABLE_CHARACTERS_START: return getAvailableCharactersStart(state, action)

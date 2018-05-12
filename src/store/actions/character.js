@@ -1,6 +1,28 @@
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-instance'
 
+/*
+ * GET_AVAILABLE_CHARACTERS
+ */
+export const getAvailableCharacters = () => {
+  return dispatch => {
+    dispatch(getAvailableCharactersStart())
+    axios.get('/api/characters')
+      .then(res => {
+        dispatch(getAvailableCharactersSuccess(res.data))
+      })
+      .catch(err => {
+        dispatch(getAvailableCharactersError())
+      })
+  }
+}
+
+export const getAvailableCharactersStart = () => {
+  return {
+    type: actionTypes.GET_AVAILABLE_CHARACTERS_START
+  }
+}
+
 export const getAvailableCharactersSuccess = data => {
   return {
     type: actionTypes.GET_AVAILABLE_CHARACTERS_SUCCESS,
@@ -16,22 +38,25 @@ export const getAvailableCharactersError = () => {
   }
 }
 
-export const getAvailableCharactersStart = () => {
-  return {
-    type: actionTypes.GET_AVAILABLE_CHARACTERS_START
+/*
+ * SELECT_CHARACTER
+ */
+export const selectCharacter = charId => {
+  return dispatch => {
+    dispatch(selectCharacterStart())
+    axios.get('/api/characters/' + charId)
+      .then(res => {
+        dispatch(selectCharacterSuccess(res.data.character))
+      })
+      .catch(err => {
+        dispatch(selectCharacterError())
+      })
   }
 }
 
-export const getAvailableCharacters = () => {
-  return dispatch => {
-    dispatch(getAvailableCharactersStart())
-    axios.get('/api/characters')
-      .then(res => {
-        dispatch(getAvailableCharactersSuccess(res.data))
-      })
-      .catch(err => {
-        dispatch(getAvailableCharactersError())
-      })
+export const selectCharacterStart = () => {
+  return {
+    type: actionTypes.SELECT_CHARACTER_START
   }
 }
 
@@ -49,22 +74,25 @@ export const selectCharacterError = () => {
   }
 }
 
-export const selectCharacterStart = () => {
-  return {
-    type: actionTypes.SELECT_CHARACTER_START
+/*
+ * CREATE_CHARACTER
+ */
+export const createCharacter = characterData => {
+  return dispatch => {
+    dispatch(createCharacterStart())
+    axios.post('/api/characters', characterData)
+      .then(res => {
+        dispatch(createCharacterSuccess(res.data.character))
+      })
+      .catch(err => {
+        dispatch(createCharacterError(err))
+      })
   }
 }
 
-export const selectCharacter = charId => {
-  return dispatch => {
-    dispatch(selectCharacterStart())
-    axios.get('/api/characters/' + charId)
-      .then(res => {
-        dispatch(selectCharacterSuccess(res.data.character))
-      })
-      .catch(err => {
-        dispatch(selectCharacterError())
-      })
+export const createCharacterStart = () => {
+  return {
+    type: actionTypes.CREATE_CHARACTER_START
   }
 }
 
@@ -82,22 +110,25 @@ export const createCharacterError = error => {
   }
 }
 
-export const createCharacterStart = () => {
-  return {
-    type: actionTypes.CREATE_CHARACTER_START
+/*
+ * DELETE_CHARACTER
+ */
+export const deleteCharacter = charId => {
+  return dispatch => {
+    dispatch(deleteCharacterStart())
+    axios.delete('/api/characters/' + charId)
+      .then(res => {
+        dispatch(deleteCharacterSuccess(res.data.character))
+      })
+      .catch(err => {
+        dispatch(deleteCharacterError(err))
+      })
   }
 }
 
-export const createCharacter = characterData => {
-  return dispatch => {
-    dispatch(createCharacterStart())
-    axios.post('/api/characters', characterData)
-      .then(res => {
-        dispatch(createCharacterSuccess(res.data.character))
-      })
-      .catch(err => {
-        dispatch(createCharacterError(err))
-      })
+export const deleteCharacterStart = () => {
+  return {
+    type: actionTypes.DELETE_CHARACTER_START
   }
 }
 
@@ -115,25 +146,9 @@ export const deleteCharacterError = error => {
   }
 }
 
-export const deleteCharacterStart = () => {
-  return {
-    type: actionTypes.DELETE_CHARACTER_START
-  }
-}
-
-export const deleteCharacter = charId => {
-  return dispatch => {
-    dispatch(deleteCharacterStart())
-    axios.delete('/api/characters/' + charId)
-      .then(res => {
-        dispatch(deleteCharacterSuccess(res.data.character))
-      })
-      .catch(err => {
-        dispatch(deleteCharacterError(err))
-      })
-  }
-}
-
+/*
+ * UPDATE_VITALITY
+ */
 export const updateVitality = changeAmt => {
   return {
     type: actionTypes.UPDATE_VITALITY,
@@ -141,6 +156,9 @@ export const updateVitality = changeAmt => {
   }
 }
 
+/*
+ * UPDATE_VITALITY
+ */
 export const updateAction = changeAmt => {
   return {
     type: actionTypes.UPDATE_ACTION,
@@ -148,10 +166,35 @@ export const updateAction = changeAmt => {
   }
 }
 
+/*
+ * UPDATE_MIND
+ */
 export const updateMind = changeAmt => {
   return {
     type: actionTypes.UPDATE_MIND,
     changeAmt
+  }
+}
+
+/*
+ * UPDATE_POSITION
+ */
+export const updatePosition = (charId, reqX, reqY) => {
+  return dispatch => {
+    dispatch(updatePositionStart())
+    axios.put('/api/characters/' + charId, { position: { x: reqX, y: reqY } })
+      .then(res => {
+        dispatch(updatePositionSuccess(res.data.character.position))
+      })
+      .catch(err => {
+        dispatch(updatePositionError(err))
+      })
+  }
+}
+
+export const updatePositionStart = () => {
+  return {
+    type: actionTypes.UPDATE_POSITION_START
   }
 }
 
@@ -166,24 +209,5 @@ export const updatePositionError = error => {
   return {
     type: actionTypes.UPDATE_POSITION_ERROR,
     error
-  }
-}
-
-export const updatePositionStart = () => {
-  return {
-    type: actionTypes.UPDATE_POSITION_START
-  }
-}
-
-export const updatePosition = (charId, reqX, reqY) => {
-  return dispatch => {
-    dispatch(updatePositionStart())
-    axios.put('/api/characters/' + charId, { position: { x: reqX, y: reqY } })
-      .then(res => {
-        dispatch(updatePositionSuccess(res.data.character.position))
-      })
-      .catch(err => {
-        dispatch(updatePositionError(err))
-      })
   }
 }
