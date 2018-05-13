@@ -10,6 +10,21 @@ const authCheck = require('../../middleware/auth-check')
 //   })
 // })
 
+// Ocean
+const o = {
+  gfxId: 0,
+  terrainName: 'Ocean'
+}
+
+// Grassland
+const G = {
+  gfxId: 1,
+  terrainName: 'Grassland'
+}
+
+// Proposed /worlds/:id/maps/:id
+// Each world is composed of multiple "maps"
+// Map with 'isMain: true' is the central overview map
 router.get('/worlds/:id', authCheck, function (req, res) {
   // World.findOne({ _id: req.params.id }).then(function (world) {
   //   res.json({ world })
@@ -17,19 +32,19 @@ router.get('/worlds/:id', authCheck, function (req, res) {
   res.json({
     world: {
       tiles: [
-        [0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0]
+        [G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G, G, G, G, G, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, o, o, G, o, o, G, G, G, o, o, G, o, o, G, G, G, G, o, G, G, o, G, G, G, o, o, G, G, G, G],
+        [G, o, o, o, o, o, G, o, G, o, o, o, o, o, G, o, G, G, G, G, G, G, o, G, G, G, o, o, G, G, G, G],
+        [G, G, o, G, G, o, o, G, G, G, o, G, G, o, o, G, G, G, o, G, G, G, o, G, G, G, o, o, G, G, G, G],
+        [G, G, G, G, o, o, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, G, G, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, G, G, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, o, G, G, G, G, G, G, G, o, o, G, G, G, G, o, G, G, G, G, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, o, o, G, G, G, G, G, G, o, o, G, G, G, G, G, o, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, o, o, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, o, o, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, G, o, G, G, o, G],
+        [G, G, G, G, o, o, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G],
+        [G, G, G, G, o, o, G, G, G, G, G, G, o, o, G, G, G, G, o, o, G, G, o, G, G, G, o, o, G, G, o, G]
       ]
     }
   })

@@ -2,7 +2,6 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - Update map data to include info about tile such as terrain type, etc.
  * - Add player name text on character display tile
  * - Render all other players on the map
  * - Style up info contents of right-hand panel a bit better
