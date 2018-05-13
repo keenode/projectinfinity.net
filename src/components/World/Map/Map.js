@@ -22,7 +22,6 @@ class Map extends Component {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
       if (this.props.mode === 'Playing') {
-        console.log('world characters: ', this.props.characters)
         this.setupCharacters()
       }
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
@@ -31,7 +30,7 @@ class Map extends Component {
 
   componentDidUpdate() {
     if (this.props.mode === 'Playing') {
-      this.character.setPosition(this.props.playerCharacter.coords.x, this.props.playerCharacter.coords.y)
+      this.character.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
     }
   }
 
@@ -81,10 +80,13 @@ class Map extends Component {
   }
 
   setupCharacters() {
+    console.log('world characters: ', this.props.characters)
     // Other characters
     for (let i = 0; i < this.props.characters.length; i++) {
+      const character = this.props.characters[i]
       this.characters.push(new Character({
-        name: this.props.characters[i].name
+        name: character.name,
+        position: character.position
       }))
       this.map.addChild(this.characters[i].PIXIContainer)
     }
@@ -92,7 +94,7 @@ class Map extends Component {
 
     // Player character
     this.character.setName(this.props.playerCharacter.name)
-    this.character.setPosition(this.props.playerCharacter.coords.x, this.props.playerCharacter.coords.y)
+    this.character.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
     this.map.addChild(this.character.PIXIContainer)
   }
 

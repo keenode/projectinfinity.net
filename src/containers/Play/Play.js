@@ -54,11 +54,10 @@ class Play extends Component {
     let map = null
     // TODO: Refactor
     if (this.props.playMode === 'Playing' && this.props.character.id && this.props.world.tiles.length > 0 && this.props.world.characters.length > 0) {
-      console.log('this.props.character: ', this.props.character)
       map = (
         <Map
           mode={this.props.playMode}
-          playerCharacter={{ name: this.props.character.name, coords: this.props.character.position }}
+          playerCharacter={this.props.character}
           characters={this.props.world.characters}
           tilesData={this.props.world.tiles} />
       )

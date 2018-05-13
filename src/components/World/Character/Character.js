@@ -14,6 +14,9 @@ class Character {
     if (config.name) {
       this.setName(config.name)
     }
+    if (config.position) {
+      this.setPosition(config.position.x, config.position.y)
+    }
     if (config.isPlayer) {
       this.moveChoiceUI = new MoveChoiceUI()
       this.addEvents()
