@@ -8,8 +8,12 @@ class Character {
 
   constructor(config) {
     console.log('[Character] constructed')
+    config = config || {}
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
+    if (config.name) {
+      this.setName(config.name)
+    }
     if (config.isPlayer) {
       this.moveChoiceUI = new MoveChoiceUI()
       this.addEvents()

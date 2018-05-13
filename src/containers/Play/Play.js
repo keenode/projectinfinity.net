@@ -46,7 +46,17 @@ class Play extends Component {
   }
 
   render () {
-    const map = this.props.playMode === 'Playing' && this.props.world.tiles.length > 0 ? <Map mode={this.props.playMode} playerCharacter={{ name: this.props.character.name, coords: this.props.character.position }} characters={this.props.world.characters} tilesData={this.props.world.tiles} /> : null
+    let map = null
+    if (this.props.playMode === 'Playing' && this.props.world.tiles.length > 0 && this.props.world.characters.length > 0) {
+      map = (
+        <Map
+          mode={this.props.playMode}
+          playerCharacter={{ name: this.props.character.name, coords: this.props.character.position }}
+          characters={this.props.world.characters}
+          tilesData={this.props.world.tiles} />
+      )
+    }
+
     return (
       <div id="game-container" className={styles.GameContainer}>
         {map}
