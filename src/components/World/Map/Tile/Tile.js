@@ -13,6 +13,13 @@ class Tile {
     this.PIXIContainer.y = y * this.TILE_SIZE
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
+    this.addEvents()
+  }
+
+  addEvents() {
+    this.PIXIContainer.on('click', event => {
+      console.log('Tile clicked: ', this.data)
+    })
   }
 
   drawCoords() {
