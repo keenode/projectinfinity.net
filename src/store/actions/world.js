@@ -41,10 +41,10 @@ export const getWorldError = () => {
 /*
  * GET_WORLD_CHARACTERS
  */
-export const getWorldCharacters = () => {
+export const getWorldCharacters = charId => {
   return dispatch => {
     dispatch(getWorldCharactersStart())
-    axios.get('/api/characters')
+    axios.get('/api/characters?excludeCharId=' + charId)
       .then(res => {
         dispatch(getWorldCharactersSuccess(res.data.characters))
       })

@@ -22,21 +22,26 @@ import * as actions from '../../store/actions'
 import styles from './Play.css'
 
 class Play extends Component {
-  state = {
-    mode: 'CharacterSelect'
-  }
+  previousMode = null
 
   componentDidMount () {
-    this.props.onLoadWorld()
-    this.props.onLoadWorldCharacters()
-    this.props.onInitChatMessages()
-
     document.addEventListener('CHARACTER_MOVED', e => {
       console.log('CHARACTER_MOVED: ', e.detail)
       const reqX = this.props.character.position.x + e.detail.changeX
       const reqY = this.props.character.position.y + e.detail.changeY
       this.props.onUpdatePosition(this.props.character.id, reqX, reqY)
     }, false)
+  }
+
+  componentWillUpdate() {
+    if (this.previousMode !== this.props.playMode) {
+      if (this.props.playMode === 'Playing') {
+        this.props.onLoadWorld()
+        this.props.onLoadWorldCharacters()
+        this.props.onInitChatMessages()
+      }
+      this.previousMode = this.props.playMode
+    }
   }
 
   componentDidUpdate() {
@@ -47,7 +52,9 @@ class Play extends Component {
 
   render () {
     let map = null
-    if (this.props.playMode === 'Playing' && this.props.world.tiles.length > 0 && this.props.world.characters.length > 0) {
+    // TODO: Refactor
+    if (this.props.playMode === 'Playing' && this.props.character.id && this.props.world.tiles.length > 0 && this.props.world.characters.length > 0) {
+      console.log('this.props.character: ', this.props.character)
       map = (
         <Map
           mode={this.props.playMode}

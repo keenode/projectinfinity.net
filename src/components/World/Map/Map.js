@@ -92,6 +92,7 @@ class Map extends Component {
 
     // Player character
     this.character.setName(this.props.playerCharacter.name)
+    this.character.setPosition(this.props.playerCharacter.coords.x, this.props.playerCharacter.coords.y)
     this.map.addChild(this.character.PIXIContainer)
   }
 
