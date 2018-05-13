@@ -19,7 +19,6 @@ class Camera {
   }
 
   handleKeyDown(e) {
-    console.log(e.which)
     if (e.which === 38) {
       this.moving.up = true
     } else if (e.which === 37) {

@@ -28,6 +28,7 @@ class Play extends Component {
 
   componentDidMount () {
     this.props.onLoadWorld()
+    this.props.onLoadWorldCharacters()
     this.props.onInitChatMessages()
 
     document.addEventListener('CHARACTER_MOVED', e => {
@@ -45,7 +46,7 @@ class Play extends Component {
   }
 
   render () {
-    const map = this.props.playMode === 'Playing' && this.props.world.tiles.length > 0 ? <Map mode={this.props.playMode} playerCharacter={{ name: this.props.character.name, coords: this.props.character.position }} tilesData={this.props.world.tiles} /> : null
+    const map = this.props.playMode === 'Playing' && this.props.world.tiles.length > 0 ? <Map mode={this.props.playMode} playerCharacter={{ name: this.props.character.name, coords: this.props.character.position }} characters={this.props.world.characters} tilesData={this.props.world.tiles} /> : null
     return (
       <div id="game-container" className={styles.GameContainer}>
         {map}
@@ -98,7 +99,8 @@ const mapStateToProps = state => {
       position: state.character.position
     },
     world: {
-      tiles: state.world.tiles
+      tiles: state.world.tiles,
+      characters: state.world.characters
     },
     chat: {
       messages: state.chat.messages
@@ -114,6 +116,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateMind: (charId, changeAmt, curVAM) => dispatch(actions.updateMind(charId, changeAmt, curVAM)),
     onUpdatePosition: (charId, reqX, reqY) => dispatch(actions.updatePosition(charId, reqX, reqY)),
     onLoadWorld: () => dispatch(actions.getWorld()),
+    onLoadWorldCharacters: () => dispatch(actions.getWorldCharacters()),
     onInitChatMessages: () => dispatch(actions.initMessages())
   }
 }

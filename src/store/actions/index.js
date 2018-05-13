@@ -16,5 +16,6 @@ export {
   updatePosition
 } from './character'
 export {
-  getWorld
+  getWorld,
+  getWorldCharacters
 } from './world'

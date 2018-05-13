@@ -13,6 +13,7 @@ class Map extends Component {
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
   character = new Character({ isPlayer: true })
+  characters = []
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -22,6 +23,7 @@ class Map extends Component {
       this.prepareTiles()
       if (this.props.mode === 'Playing') {
         this.character.setName(this.props.playerCharacter.name)
+        console.log('world characters: ', this.props.characters)
         this.map.addChild(this.character.PIXIContainer)
       }
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
