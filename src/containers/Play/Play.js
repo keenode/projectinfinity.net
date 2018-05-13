@@ -33,19 +33,15 @@ class Play extends Component {
     }, false)
   }
 
-  componentWillUpdate() {
-    if (this.previousMode !== this.props.playMode) {
-      if (this.props.playMode === 'Playing') {
-        this.props.onLoadWorld()
-        this.props.onLoadWorldCharacters()
-        this.props.onInitChatMessages()
-      }
-      this.previousMode = this.props.playMode
-    }
-  }
-
   componentDidUpdate() {
-    if (this.props.playMode === 'CharacterCreate') {
+    if (this.previousMode !== this.props.playMode) {
+      if (this.props.playMode === 'Playing' && this.props.character.id) {
+        this.props.onLoadWorld()
+        this.props.onLoadWorldCharacters(this.props.character.id)
+        this.props.onInitChatMessages()
+        this.previousMode = this.props.playMode
+      }
+    } else if (this.props.playMode === 'CharacterCreate') {
       document.getElementById('name').focus()
     }
   }
@@ -132,7 +128,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateMind: (charId, changeAmt, curVAM) => dispatch(actions.updateMind(charId, changeAmt, curVAM)),
     onUpdatePosition: (charId, reqX, reqY) => dispatch(actions.updatePosition(charId, reqX, reqY)),
     onLoadWorld: () => dispatch(actions.getWorld()),
-    onLoadWorldCharacters: () => dispatch(actions.getWorldCharacters()),
+    onLoadWorldCharacters: charId => dispatch(actions.getWorldCharacters(charId)),
     onInitChatMessages: () => dispatch(actions.initMessages())
   }
 }

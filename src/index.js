@@ -2,7 +2,6 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - Render all other players on the map
  * - Update other player positions semi-live (polling)
  * - Style up info contents of right-hand panel a bit better
  * - Update right-hand panel with current tile info

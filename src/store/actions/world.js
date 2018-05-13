@@ -44,9 +44,10 @@ export const getWorldError = () => {
 export const getWorldCharacters = charId => {
   return dispatch => {
     dispatch(getWorldCharactersStart())
-    axios.get('/api/characters?excludeCharId=' + charId)
+    axios.get('/api/characters')
       .then(res => {
-        dispatch(getWorldCharactersSuccess(res.data.characters))
+        const otherCharacters = res.data.characters.filter(character => character._id !== charId)
+        dispatch(getWorldCharactersSuccess(otherCharacters))
       })
       .catch(err => {
         dispatch(getWorldCharactersError())
