@@ -2,6 +2,7 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
+ * - Move tile size into importable world config
  * - Add click listeners to tiles on map and console log some info
  * - Update map data to include info about tile such as terrain type, etc.
  * - Add player name text on character display tile

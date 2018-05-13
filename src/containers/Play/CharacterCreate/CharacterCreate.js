@@ -69,7 +69,6 @@ class CharacterCreate extends Component {
 
   componentDidMount() {
     this.originalState = { ...this.state }
-    console.log('this.originalState: ', this.originalState)
   }
 
   inputChangedHandler = (event, controlName) => {

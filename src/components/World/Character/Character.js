@@ -68,7 +68,7 @@ class Character {
     document.dispatchEvent(moveEvent)
   }
 
-  updatePosition(x, y) {
+  setPosition(x, y) {
     this.PIXIContainer.x = x * this.TILE_SIZE
     this.PIXIContainer.y = y * this.TILE_SIZE
   }

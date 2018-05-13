@@ -1,19 +1,18 @@
 import * as PIXI from 'pixi.js'
 
-/**
- * TODO: Make tiles clickable (interactive) and adjust container x / y pos to be like Character
- */
-
 class Tile {
   TILE_SIZE = 80
+  PIXIContainer = new PIXI.Container()
 
   constructor(x, y, data) {
     console.log('[Tile] constructed')
     this.xCoord = x
     this.yCoord = y
-    this.xPos = x * this.TILE_SIZE
-    this.yPos = y * this.TILE_SIZE
     this.data = data
+    this.PIXIContainer.x = x * this.TILE_SIZE
+    this.PIXIContainer.y = y * this.TILE_SIZE
+    this.PIXIContainer.interactive = true
+    this.PIXIContainer.addChild(this.draw())
   }
 
   drawCoords() {
@@ -25,8 +24,8 @@ class Tile {
       strokeThickness: 1
     })
     const coordsText = new PIXI.Text(this.xCoord + ', ' + this.yCoord, style)
-    coordsText.x = this.xPos + this.TILE_SIZE * 0.1
-    coordsText.y = this.yPos + this.TILE_SIZE * 0.1
+    coordsText.x = this.PIXIContainer.x + this.TILE_SIZE * 0.1
+    coordsText.y = this.PIXIContainer.y + this.TILE_SIZE * 0.1
     return coordsText
   }
 
@@ -35,7 +34,7 @@ class Tile {
     const tileColor = this.data === 1 ? 0x59a928 : 0x4486dc
     rect.beginFill(tileColor)
     rect.lineStyle(1, 0x333333, 0.15)
-    rect.drawRect(this.xPos, this.yPos, this.TILE_SIZE, this.TILE_SIZE)
+    rect.drawRect(0, 0, this.TILE_SIZE, this.TILE_SIZE)
     rect.endFill()
     return rect
   }

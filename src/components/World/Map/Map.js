@@ -21,13 +21,17 @@ class Map extends Component {
     setTimeout(() => {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
-      this.map.addChild(this.character.PIXIContainer)
+      if (this.props.mode === 'Playing') {
+        this.map.addChild(this.character.PIXIContainer)
+      }
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
     }, 200)
   }
 
   componentDidUpdate() {
-    this.character.updatePosition(this.props.characterData.coords.x, this.props.characterData.coords.y)
+    if (this.props.mode === 'Playing') {
+      this.character.setPosition(this.props.characterData.coords.x, this.props.characterData.coords.y)
+    }
   }
 
   setupPIXI(mapSelectorId) {
@@ -54,14 +58,14 @@ class Map extends Component {
     })
     this.fpsText = new PIXI.Text('', style)
     this.fpsText.x = 15
-    this.fpsText.y = 140
+    this.fpsText.y = this.props.mode === 'Playing' ? 140 : 15
   }
 
   prepareTiles() {
     for (let y = 0; y < this.props.tilesData.length; y++) {
       for (let x = 0; x < this.props.tilesData[y].length; x++) {
         const tile = new Tile(x, y, this.props.tilesData[y][x])
-        this.tiles.addChild(tile.draw())
+        this.tiles.addChild(tile.PIXIContainer)
         if (this.props.mode === 'GameMaster') {
           this.coords.addChild(tile.drawCoords())
         }
