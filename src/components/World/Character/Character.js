@@ -67,14 +67,33 @@ class Character {
     document.dispatchEvent(moveEvent)
   }
 
+  setName(name) {
+    this.name = name
+    this.PIXIContainer.addChild(this.drawName())
+  }
+
   setPosition(x, y) {
     this.PIXIContainer.x = x * mapSettings.tileSize
     this.PIXIContainer.y = y * mapSettings.tileSize
   }
 
+  drawName() {
+    const style = new PIXI.TextStyle({
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      fontSize: 14,
+      fill: 'white',
+      stroke: '#061639',
+      strokeThickness: 1
+    })
+    const nameText = new PIXI.Text(this.name, style)
+    nameText.x = mapSettings.tileSize * 0.1
+    nameText.y = mapSettings.tileSize * 0.1
+    return nameText
+  }
+
   draw() {
     const rect = new PIXI.Graphics()
-    rect.beginFill(0xff0000)
+    rect.beginFill(0x0000aa)
     rect.lineStyle(1, 0x333333, 0.15)
     rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()

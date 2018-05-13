@@ -21,6 +21,7 @@ class Map extends Component {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
       if (this.props.mode === 'Playing') {
+        this.character.setName(this.props.characterData.name)
         this.map.addChild(this.character.PIXIContainer)
       }
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
@@ -73,7 +74,7 @@ class Map extends Component {
     this.map.addChild(this.tiles)
     this.map.addChild(this.coords)
     this.mapApp.stage.addChild(this.map)
-    this.mapApp.stage.addChild(this.fpsText)    
+    this.mapApp.stage.addChild(this.fpsText)
     this.camera.assignScene(this.map)
     console.log('generated tiles: ', this.tiles)
   }
