@@ -1,3 +1,3 @@
 export default {
-  tileSize: 80
+  tileSize: 72
 }

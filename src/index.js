@@ -2,10 +2,12 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - Update other player positions semi-live (polling)
+ * - Hide playing UI when not in Playing mode
  * - Style up info contents of right-hand panel a bit better
- * - Update right-hand panel with current tile info
+ * - Update right-hand panel with current tile info and clicked "queried" tile info
  * - Update right-hand panel with character listing
+ * - Hook up right-hand panel with real interactive data
+ * - Update colors
  */
 
 import React from 'react'
