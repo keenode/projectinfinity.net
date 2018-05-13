@@ -9,18 +9,18 @@ class MoveChoiceUI {
   constructor() {
     console.log('[MoveChoiceUI] constructed')
     this.tiles = [
-      {
-        label: 'Up Left',
-        graphics: this.drawTile(-mapSettings.tileSize, -mapSettings.tileSize)
-      },
+      // {
+      //   label: 'Up Left',
+      //   graphics: this.drawTile(-mapSettings.tileSize, -mapSettings.tileSize)
+      // },
       {
         label: 'Up',
         graphics: this.drawTile(0, -mapSettings.tileSize)
       },
-      {
-        label: 'Up Right',
-        graphics: this.drawTile(mapSettings.tileSize, -mapSettings.tileSize)
-      },
+      // {
+      //   label: 'Up Right',
+      //   graphics: this.drawTile(mapSettings.tileSize, -mapSettings.tileSize)
+      // },
       {
         label: 'Left',
         graphics: this.drawTile(-mapSettings.tileSize, 0)
@@ -29,18 +29,18 @@ class MoveChoiceUI {
         label: 'Right',
         graphics: this.drawTile(mapSettings.tileSize, 0)
       },
-      {
-        label: 'Down Left',
-        graphics: this.drawTile(-mapSettings.tileSize, mapSettings.tileSize)
-      },
+      // {
+      //   label: 'Down Left',
+      //   graphics: this.drawTile(-mapSettings.tileSize, mapSettings.tileSize)
+      // },
       {
         label: 'Down',
         graphics: this.drawTile(0, mapSettings.tileSize)
       },
-      {
-        label: 'Down Right',
-        graphics: this.drawTile(mapSettings.tileSize, mapSettings.tileSize)
-      }
+      // {
+      //   label: 'Down Right',
+      //   graphics: this.drawTile(mapSettings.tileSize, mapSettings.tileSize)
+      // }
     ]
     for (let i = 0; i < this.tiles.length; i++) {
       this.tiles[i].graphics.interactive = true
@@ -72,14 +72,14 @@ class MoveChoiceUI {
     const centerXMod = mapSettings.tileSize * 0.37
     const centerYMod = mapSettings.tileSize * 0.25
     const uiTextPositions = [
-      { label: '7', x: centerXMod - mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
-      { label: '8', x: centerXMod, y: centerYMod - mapSettings.tileSize },
-      { label: '9', x: centerXMod + mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
-      { label: '4', x: centerXMod - mapSettings.tileSize, y: centerYMod },
-      { label: '6', x: centerXMod + mapSettings.tileSize, y: centerYMod },
-      { label: '1', x: centerXMod - mapSettings.tileSize, y: centerYMod + mapSettings.tileSize },
-      { label: '2', x: centerXMod, y: centerYMod + mapSettings.tileSize },
-      { label: '3', x: centerXMod + mapSettings.tileSize, y: centerYMod + mapSettings.tileSize }
+      // { label: '7', x: centerXMod - mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
+      { label: 'W', x: centerXMod - 6, y: centerYMod - mapSettings.tileSize },
+      // { label: '9', x: centerXMod + mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
+      { label: 'A', x: centerXMod - mapSettings.tileSize, y: centerYMod },
+      { label: 'D', x: centerXMod + mapSettings.tileSize - 4, y: centerYMod },
+      // { label: '1', x: centerXMod - mapSettings.tileSize, y: centerYMod + mapSettings.tileSize },
+      { label: 'S', x: centerXMod + 1, y: centerYMod + mapSettings.tileSize },
+      // { label: '3', x: centerXMod + mapSettings.tileSize, y: centerYMod + mapSettings.tileSize }
     ]
     const style = new PIXI.TextStyle({
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -92,6 +92,7 @@ class MoveChoiceUI {
       const uiText = new PIXI.Text(uiTextPositions[i].label, style)
       uiText.x = uiTextPositions[i].x
       uiText.y = uiTextPositions[i].y
+      uiText.alpha = 0.75
       uiTextContainer.addChild(uiText)
     }
     return uiTextContainer

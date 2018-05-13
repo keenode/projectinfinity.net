@@ -31,30 +31,30 @@ class Character {
         const moveDir = this.moveChoiceUI.getTileLabel(i)
         console.log('MOVE: ' + moveDir)
         switch (moveDir) {
-          case 'Up Left':
-            this.triggerMoveEvent(-1, -1)
-            break
+          // case 'Up Left':
+          //   this.triggerMoveEvent(-1, -1)
+          //   break
           case 'Up':
             this.triggerMoveEvent(0, -1)
             break
-          case 'Up Right':
-            this.triggerMoveEvent(1, -1)
-            break
+          // case 'Up Right':
+          //   this.triggerMoveEvent(1, -1)
+          //   break
           case 'Left':
             this.triggerMoveEvent(-1, 0)
             break;
           case 'Right':
             this.triggerMoveEvent(1, 0)
             break
-          case 'Down Left':
-            this.triggerMoveEvent(-1, 1)
-            break
+          // case 'Down Left':
+          //   this.triggerMoveEvent(-1, 1)
+          //   break
           case 'Down':
             this.triggerMoveEvent(0, 1)
             break
-          case 'Down Right':
-            this.triggerMoveEvent(1, 1)
-            break
+          // case 'Down Right':
+          //   this.triggerMoveEvent(1, 1)
+          //   break
           default:
             console.log('Not a valid movement direction.')
         }
