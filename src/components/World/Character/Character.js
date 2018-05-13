@@ -1,10 +1,9 @@
 import * as PIXI from 'pixi.js'
+import mapSettings from '../Map/map-settings'
 
 import MoveChoiceUI from '../Character/MoveChoiceUI'
 
 class Character {
-  // TODO: refactor so this setting is in its own config
-  TILE_SIZE = 80
   PIXIContainer = new PIXI.Container()
   moveChoiceUI = null
 
@@ -69,15 +68,15 @@ class Character {
   }
 
   setPosition(x, y) {
-    this.PIXIContainer.x = x * this.TILE_SIZE
-    this.PIXIContainer.y = y * this.TILE_SIZE
+    this.PIXIContainer.x = x * mapSettings.tileSize
+    this.PIXIContainer.y = y * mapSettings.tileSize
   }
 
   draw() {
     const rect = new PIXI.Graphics()
     rect.beginFill(0xff0000)
     rect.lineStyle(1, 0x333333, 0.15)
-    rect.drawRect(0, 0, this.TILE_SIZE, this.TILE_SIZE)
+    rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()
     return rect
   }

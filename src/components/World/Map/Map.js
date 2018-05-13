@@ -8,7 +8,6 @@ import Character from '../Character/Character'
 import styles from './Map.css'
 
 class Map extends Component {
-  TILE_SIZE = 80
   camera = new Camera()
   map = new PIXI.Container()
   tiles = new PIXI.Container()

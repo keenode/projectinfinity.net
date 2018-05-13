@@ -1,8 +1,7 @@
 import * as PIXI from 'pixi.js'
+import mapSettings from '../Map/map-settings'
 
 class MoveChoiceUI {
-  // TODO: refactor so this setting is in its own config
-  TILE_SIZE = 80
   isActive = false
   PIXIContainerTiles =  new PIXI.Container()
   PIXIContainer = new PIXI.Container()
@@ -12,35 +11,35 @@ class MoveChoiceUI {
     this.tiles = [
       {
         label: 'Up Left',
-        graphics: this.drawTile(-this.TILE_SIZE, -this.TILE_SIZE)
+        graphics: this.drawTile(-mapSettings.tileSize, -mapSettings.tileSize)
       },
       {
         label: 'Up',
-        graphics: this.drawTile(0, -this.TILE_SIZE)
+        graphics: this.drawTile(0, -mapSettings.tileSize)
       },
       {
         label: 'Up Right',
-        graphics: this.drawTile(this.TILE_SIZE, -this.TILE_SIZE)
+        graphics: this.drawTile(mapSettings.tileSize, -mapSettings.tileSize)
       },
       {
         label: 'Left',
-        graphics: this.drawTile(-this.TILE_SIZE, 0)
+        graphics: this.drawTile(-mapSettings.tileSize, 0)
       },
       {
         label: 'Right',
-        graphics: this.drawTile(this.TILE_SIZE, 0)
+        graphics: this.drawTile(mapSettings.tileSize, 0)
       },
       {
         label: 'Down Left',
-        graphics: this.drawTile(-this.TILE_SIZE, this.TILE_SIZE)
+        graphics: this.drawTile(-mapSettings.tileSize, mapSettings.tileSize)
       },
       {
         label: 'Down',
-        graphics: this.drawTile(0, this.TILE_SIZE)
+        graphics: this.drawTile(0, mapSettings.tileSize)
       },
       {
         label: 'Down Right',
-        graphics: this.drawTile(this.TILE_SIZE, this.TILE_SIZE)
+        graphics: this.drawTile(mapSettings.tileSize, mapSettings.tileSize)
       }
     ]
     for (let i = 0; i < this.tiles.length; i++) {
@@ -63,24 +62,24 @@ class MoveChoiceUI {
     const rect = new PIXI.Graphics()
     rect.beginFill(0x0000ff, 0.15)
     rect.lineStyle(1, 0xffffff, 0.75)
-    rect.drawRect(xPos, yPos, this.TILE_SIZE, this.TILE_SIZE)
+    rect.drawRect(xPos, yPos, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()
     return rect
   }
 
   drawUIText() {
     const uiTextContainer = new PIXI.Container()
-    const centerXMod = this.TILE_SIZE * 0.37
-    const centerYMod = this.TILE_SIZE * 0.25
+    const centerXMod = mapSettings.tileSize * 0.37
+    const centerYMod = mapSettings.tileSize * 0.25
     const uiTextPositions = [
-      { label: '7', x: centerXMod - this.TILE_SIZE, y: centerYMod - this.TILE_SIZE },
-      { label: '8', x: centerXMod, y: centerYMod - this.TILE_SIZE },
-      { label: '9', x: centerXMod + this.TILE_SIZE, y: centerYMod - this.TILE_SIZE },
-      { label: '4', x: centerXMod - this.TILE_SIZE, y: centerYMod },
-      { label: '6', x: centerXMod + this.TILE_SIZE, y: centerYMod },
-      { label: '1', x: centerXMod - this.TILE_SIZE, y: centerYMod + this.TILE_SIZE },
-      { label: '2', x: centerXMod, y: centerYMod + this.TILE_SIZE },
-      { label: '3', x: centerXMod + this.TILE_SIZE, y: centerYMod + this.TILE_SIZE }
+      { label: '7', x: centerXMod - mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
+      { label: '8', x: centerXMod, y: centerYMod - mapSettings.tileSize },
+      { label: '9', x: centerXMod + mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
+      { label: '4', x: centerXMod - mapSettings.tileSize, y: centerYMod },
+      { label: '6', x: centerXMod + mapSettings.tileSize, y: centerYMod },
+      { label: '1', x: centerXMod - mapSettings.tileSize, y: centerYMod + mapSettings.tileSize },
+      { label: '2', x: centerXMod, y: centerYMod + mapSettings.tileSize },
+      { label: '3', x: centerXMod + mapSettings.tileSize, y: centerYMod + mapSettings.tileSize }
     ]
     const style = new PIXI.TextStyle({
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

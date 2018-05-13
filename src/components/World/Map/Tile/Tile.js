@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
+import mapSettings from '../map-settings'
 
 class Tile {
-  TILE_SIZE = 80
   PIXIContainer = new PIXI.Container()
 
   constructor(x, y, data) {
@@ -9,8 +9,8 @@ class Tile {
     this.xCoord = x
     this.yCoord = y
     this.data = data
-    this.PIXIContainer.x = x * this.TILE_SIZE
-    this.PIXIContainer.y = y * this.TILE_SIZE
+    this.PIXIContainer.x = x * mapSettings.tileSize
+    this.PIXIContainer.y = y * mapSettings.tileSize
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
     this.addEvents()
@@ -31,8 +31,8 @@ class Tile {
       strokeThickness: 1
     })
     const coordsText = new PIXI.Text(this.xCoord + ', ' + this.yCoord, style)
-    coordsText.x = this.PIXIContainer.x + this.TILE_SIZE * 0.1
-    coordsText.y = this.PIXIContainer.y + this.TILE_SIZE * 0.1
+    coordsText.x = this.PIXIContainer.x + mapSettings.tileSize * 0.1
+    coordsText.y = this.PIXIContainer.y + mapSettings.tileSize * 0.1
     return coordsText
   }
 
@@ -41,7 +41,7 @@ class Tile {
     const tileColor = this.data === 1 ? 0x59a928 : 0x4486dc
     rect.beginFill(tileColor)
     rect.lineStyle(1, 0x333333, 0.15)
-    rect.drawRect(0, 0, this.TILE_SIZE, this.TILE_SIZE)
+    rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()
     return rect
   }
