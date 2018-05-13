@@ -12,7 +12,7 @@ class Map extends Component {
   map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
-  character = new Character()
+  character = new Character({ isPlayer: true })
 
   componentDidMount() {
     console.log('[Map] Did Mount')
@@ -21,7 +21,7 @@ class Map extends Component {
       this.setupPIXI('canvas-world')
       this.prepareTiles()
       if (this.props.mode === 'Playing') {
-        this.character.setName(this.props.characterData.name)
+        this.character.setName(this.props.playerCharacter.name)
         this.map.addChild(this.character.PIXIContainer)
       }
       this.mapApp.ticker.add(delta => this.gameLoop(delta));
@@ -30,7 +30,7 @@ class Map extends Component {
 
   componentDidUpdate() {
     if (this.props.mode === 'Playing') {
-      this.character.setPosition(this.props.characterData.coords.x, this.props.characterData.coords.y)
+      this.character.setPosition(this.props.playerCharacter.coords.x, this.props.playerCharacter.coords.y)
     }
   }
 

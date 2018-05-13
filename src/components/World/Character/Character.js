@@ -5,14 +5,15 @@ import MoveChoiceUI from '../Character/MoveChoiceUI'
 
 class Character {
   PIXIContainer = new PIXI.Container()
-  moveChoiceUI = null
 
-  constructor() {
+  constructor(config) {
     console.log('[Character] constructed')
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
-    this.moveChoiceUI = new MoveChoiceUI()
-    this.addEvents()
+    if (config.isPlayer) {
+      this.moveChoiceUI = new MoveChoiceUI()
+      this.addEvents()
+    }
   }
 
   addEvents() {
