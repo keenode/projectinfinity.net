@@ -14,36 +14,31 @@ class Camera {
 
   constructor() {
     console.log('[Camera] Constructed')
-    document.onkeydown = this.handleKeyDown.bind(this)
-    document.onkeyup = this.handleKeyUp.bind(this)
+    document.addEventListener('keydown', this.handleKeyDown.bind(this), false)
+    document.addEventListener('keyup', this.handleKeyUp.bind(this), false)
   }
 
   handleKeyDown(e) {
-    if (e.which === 87 || e.which === 38) {
+    console.log(e.which)
+    if (e.which === 38) {
       this.moving.up = true
-    }
-    else if (e.which === 83 || e.which === 40) {
-      this.moving.down = true
-    }
-    else if (e.which === 65 || e.which === 37) {
+    } else if (e.which === 37) {
       this.moving.left = true
-    }
-    else if (e.which === 68 || e.which === 39) {
+    } else if (e.which === 40) {
+      this.moving.down = true
+    } else if (e.which === 39) {
       this.moving.right = true
     }
   }
 
   handleKeyUp(e) {
-    if (e.which === 87 || e.which === 38) {
+    if (e.which === 38) {
       this.moving.up = false
-    }
-    else if (e.which === 83 || e.which === 40) {
-      this.moving.down = false
-    }
-    else if (e.which === 65 || e.which === 37) {
+    } else if (e.which === 37) {
       this.moving.left = false
-    }
-    else if (e.which === 68 || e.which === 39) {
+    } else if (e.which === 40) {
+      this.moving.down = false
+    } else if (e.which === 39) {
       this.moving.right = false
     }
   }

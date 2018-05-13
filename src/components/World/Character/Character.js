@@ -16,6 +16,8 @@ class Character {
   }
 
   addEvents() {
+    document.addEventListener('keypress', this.handleKeyPress.bind(this), false)
+
     this.PIXIContainer.on('click', event => {
       this.moveChoiceUI.toggle()
       if (this.moveChoiceUI.isActive) {
@@ -42,16 +44,16 @@ class Character {
           //   break
           case 'Left':
             this.triggerMoveEvent(-1, 0)
-            break;
+            break
+          case 'Down':
+            this.triggerMoveEvent(0, 1)
+            break
           case 'Right':
             this.triggerMoveEvent(1, 0)
             break
           // case 'Down Left':
           //   this.triggerMoveEvent(-1, 1)
           //   break
-          case 'Down':
-            this.triggerMoveEvent(0, 1)
-            break
           // case 'Down Right':
           //   this.triggerMoveEvent(1, 1)
           //   break
@@ -59,6 +61,18 @@ class Character {
             console.log('Not a valid movement direction.')
         }
       })
+    }
+  }
+
+  handleKeyPress(e) {
+    if (e.which === 119) {
+      this.triggerMoveEvent(0, -1)
+    } else if (e.which === 97) {
+      this.triggerMoveEvent(-1, 0)
+    } else if (e.which === 115) {
+      this.triggerMoveEvent(0, 1)
+    } else if (e.which === 100) {
+      this.triggerMoveEvent(1, 0)
     }
   }
 

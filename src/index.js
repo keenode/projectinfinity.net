@@ -2,7 +2,6 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - Consider using arrows keys / WASD to move player, limit to 4 directions
  * - Render all other players on the map
  * - Update other player positions semi-live (polling)
  * - Style up info contents of right-hand panel a bit better
