@@ -12,7 +12,7 @@ class Map extends Component {
   map = new PIXI.Container()
   tiles = new PIXI.Container()
   coords = new PIXI.Container()
-  character = new Character({ isPlayer: true })
+  playerCharacter = new Character({ isPlayer: true })
   characters = []
 
   componentDidMount() {
@@ -30,7 +30,10 @@ class Map extends Component {
 
   componentDidUpdate() {
     if (this.props.mode === 'Playing') {
-      this.character.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
+      this.playerCharacter.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
+      for (let i = 0; i < this.characters.length; i++) {
+        this.characters[i].setPosition(this.props.characters[i].position.x, this.props.characters[i].position.y)
+      }
     }
   }
 
@@ -93,9 +96,9 @@ class Map extends Component {
     console.log('this.characters: ', this.characters)
 
     // Player character
-    this.character.setName(this.props.playerCharacter.name)
-    this.character.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
-    this.map.addChild(this.character.PIXIContainer)
+    this.playerCharacter.setName(this.props.playerCharacter.name)
+    this.playerCharacter.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
+    this.map.addChild(this.playerCharacter.PIXIContainer)
   }
 
   gameLoop(delta) {

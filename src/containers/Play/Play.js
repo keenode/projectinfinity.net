@@ -37,7 +37,11 @@ class Play extends Component {
     if (this.previousMode !== this.props.playMode) {
       if (this.props.playMode === 'Playing' && this.props.character.id) {
         this.props.onLoadWorld()
-        this.props.onLoadWorldCharacters(this.props.character.id)
+        // TODO: Use websockets instead of polling
+        setInterval(() => {
+          console.log('-- characters update poll')
+          this.props.onLoadWorldCharacters(this.props.character.id)
+        }, 1000)
         this.props.onInitChatMessages()
         this.previousMode = this.props.playMode
       }
