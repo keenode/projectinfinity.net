@@ -40,7 +40,7 @@ class Tile {
     const rect = new PIXI.Graphics()
     const tileColor = this.data.gfxId === 1 ? 0x59a928 : 0x4486dc
     rect.beginFill(tileColor)
-    rect.lineStyle(1, 0x333333, 0.15)
+    rect.lineStyle(1, 0x333333, 0.1)
     rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()
     return rect

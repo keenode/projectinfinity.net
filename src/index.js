@@ -2,11 +2,23 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * - Style up info contents of right-hand panel a bit better
+ * -- 1. Tile Inspector and Interaction Pane
  * - Update right-hand panel with current tile info and clicked "queried" tile info
  * - Update right-hand panel with character listing
- * - Hook up right-hand panel with real interactive data
- * - Update colors
+ * -- 2. World time
+ * - Update world/map API routes
+ * - Add date/time to world state
+ * - Store date/time on server and check on client with poll interval
+ * -- 3. Chat
+ * - Start work on "General" chat functionality... start with standard AJAX, press ENTER to bring up chat prompt, poll interval
+ * - Begin first websock implementation for chat
+ * - Port over websocket functionality for character movement
+ * -- 4. Character Select refactor
+ * - Add loader while fetching available characters
+ * - Only show characters that belong to the account
+ * - Handle slots properly
+ * - TLC the styles a bit and dim the delete button
+ * - Add "Are You Sure" alert component prior to deleting character, ask user to type 'delete CHARACTER_NAME'
  */
 
 import React from 'react'

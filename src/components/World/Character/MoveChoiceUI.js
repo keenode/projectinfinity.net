@@ -61,7 +61,7 @@ class MoveChoiceUI {
   drawTile(xPos, yPos) {
     const rect = new PIXI.Graphics()
     rect.beginFill(0x0000ff, 0.15)
-    rect.lineStyle(1, 0xffffff, 0.75)
+    rect.lineStyle(1, 0xffffff, 0.5)
     rect.drawRect(xPos, yPos, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()
     return rect
@@ -69,21 +69,21 @@ class MoveChoiceUI {
 
   drawUIText() {
     const uiTextContainer = new PIXI.Container()
-    const centerXMod = mapSettings.tileSize * 0.37
-    const centerYMod = mapSettings.tileSize * 0.25
+    const centerXMod = mapSettings.tileSize * 0.4
+    const centerYMod = mapSettings.tileSize * 0.34
     const uiTextPositions = [
       // { label: '7', x: centerXMod - mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
-      { label: 'W', x: centerXMod - 6, y: centerYMod - mapSettings.tileSize },
+      { label: 'W', x: centerXMod - 3, y: centerYMod - mapSettings.tileSize },
       // { label: '9', x: centerXMod + mapSettings.tileSize, y: centerYMod - mapSettings.tileSize },
-      { label: 'A', x: centerXMod - mapSettings.tileSize, y: centerYMod },
-      { label: 'D', x: centerXMod + mapSettings.tileSize - 4, y: centerYMod },
+      { label: 'A', x: centerXMod - mapSettings.tileSize + 1, y: centerYMod },
+      { label: 'D', x: centerXMod + mapSettings.tileSize - 1, y: centerYMod },
       // { label: '1', x: centerXMod - mapSettings.tileSize, y: centerYMod + mapSettings.tileSize },
       { label: 'S', x: centerXMod + 1, y: centerYMod + mapSettings.tileSize },
       // { label: '3', x: centerXMod + mapSettings.tileSize, y: centerYMod + mapSettings.tileSize }
     ]
     const style = new PIXI.TextStyle({
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-      fontSize: 36,
+      fontSize: 20,
       fill: 'white',
       stroke: '#061639',
       strokeThickness: 1
