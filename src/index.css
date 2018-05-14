@@ -16,35 +16,35 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /**
@@ -52,36 +52,48 @@ table {
  */
 
  :root {
-	--theme-color-white: #EAEAEA;
-	--theme-color-black: #050404;
-	--theme-bgcolor: #212327;
-	--theme-font-default: 'Varela Round', Helvetica, Arial, sans-serif;
-	--theme-font-callout: 'Kanit', Helvetica, Arial, sans-serif;
-	--ui-bgcolor: #3b3e47;
-	--ui-bgcolor-glass: rgba(58, 60, 69, 0.8);
-	--ui-foregcolor: #4a4e57;
-	--ui-input-color: #36393f;
-	--ui-input-color-focused: #41454d;
-	--ui-titlebar-height: 30px;
-	--ui-navbar-height: 50px;
-	--ui-navbar-height-minimal: 30px;
-	--ui-info-text-color: #aeb7ce;
-	--ui-border: 1px solid rgba(255, 255, 255, 0.2);
-	--ui-btn-primary-color: #0d739b;
-	--ui-btn-primary-color-hover: #1781ac;
-	--ui-btn-secondary-color: gray;
-	--ui-btn-danger-color: #DB5461;
-	--ui-btn-danger-color-hover: #e46673;
-	--ui-btn-disabled-color: #5c5d5f;
+  --theme-color-white: #EAEAEA;
+  --theme-color-black: #050404;
+  --theme-bgcolor: #212327;
+  /* --theme-bgcolor: #212327; */
+  --theme-font-default: 'Varela Round', Helvetica, Arial, sans-serif;
+  --theme-font-callout: 'Kanit', Helvetica, Arial, sans-serif;
+  --ui-bgcolor: #11151c;
+  /* --ui-bgcolor: #3b3e47; */
+  --ui-bgcolor-glass: rgba(46, 46, 58, 0.8);
+  --ui-bgcolor-glass-dark: rgba(17, 21, 28, 0.8);
+  /* --ui-bgcolor-glass: rgba(58, 60, 69, 0.8); */
+  --ui-foregcolor: #2E2E3A;
+  /* --ui-foregcolor: #4a4e57; */
+  /* --ui-input-color: #36393f; */
+  --ui-input-color: var(--ui-bgcolor);
+  --ui-input-color-focused: var(--ui-foregcolor);
+  /* --ui-input-color-focused: #41454d; */
+  --ui-titlebar-height: 30px;
+  --ui-navbar-height: 50px;
+  --ui-navbar-height-minimal: 30px;
+  --ui-info-text-color: #aeb7ce;
+  --ui-border: 1px solid rgba(255, 255, 255, 0.2);
+  --ui-border-radius: 5px;
+  --ui-world-overlay-border: 1px solid #11151c;
+  --ui-world-overlay-border-radius: 5px;
+  --ui-btn-primary-color: #2374AB;
+  /* --ui-btn-primary-color: #0d739b; */
+  --ui-btn-primary-color-hover: #3287c0;
+  /* --ui-btn-primary-color-hover: #1781ac; */
+  --ui-btn-secondary-color: gray;
+  --ui-btn-danger-color: #DB5461;
+  --ui-btn-danger-color-hover: #e46673;
+  --ui-btn-disabled-color: #5c5d5f;
 }
 
 body {
-	font-family: var(--theme-font-default);
-	color: var(--theme-color-white);
-	line-height: 1.5;
-	background-color: var(--theme-bgcolor);
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
+  font-family: var(--theme-font-default);
+  color: var(--theme-color-white);
+  line-height: 1.5;
+  background-color: var(--theme-bgcolor);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -90,45 +102,45 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--theme-font-callout);
+  font-family: var(--theme-font-callout);
 }
 
 h1,
 h2,
 h3 {
-	font-weight: 300;
-	letter-spacing: 2px;
+  font-weight: 300;
+  letter-spacing: 2px;
 }
 
 h1 {
-	margin-bottom: 30px;
-	font-size: 42px;
+  margin-bottom: 30px;
+  font-size: 42px;
 }
 
 h3 {
-	margin-bottom: 20px;
-	font-size: 32px;
+  margin-bottom: 20px;
+  font-size: 32px;
 }
 
 p {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 :global(.grid-container) {
-	margin: 0 auto;
-	width: 90%;
-	max-width: 1440px;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1440px;
 }
 
 :global(.fade-in) :global {
-	animation: fade-in 400ms ease-in 200ms forwards;    
+  animation: fade-in 400ms ease-in 200ms forwards;    
 }
 
 @keyframes :global(fade-in) {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

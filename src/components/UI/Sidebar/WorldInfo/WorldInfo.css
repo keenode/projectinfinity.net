@@ -1,7 +1,9 @@
 .WorldInfo {
-  padding: 10px;
+  padding: 5px;
   width: 100%;
   background-color: var(--ui-bgcolor-glass);
+  border: var(--ui-world-overlay-border);
+  border-radius: var(--ui-world-overlay-border-radius);
   box-sizing: border-box;
 }
 

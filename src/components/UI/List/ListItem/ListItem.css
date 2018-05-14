@@ -3,11 +3,11 @@
   padding: 10px;
   margin-bottom: 10px;
   background-color: var(--ui-foregcolor);  
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   user-select: none;
   transition: border-color 200ms ease;
 }
 
 .ListItem:hover {
-  border-color:  rgba(255, 255, 255, 0.5);
+  border-color:  rgba(255, 255, 255, 0.3);
 }

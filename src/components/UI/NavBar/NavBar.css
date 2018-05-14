@@ -4,7 +4,7 @@
   align-items: center;
   position: relative;
   height: var(--ui-navbar-height);
-  background-color: var(--ui-bgcolor);
+  background-color: var(--ui-foregcolor);
   transition: all 200ms ease-out;
   z-index: 200;
 }

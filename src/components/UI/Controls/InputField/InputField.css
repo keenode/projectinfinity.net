@@ -21,7 +21,7 @@
 
 .InputField input:focus {
   background-color: var(--ui-input-color-focused);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: #3287c0;
   outline: none;
 }
 
@@ -52,7 +52,7 @@
 
 :global(.Select.is-focused .Select-control) {
   background-color: var(--ui-input-color-focused);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: #3287c0;
 }
 
 :global(.Select-control) {
@@ -96,7 +96,7 @@
 
 :global(.Select-menu-outer) {
   background-color: var(--ui-input-color-focused);
-  border: 1px solid rgba(255, 255, 255, 0.4);  
+  border: 1px solid #3287c0;
   box-sizing: border-box;
   margin-top: -1px;
   max-height: 200px;

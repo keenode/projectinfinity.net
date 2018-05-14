@@ -6,14 +6,16 @@
   height: 200px;
   padding: 10px;
   color: #ccc;
-  background-color: var(--ui-bgcolor-glass);
+  background-color: var(--ui-bgcolor-glass-dark);
+  border: var(--ui-world-overlay-border);
+  border-radius: var(--ui-world-overlay-border-radius);
   box-sizing: border-box;
 }
 
 .ChatRoomTabs {
   display: flex;
   position: absolute;
-  left: 0;
+  left: 8px;
   top: -29px;
 }
 
