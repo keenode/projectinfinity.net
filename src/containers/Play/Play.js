@@ -52,6 +52,11 @@ class Play extends Component {
 
   render () {
     let map = null
+    let characterStatus = null
+    let hotToolbar = null
+    let sidebar = null
+    let chat = null
+    let menuBox = null
     // TODO: Refactor
     if (this.props.playMode === 'Playing' && this.props.character.id && this.props.world.tiles.length > 0 && this.props.world.characters.length > 0) {
       map = (
@@ -61,13 +66,9 @@ class Play extends Component {
           characters={this.props.world.characters}
           tilesData={this.props.world.tiles} />
       )
-    }
-
-    return (
-      <div id="game-container" className={styles.GameContainer}>
-        {map}
-        <CharacterStatus character={this.props.character} />
-        <HotToolbar />
+      characterStatus = <CharacterStatus character={this.props.character} />
+      hotToolbar = <HotToolbar />
+      sidebar = (
         <Sidebar>
           <WorldInfo />
           <ExamineOptions>
@@ -75,9 +76,20 @@ class Play extends Component {
             <InteractionPane />
           </ExamineOptions>
         </Sidebar>
-        <Chat messages={this.props.chat.messages} />
-        <MenuBox />
-        <div className={styles.TestActions}>
+      )
+      chat = <Chat messages={this.props.chat.messages} />
+      menuBox = <MenuBox />
+    }
+
+    return (
+      <div id="game-container" className={styles.GameContainer}>
+        {map}
+        {characterStatus}
+        {hotToolbar}
+        {sidebar}
+        {chat}
+        {menuBox}
+        <div className={styles.TestActions} style={{ display: this.props.playMode === 'Playing' ? 'block' : 'none' }}>
           <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(this.props.character.id, -5, this.props.character.vam) }}>-5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(this.props.character.id, 5, this.props.character.vam) }}>+5 Vitality</Button><br />
           <Button btnType="Danger" clicked={() => { this.props.onUpdateAction(this.props.character.id, -5, this.props.character.vam) }}>-5 Action</Button>
