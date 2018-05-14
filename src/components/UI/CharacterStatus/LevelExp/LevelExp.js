@@ -14,7 +14,7 @@ const levelExp = props => (
       initialAnimation="true"
       styles={{
         path: {
-          stroke: '#1781ac',
+          stroke: '#3287c0',
           transition: 'stroke-dashoffset 1000ms ease'
         },
         trail: { stroke: 'rgba(0, 0, 0, 0.5)' }

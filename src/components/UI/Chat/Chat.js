@@ -6,6 +6,7 @@ const chat = props => (
   <div className={styles.Chat}>
     <ul className={styles.ChatRoomTabs}>
       <li className={styles.ChatRoomTab}>System</li>
+      <li className={styles.ChatRoomTab}>Combat</li>
       <li className={[styles.ChatRoomTab, styles.ChatRoomTabActive].join(' ')}>General</li>
       <li className={styles.ChatRoomTab}>Region</li>
     </ul>

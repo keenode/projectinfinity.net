@@ -7,7 +7,7 @@ import CharacterStatus from '../../components/UI/CharacterStatus/CharacterStatus
 import HotToolbar from '../../components/UI/HotToolbar/HotToolbar'
 import Sidebar from '../../components/UI/Sidebar/Sidebar'
 import ExamineOptions from '../../components/UI/Sidebar/ExamineOptions/ExamineOptions'
-import TileInfo from '../../components/UI/Sidebar/ExamineOptions/TileInfo/TileInfo'
+import TileInspector from '../../components/UI/Sidebar/ExamineOptions/TileInspector/TileInspector'
 import InteractionPane from '../../components/UI/Sidebar/ExamineOptions/InteractionPane/InteractionPane'
 import WorldInfo from '../../components/UI/Sidebar/WorldInfo/WorldInfo'
 import MenuBox from '../../components/UI/MenuBox/MenuBox'
@@ -72,7 +72,7 @@ class Play extends Component {
         <Sidebar>
           <WorldInfo />
           <ExamineOptions>
-            <TileInfo />
+            <TileInspector />
             <InteractionPane />
           </ExamineOptions>
         </Sidebar>

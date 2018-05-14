@@ -1,0 +1,59 @@
+.TileInspector {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  background-color: var(--ui-foregcolor);
+  box-sizing: border-box;
+}
+
+.TileInfo {
+  display: flex;
+}
+
+.Tile {
+  margin-right: 8px;
+  min-width: 80px;
+  height: 80px;
+  background-color: var(--theme-color-black);
+}
+
+.TileStats {
+  padding-right: 5px;
+}
+
+.TerrainName {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.TerrainDescription {
+  display: block;
+  color: var(--ui-info-text-color);
+  font-size: 11px;
+}
+
+.TileInfoCurrent {
+  width: 60%;
+}
+
+.TileInfoQuery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.TileInfoQuery .Tile {
+  min-width: 40px;
+  height: 40px;
+}
+
+.TileInfoQuery .TerrainName {
+  color: var(--ui-info-text-color);
+}

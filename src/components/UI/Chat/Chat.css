@@ -5,49 +5,56 @@
   width: 600px;
   height: 200px;
   padding: 10px;
-  color: #ccc;
+  color: var(--ui-info-text-color);
+  letter-spacing: 1px;
   background-color: var(--ui-bgcolor-glass-dark);
   border: var(--ui-world-overlay-border);
   border-radius: var(--ui-world-overlay-border-radius);
+  border-top-left-radius: 0;
   box-sizing: border-box;
 }
 
 .ChatRoomTabs {
   display: flex;
   position: absolute;
-  left: 8px;
-  top: -29px;
+  left: -1px;
+  top: -23px;
+  border: var(--ui-world-overlay-border);
+  border-bottom: 0;
+  border-top-left-radius: var(--ui-world-overlay-border-radius);
+  border-top-right-radius: var(--ui-world-overlay-border-radius);
+  overflow: hidden;
 }
 
 .ChatRoomTab {
-  padding: 5px 10px;
-  font-size: 13px;
+  padding: 3px 8px 2px 8px;
+  font-size: 11px;
   background-color: var(--ui-foregcolor);
-  opacity: 0.6;
   user-select: none;
-  transition: opacity 200ms ease;
+  transition: color 200ms ease;
 }
 
 .ChatRoomTab:hover {
-  opacity: 0.8;
+  color: var(--theme-color-white);
 }
 
 .ChatRoomTabActive {
-  opacity: 1;
+  color: var(--theme-color-white);
+  background-color: var(--ui-btn-primary-color);
   pointer-events: none;
 }
 
 .MessagesContainer {
   height: 100%;
-  letter-spacing: 1px;
   overflow-y: scroll;
 }
 
 .Message {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .MessageTimestamp {
   color: var(--ui-info-text-color);
-  font-size: 13px;
+  font-size: 11px;
+  letter-spacing: 1px;
 }

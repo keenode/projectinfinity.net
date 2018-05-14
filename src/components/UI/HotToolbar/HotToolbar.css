@@ -3,7 +3,7 @@
   left: calc(50% - 300px);
   top: 15px;
   padding: 4px;
-  width: 600px;
+  width: 550px;
   height: 64px;
   background-color: var(--ui-bgcolor-glass);
   border: var(--ui-world-overlay-border);

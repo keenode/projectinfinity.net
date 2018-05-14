@@ -3,13 +3,14 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  top: -2px;
   margin-left: 10px;
   width: 60px;
   height: 60px;
   font-family: var(--theme-font-callout);
   font-size: 24px;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
-  background-color: var(--ui-bgcolor);
+  background-color: var(--ui-foregcolor);
   border-radius: 100%;
   user-select: none;
 }
