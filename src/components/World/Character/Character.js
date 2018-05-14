@@ -39,17 +39,10 @@ class Character {
       const moveChoiceGfx = this.moveChoiceUI.PIXIContainerTiles.getChildAt(i)
       moveChoiceGfx.on('click', event => {
         const moveDir = this.moveChoiceUI.getTileLabel(i)
-        console.log('MOVE: ' + moveDir)
         switch (moveDir) {
-          // case 'Up Left':
-          //   this.triggerMoveEvent(-1, -1)
-          //   break
           case 'Up':
             this.triggerMoveEvent(0, -1)
             break
-          // case 'Up Right':
-          //   this.triggerMoveEvent(1, -1)
-          //   break
           case 'Left':
             this.triggerMoveEvent(-1, 0)
             break
@@ -59,12 +52,6 @@ class Character {
           case 'Right':
             this.triggerMoveEvent(1, 0)
             break
-          // case 'Down Left':
-          //   this.triggerMoveEvent(-1, 1)
-          //   break
-          // case 'Down Right':
-          //   this.triggerMoveEvent(1, 1)
-          //   break
           default:
             console.log('Not a valid movement direction.')
         }
@@ -85,6 +72,8 @@ class Character {
   }
 
   triggerMoveEvent(changeX, changeY) {
+    this.moveChoiceUI.isActive = false
+    this.PIXIContainer.removeChild(this.moveChoiceUI.PIXIContainer)
     const moveEvent = new CustomEvent('CHARACTER_MOVED', { detail: { changeX, changeY } })
     document.dispatchEvent(moveEvent)
   }
