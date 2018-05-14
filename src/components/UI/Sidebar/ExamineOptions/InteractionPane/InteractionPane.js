@@ -4,7 +4,13 @@ import styles from './InteractionPane.css'
 
 const interactionPane = props => (
   <div className={styles.InteractionPane}>
-    <span>Filter: All, Players, NPCs, Buildings</span>
+    <ul className={styles.Filters}>
+      <li className={styles.Filter_Active}>All</li>
+      <li>Players</li>
+      <li>NPCs</li>
+      <li>Monsters</li>
+      <li>Buildings</li>
+    </ul>
   </div>
 )
 
