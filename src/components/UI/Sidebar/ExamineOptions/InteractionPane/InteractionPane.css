@@ -1,7 +1,7 @@
 .InteractionPane {
   padding: 10px;
   width: 100%;
-  height: calc(100vh - 10px - var(--ui-titlebar-height) - var(--ui-navbar-height-minimal) - 150px - 10px - 10px - 228px - 10px - 20px);
+  height: calc(100vh - var(--ui-titlebar-height) - var(--ui-navbar-height-minimal) - 15px - 210px - 10px - 92px - 5px - 10px - 15px);
   background-color: var(--ui-foregcolor);
   box-sizing: border-box;
 }

@@ -4,6 +4,7 @@
   padding: 10px;
   margin-bottom: 5px;
   width: 100%;
+  height: 92px;
   background-color: var(--ui-foregcolor);
   box-sizing: border-box;
 }
@@ -14,8 +15,8 @@
 
 .Tile {
   margin-right: 8px;
-  min-width: 80px;
-  height: 80px;
+  min-width: 72px;
+  height: 72px;
   background-color: var(--theme-color-black);
 }
 
@@ -50,8 +51,8 @@
 }
 
 .TileInfoQuery .Tile {
-  min-width: 40px;
-  height: 40px;
+  min-width: 36px;
+  height: 36px;
 }
 
 .TileInfoQuery .TerrainName {
