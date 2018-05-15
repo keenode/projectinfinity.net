@@ -3,6 +3,7 @@ import mapSettings from '../map-settings'
 
 class Tile {
   PIXIContainer = new PIXI.Container()
+  hoverGrid = new PIXI.Container()
 
   constructor(x, y, data) {
     console.log('[Tile] constructed')
@@ -13,10 +14,19 @@ class Tile {
     this.PIXIContainer.y = y * mapSettings.tileSize
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
+    this.hoverGrid.addChild(this.drawHoverGrid())
     this.addEvents()
   }
 
   addEvents() {
+    this.PIXIContainer.on('mouseover', event => {
+      this.PIXIContainer.addChild(this.hoverGrid)
+    })
+
+    this.PIXIContainer.on('mouseout', event => {
+      this.PIXIContainer.removeChild(this.hoverGrid)
+    })
+
     this.PIXIContainer.on('click', event => {
       const tileData = this.data
       const tileQueriedEvent = new CustomEvent('TILE_QUERIED', { detail: tileData })
@@ -36,6 +46,15 @@ class Tile {
     coordsText.x = this.PIXIContainer.x + mapSettings.tileSize * 0.1
     coordsText.y = this.PIXIContainer.y + mapSettings.tileSize * 0.1
     return coordsText
+  }
+
+  drawHoverGrid() {
+    const rect = new PIXI.Graphics()
+    rect.beginFill(0x000099)
+    rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
+    rect.endFill()
+    rect.alpha = 0.1
+    return rect
   }
 
   draw() {
