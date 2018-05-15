@@ -81,8 +81,8 @@ class Tile {
 
   drawQueriedGrid() {
     const rect = new PIXI.Graphics()
-    rect.beginFill(0x000099)
-    rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
+    rect.lineStyle(1, 0xFFFFFF, 1)
+    rect.drawRect(1, 1, mapSettings.tileSize - 2, mapSettings.tileSize - 2)
     rect.endFill()
     return rect
   }
