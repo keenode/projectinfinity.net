@@ -19,7 +19,7 @@ const o = {
 // Grassland
 const G = {
   gfxId: 1,
-  terrainName: 'Grassland'
+  terrainName: 'Grasslands'
 }
 
 // Proposed /worlds/:id/maps/:id

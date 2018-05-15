@@ -18,7 +18,9 @@ class Tile {
 
   addEvents() {
     this.PIXIContainer.on('click', event => {
-      console.log('Tile clicked: ', this.data)
+      const tileData = this.data
+      const tileQueriedEvent = new CustomEvent('TILE_QUERIED', { detail: tileData })
+      document.dispatchEvent(tileQueriedEvent)
     })
   }
 

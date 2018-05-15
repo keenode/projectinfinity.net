@@ -24,12 +24,24 @@ import styles from './Play.css'
 class Play extends Component {
   previousMode = null
 
+  state = {
+    queriedTile: null
+  }
+
   componentDidMount () {
     document.addEventListener('CHARACTER_MOVED', e => {
       console.log('CHARACTER_MOVED: ', e.detail)
       const reqX = this.props.character.position.x + e.detail.changeX
       const reqY = this.props.character.position.y + e.detail.changeY
       this.props.onUpdatePosition(this.props.character.id, reqX, reqY)
+    }, false)
+
+    document.addEventListener('TILE_QUERIED', e => {
+      console.log('TILE_QUERIED: ', e.detail)
+      this.setState({
+        ...this.state,
+        queriedTile: e.detail
+      })
     }, false)
   }
 
@@ -72,7 +84,7 @@ class Play extends Component {
         <Sidebar>
           <WorldInfo />
           <ExamineOptions>
-            <TileInspector />
+            <TileInspector queriedTile={this.state.queriedTile} />
             <InteractionPane />
           </ExamineOptions>
         </Sidebar>
