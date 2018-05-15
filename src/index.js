@@ -3,7 +3,6 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 1. Tile Inspector and Interaction Pane
- * - Update right-hand panel with current tile info and clicked "queried" tile info
  * - Update right-hand panel with character listing
  * -- 2. World time
  * - Update world/map API routes
