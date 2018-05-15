@@ -4,17 +4,18 @@ import mapSettings from '../map-settings'
 class Tile {
   PIXIContainer = new PIXI.Container()
   hoverGrid = new PIXI.Container()
+  queriedGrid = new PIXI.Container()
+  queried = false
 
-  constructor(x, y, data) {
+  constructor(data) {
     console.log('[Tile] constructed')
-    this.xCoord = x
-    this.yCoord = y
     this.data = data
-    this.PIXIContainer.x = x * mapSettings.tileSize
-    this.PIXIContainer.y = y * mapSettings.tileSize
+    this.PIXIContainer.x = this.data.xCoord * mapSettings.tileSize
+    this.PIXIContainer.y = this.data.yCoord * mapSettings.tileSize
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
     this.hoverGrid.addChild(this.drawHoverGrid())
+    this.queriedGrid.addChild(this.drawQueriedGrid())
     this.addEvents()
   }
 
@@ -28,10 +29,27 @@ class Tile {
     })
 
     this.PIXIContainer.on('click', event => {
-      const tileData = this.data
-      const tileQueriedEvent = new CustomEvent('TILE_QUERIED', { detail: tileData })
-      document.dispatchEvent(tileQueriedEvent)
+      this.queried = !this.queried
+      if (this.queried) {
+        this.query()
+      } else {
+        this.unquery()
+      }
     })
+  }
+
+  query() {
+    const tileData = this.data
+    const tileQueriedEvent = new CustomEvent('TILE_QUERIED', { detail: tileData })
+    document.dispatchEvent(tileQueriedEvent)
+    this.PIXIContainer.addChild(this.queriedGrid)
+  }
+
+  unquery() {
+    const tileData = this.data
+    const tileUnqueriedEvent = new CustomEvent('TILE_UNQUERIED', { detail: tileData })
+    document.dispatchEvent(tileUnqueriedEvent)
+    this.PIXIContainer.removeChild(this.queriedGrid)
   }
 
   drawCoords() {
@@ -42,7 +60,7 @@ class Tile {
       stroke: '#061639',
       strokeThickness: 1
     })
-    const coordsText = new PIXI.Text(this.xCoord + ', ' + this.yCoord, style)
+    const coordsText = new PIXI.Text(this.data.xCoord + ', ' + this.data.yCoord, style)
     coordsText.x = this.PIXIContainer.x + mapSettings.tileSize * 0.1
     coordsText.y = this.PIXIContainer.y + mapSettings.tileSize * 0.1
     return coordsText
@@ -54,6 +72,14 @@ class Tile {
     rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
     rect.endFill()
     rect.alpha = 0.1
+    return rect
+  }
+
+  drawQueriedGrid() {
+    const rect = new PIXI.Graphics()
+    rect.beginFill(0x000099)
+    rect.drawRect(0, 0, mapSettings.tileSize, mapSettings.tileSize)
+    rect.endFill()
     return rect
   }
 

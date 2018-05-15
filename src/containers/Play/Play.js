@@ -43,6 +43,14 @@ class Play extends Component {
         queriedTile: e.detail
       })
     }, false)
+
+    document.addEventListener('TILE_UNQUERIED', e => {
+      console.log('TILE_UNQUERIED: ', e.detail)
+      this.setState({
+        ...this.state,
+        queriedTile: null
+      })
+    }, false)
   }
 
   componentDidUpdate() {
