@@ -30,14 +30,14 @@ class Play extends Component {
 
   componentDidMount () {
     document.addEventListener('CHARACTER_MOVED', e => {
-      console.log('CHARACTER_MOVED: ', e.detail)
+      console.log('[Play] CHARACTER_MOVED: ', e.detail)
       const reqX = this.props.character.position.x + e.detail.changeX
       const reqY = this.props.character.position.y + e.detail.changeY
       this.props.onUpdatePosition(this.props.character.id, reqX, reqY)
     }, false)
 
     document.addEventListener('TILE_QUERIED', e => {
-      console.log('TILE_QUERIED: ', e.detail)
+      console.log('[Play] TILE_QUERIED: ', e.detail)
       this.setState({
         ...this.state,
         queriedTile: e.detail
@@ -45,7 +45,7 @@ class Play extends Component {
     }, false)
 
     document.addEventListener('TILE_UNQUERIED', e => {
-      console.log('TILE_UNQUERIED: ', e.detail)
+      console.log('[Play] TILE_UNQUERIED: ', e.detail)
       this.setState({
         ...this.state,
         queriedTile: null

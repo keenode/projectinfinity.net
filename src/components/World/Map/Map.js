@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as PIXI from 'pixi.js'
 
-import Camera from '../Camera/Camera';
+import Camera from '../Camera/Camera'
 import Tile from './Tile/Tile'
 import Character from '../Character/Character'
 
@@ -11,6 +11,7 @@ class Map extends Component {
   camera = new Camera()
   map = new PIXI.Container()
   tiles = new PIXI.Container()
+  tilesData = []
   coords = new PIXI.Container()
   playerCharacter = new Character({ isPlayer: true })
   characters = []
@@ -24,8 +25,16 @@ class Map extends Component {
       if (this.props.mode === 'Playing') {
         this.setupCharacters()
       }
-      this.mapApp.ticker.add(delta => this.gameLoop(delta));
+      this.mapApp.ticker.add(delta => this.gameLoop(delta))
     }, 200)
+
+    document.addEventListener('TILE_QUERIED', e => {
+      console.log('[Map] TILE_QUERIED: ', e.detail)
+      for (let i = 0; i < this.tilesData.length; i++) {
+        const tile = this.tilesData[i]
+        tile.unquery(false)
+      }
+    }, false)
   }
 
   componentDidUpdate() {
@@ -68,6 +77,7 @@ class Map extends Component {
     for (let y = 0; y < this.props.tilesData.length; y++) {
       for (let x = 0; x < this.props.tilesData[y].length; x++) {
         const tile = new Tile({ xCoord: x, yCoord: y, ...this.props.tilesData[y][x] })
+        this.tilesData.push(tile)
         this.tiles.addChild(tile.PIXIContainer)
         if (this.props.mode === 'GameMaster') {
           this.coords.addChild(tile.drawCoords())

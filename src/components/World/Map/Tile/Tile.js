@@ -29,11 +29,11 @@ class Tile {
     })
 
     this.PIXIContainer.on('click', event => {
-      this.queried = !this.queried
+      console.log(this.queried)
       if (this.queried) {
-        this.query()
-      } else {
         this.unquery()
+      } else {
+        this.query()
       }
     })
   }
@@ -43,13 +43,17 @@ class Tile {
     const tileQueriedEvent = new CustomEvent('TILE_QUERIED', { detail: tileData })
     document.dispatchEvent(tileQueriedEvent)
     this.PIXIContainer.addChild(this.queriedGrid)
+    this.queried = true
   }
 
-  unquery() {
-    const tileData = this.data
-    const tileUnqueriedEvent = new CustomEvent('TILE_UNQUERIED', { detail: tileData })
-    document.dispatchEvent(tileUnqueriedEvent)
+  unquery(triggerEvent = true) {
+    if (triggerEvent) {
+      const tileData = this.data
+      const tileUnqueriedEvent = new CustomEvent('TILE_UNQUERIED', { detail: tileData })
+      document.dispatchEvent(tileUnqueriedEvent)
+    }
     this.PIXIContainer.removeChild(this.queriedGrid)
+    this.queried = false
   }
 
   drawCoords() {
