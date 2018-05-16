@@ -29,3 +29,13 @@
   border-color: var(--ui-info-text-color);
   opacity: 1; 
 }
+
+.List {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.List li {
+  margin: 10px 0;
+  color: var(--ui-info-text-color);
+}

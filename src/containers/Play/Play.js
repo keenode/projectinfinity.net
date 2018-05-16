@@ -102,7 +102,7 @@ class Play extends Component {
           <WorldInfo />
           <ExamineOptions>
             <TileInspector playerTile={playerTile} queriedTile={this.state.queriedTile} />
-            <InteractionPane />
+            <InteractionPane otherCharacters={this.props.world.characters} />
           </ExamineOptions>
         </Sidebar>
       )
