@@ -51,6 +51,14 @@ class Play extends Component {
         queriedTile: null
       })
     }, false)
+
+    document.addEventListener('CHARACTER_CLICKED', e => {
+      console.log('[Play] CHARACTER_CLICKED: ', e.detail)
+      this.setState({
+        ...this.state,
+        queriedTile: null
+      })
+    }, false)
   }
 
   componentDidUpdate() {

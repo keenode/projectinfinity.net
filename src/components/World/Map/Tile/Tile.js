@@ -10,7 +10,6 @@ class Tile {
   constructor(data) {
     console.log('[Tile] constructed')
     this.data = data
-    console.log('this.data: ', this.data.location.xCoord)
     this.PIXIContainer.x = this.data.location.xCoord * mapSettings.tileSize
     this.PIXIContainer.y = this.data.location.yCoord * mapSettings.tileSize
     this.PIXIContainer.interactive = true
@@ -30,7 +29,6 @@ class Tile {
     })
 
     this.PIXIContainer.on('click', event => {
-      console.log(this.queried)
       if (this.queried) {
         this.unquery()
       } else {

@@ -33,6 +33,8 @@ class Character {
       } else {
         this.PIXIContainer.removeChild(this.moveChoiceUI.PIXIContainer)
       }
+      const characterClickedEvent = new CustomEvent('CHARACTER_CLICKED', { detail: this.name })
+      document.dispatchEvent(characterClickedEvent)
     })
 
     for (let i = 0; i < this.moveChoiceUI.PIXIContainerTiles.children.length; i++) {

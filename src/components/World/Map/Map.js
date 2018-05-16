@@ -30,10 +30,12 @@ class Map extends Component {
 
     document.addEventListener('TILE_QUERIED', e => {
       console.log('[Map] TILE_QUERIED: ', e.detail)
-      for (let i = 0; i < this.tilesData.length; i++) {
-        const tile = this.tilesData[i]
-        tile.unquery(false)
-      }
+      this.unqueryTiles()
+    }, false)
+
+    document.addEventListener('CHARACTER_CLICKED', e => {
+      console.log('[Map] CHARACTER_CLICKED: ', e.detail)
+      this.unqueryTiles()
     }, false)
   }
 
@@ -109,6 +111,13 @@ class Map extends Component {
     this.playerCharacter.setName(this.props.playerCharacter.name)
     this.playerCharacter.setPosition(this.props.playerCharacter.position.x, this.props.playerCharacter.position.y)
     this.map.addChild(this.playerCharacter.PIXIContainer)
+  }
+
+  unqueryTiles() {
+    for (let i = 0; i < this.tilesData.length; i++) {
+      const tile = this.tilesData[i]
+      tile.unquery(false)
+    }
   }
 
   gameLoop(delta) {
