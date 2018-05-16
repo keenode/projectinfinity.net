@@ -76,7 +76,8 @@ class Map extends Component {
   prepareTiles() {
     for (let y = 0; y < this.props.tilesData.length; y++) {
       for (let x = 0; x < this.props.tilesData[y].length; x++) {
-        const tile = new Tile({ xCoord: x, yCoord: y, ...this.props.tilesData[y][x] })
+        // const tile = new Tile({ location: { xCoord: x, yCoord: y }, ...this.props.tilesData[y][x] })
+        const tile = new Tile(this.props.tilesData[y][x])
         this.tilesData.push(tile)
         this.tiles.addChild(tile.PIXIContainer)
         if (this.props.mode === 'GameMaster') {

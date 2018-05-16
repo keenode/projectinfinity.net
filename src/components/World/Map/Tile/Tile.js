@@ -10,8 +10,9 @@ class Tile {
   constructor(data) {
     console.log('[Tile] constructed')
     this.data = data
-    this.PIXIContainer.x = this.data.xCoord * mapSettings.tileSize
-    this.PIXIContainer.y = this.data.yCoord * mapSettings.tileSize
+    console.log('this.data: ', this.data.location.xCoord)
+    this.PIXIContainer.x = this.data.location.xCoord * mapSettings.tileSize
+    this.PIXIContainer.y = this.data.location.yCoord * mapSettings.tileSize
     this.PIXIContainer.interactive = true
     this.PIXIContainer.addChild(this.draw())
     this.hoverGrid.addChild(this.drawHoverGrid())
@@ -64,7 +65,7 @@ class Tile {
       stroke: '#061639',
       strokeThickness: 1
     })
-    const coordsText = new PIXI.Text(this.data.xCoord + ', ' + this.data.yCoord, style)
+    const coordsText = new PIXI.Text(this.data.location.xCoord + ', ' + this.data.location.yCoord, style)
     coordsText.x = this.PIXIContainer.x + mapSettings.tileSize * 0.1
     coordsText.y = this.PIXIContainer.y + mapSettings.tileSize * 0.1
     return coordsText
