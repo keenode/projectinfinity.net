@@ -21,7 +21,10 @@ const tileInspector = props => {
     queriedTile = (
       <div className={[styles.TileInfo, styles.TileInfoQuery].join(' ')}>
         <div className={styles.Tile} style={{ backgroundColor: tileTypeData[terrainName].color }}></div>
-        <span className={styles.TerrainName}>{terrainName}</span>
+        <div>
+          <span className={styles.TerrainName}>{terrainName}</span>
+          <span className={styles.Coords}>{props.queriedTile.location.xCoord}, {props.queriedTile.location.yCoord}</span>
+        </div>
       </div>
     )
   }
