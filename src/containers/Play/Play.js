@@ -97,12 +97,13 @@ class Play extends Component {
       characterStatus = <CharacterStatus character={this.props.character} />
       hotToolbar = <HotToolbar />
       const playerTile = this.props.world.tiles[this.props.character.position.y][this.props.character.position.x]
+      const currentTileCharacters = this.props.world.characters.filter(character => character.position.x === this.props.character.position.x && character.position.y === this.props.character.position.y)
       sidebar = (
         <Sidebar>
           <WorldInfo />
           <ExamineOptions>
             <TileInspector playerTile={playerTile} queriedTile={this.state.queriedTile} />
-            <InteractionPane otherCharacters={this.props.world.characters} />
+            <InteractionPane currentTileCharacters={currentTileCharacters} />
           </ExamineOptions>
         </Sidebar>
       )

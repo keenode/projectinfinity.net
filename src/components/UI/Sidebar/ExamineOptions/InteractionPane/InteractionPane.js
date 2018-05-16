@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './InteractionPane.css'
 
 const interactionPane = props => {
-  const list = props.otherCharacters.map(character => (
+  const list = props.currentTileCharacters.map(character => (
     <li key={character.name}>{character.name}</li>
   ))
 

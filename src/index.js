@@ -2,8 +2,6 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * -- 1. Tile Inspector and Interaction Pane
- * - Update right-hand panel with character listing
  * -- 2. World time
  * - Update world/map API routes
  * - Add date/time to world state

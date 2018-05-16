@@ -12,13 +12,13 @@ module.exports = (req, res, next) => {
 
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
-    console.log('starting auth check...')
-    console.log(decoded)
+    // console.log('starting auth check...')
+    // console.log(decoded)
     
     if (err) { return res.sendStatus(401) }
 
     const userId = decoded.user._id
-    console.log('determine access for user: ', userId)
+    // console.log('determine access for user: ', userId)
 
     return User.findById(userId, (userErr, user) => {
       if (userErr || !user) {
