@@ -59,6 +59,14 @@ class Character {
         }
       })
     }
+
+    document.addEventListener('TILE_QUERIED', e => {
+      console.log('[Character] TILE_QUERIED: ', e.detail)
+      if (this.moveChoiceUI.isActive) {
+        this.PIXIContainer.removeChild(this.moveChoiceUI.PIXIContainer)
+        this.moveChoiceUI.isActive = false
+      }
+    }, false)
   }
 
   handleKeyPress(e) {

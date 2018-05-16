@@ -16,7 +16,6 @@ const tileTypeData = {
 const tileInspector = props => {
   let queriedTile = null
   if (props.queriedTile) {
-    console.log('queriedTile: ', props.queriedTile)
     const terrainName = props.queriedTile.terrainName
     queriedTile = (
       <div className={[styles.TileInfo, styles.TileInfoQuery].join(' ')}>
