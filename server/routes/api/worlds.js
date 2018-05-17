@@ -2,14 +2,6 @@ const router = require('express').Router()
 const authCheck = require('../../middleware/auth-check')
 // const World = require('../../models/world')
 
-// router.get('/worlds', authCheck, function (req, res) {
-//   World.find().then(function (worlds) {
-//     res.json({
-//       worlds
-//     })
-//   })
-// })
-
 // Ocean
 const o = {
   gfxId: 0,
@@ -44,9 +36,20 @@ function generateTiles() {
   return tiles
 }
 
-// Proposed /worlds/:id/maps/:id
-// Each world is composed of multiple "maps"
-// Map with 'isMain: true' is the central overview map
+/*
+ * GET all worlds
+ */
+router.get('/worlds', authCheck, function (req, res) {
+  // World.find().then(function (worlds) {
+  //   res.json({
+  //     worlds
+  //   })
+  // })
+})
+
+/*
+ * GET a world
+ */
 router.get('/worlds/:id', authCheck, function (req, res) {
   // World.findOne({ _id: req.params.id }).then(function (world) {
   //   res.json({ world })
@@ -54,9 +57,70 @@ router.get('/worlds/:id', authCheck, function (req, res) {
   const tiles = generateTiles()
   res.json({
     world: {
+      name: 'Corelisto',
+      size: {
+        width: MAP_W,
+        height: MAP_H
+      },
       tiles
     }
   })
+})
+
+/*
+ * CREATE a new world
+ */
+router.post('/worlds', authCheck, function (req, res) {
+
+})
+
+/*
+ * UPDATE a world
+ */
+router.put('/worlds/:id', authCheck, function (req, res) {
+
+})
+
+/*
+ * DELETE a world
+ */
+router.delete('/worlds/:id', authCheck, function (req, res) {
+
+})
+
+/*
+ * GET all maps belonging to a world
+ */
+router.get('/worlds/:id/maps', authCheck, function (req, res) {
+
+})
+
+/*
+ * GET a map belonging to a world
+ */
+router.get('/worlds/:id/maps/:id', authCheck, function (req, res) {
+
+})
+
+/*
+ * CREATE a new map belonging to a world
+ */
+router.post('/worlds/:id/maps', authCheck, function (req, res) {
+
+})
+
+/*
+ * UPDATE a map belonging to a world
+ */
+router.put('/worlds/:id/maps/:id', authCheck, function (req, res) {
+
+})
+
+/*
+ * DELETE a map belonging to a world
+ */
+router.delete('/worlds/:id/maps/:id', authCheck, function (req, res) {
+
 })
 
 module.exports = router

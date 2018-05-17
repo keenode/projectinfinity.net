@@ -3,7 +3,7 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 2. World time
- * - Update world/map API routes
+ * - Update world/map API routes, add create world post route, etc.
  * - Add date/time to world state
  * - Store date/time on server and check on client with poll interval
  * -- 3. Chat
@@ -12,7 +12,7 @@
  * - Port over websocket functionality for character movement
  * -- 4. Character Select refactor
  * - Add loader while fetching available characters
- * - Only show characters that belong to the account
+ * - Only show characters that belong to the account, consider /user/:id/characters route...
  * - Handle slots properly
  * - TLC the styles a bit and dim the delete button
  * - Add "Are You Sure" alert component prior to deleting character, ask user to type 'delete CHARACTER_NAME'
