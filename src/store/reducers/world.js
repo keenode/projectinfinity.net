@@ -2,8 +2,12 @@ import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../../shared/utility'
 
 const initialState = {
-  tiles: [],
-  characters: [],
+  name: null,
+  map: {
+    size: null,
+    tiles: []
+  },
+  otherCharacters: [],
   loading: false,
   loadingCharacters: false
 }
@@ -16,9 +20,14 @@ const getWorldStart = (state, action) => {
 }
 
 const getWorldSuccess = (state, action) => {
+  console.log('action: ', action)
   return updateObject(state, {
-    loading: false,
-    tiles: action.tiles
+    name: action.name,
+    map: {
+      size: action.map.size,
+      tiles: action.map.tiles
+    },
+    loading: false
   })
 }
 
@@ -36,7 +45,7 @@ const getWorldCharactersStart = (state, action) => {
 const getWorldCharactersSuccess = (state, action) => {
   return updateObject(state, {
     loadingCharacters: false,
-    characters: action.characters
+    otherCharacters: action.otherCharacters
   })
 }
 

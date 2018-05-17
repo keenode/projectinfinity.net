@@ -58,11 +58,13 @@ router.get('/worlds/:id', authCheck, function (req, res) {
   res.json({
     world: {
       name: 'Corelisto',
-      size: {
-        width: MAP_W,
-        height: MAP_H
-      },
-      tiles
+      map: {
+        size: {
+          width: MAP_W,
+          height: MAP_H
+        },
+        tiles
+      }
     }
   })
 })
@@ -99,7 +101,17 @@ router.get('/worlds/:id/maps', authCheck, function (req, res) {
  * GET a map belonging to a world
  */
 router.get('/worlds/:id/maps/:id', authCheck, function (req, res) {
-
+  const tiles = generateTiles()
+  res.json({
+    map: {
+      name: 'Corelisto World Map',
+      size: {
+        width: MAP_W,
+        height: MAP_H
+      },
+      tiles
+    }
+  })
 })
 
 /*

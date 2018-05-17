@@ -11,7 +11,7 @@ export const getWorld = worldId => {
     dispatch(getWorldStart())
     axios.get('/api/worlds/' + worldId)
       .then(res => {
-        dispatch(getWorldSuccess(res.data.world.tiles))
+        dispatch(getWorldSuccess(res.data.world))
       })
       .catch(err => {
         dispatch(getWorldError())
@@ -25,10 +25,11 @@ export const getWorldStart = () => {
   }
 }
 
-export const getWorldSuccess = tiles => {
+export const getWorldSuccess = world => {
   return {
     type: actionTypes.GET_WORLD_SUCCESS,
-    tiles
+    name: world.name,
+    map: world.map
   }
 }
 
@@ -61,10 +62,10 @@ export const getWorldCharactersStart = () => {
   }
 }
 
-export const getWorldCharactersSuccess = characters => {
+export const getWorldCharactersSuccess = otherCharacters => {
   return {
     type: actionTypes.GET_WORLD_CHARACTERS_SUCCESS,
-    characters
+    otherCharacters
   }
 }
 

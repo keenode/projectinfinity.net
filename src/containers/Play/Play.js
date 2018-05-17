@@ -86,18 +86,18 @@ class Play extends Component {
     let chat = null
     let menuBox = null
     // TODO: Refactor
-    if (this.props.playMode === 'Playing' && this.props.character.id && this.props.world.tiles.length > 0 && this.props.world.characters.length > 0) {
+    if (this.props.playMode === 'Playing' && this.props.character.id && this.props.world.map.tiles.length > 0 && this.props.world.otherCharacters.length > 0) {
       map = (
         <Map
           mode={this.props.playMode}
           playerCharacter={this.props.character}
-          characters={this.props.world.characters}
-          tilesData={this.props.world.tiles} />
+          characters={this.props.world.otherCharacters}
+          tilesData={this.props.world.map.tiles} />
       )
       characterStatus = <CharacterStatus character={this.props.character} />
       hotToolbar = <HotToolbar />
-      const playerTile = this.props.world.tiles[this.props.character.position.y][this.props.character.position.x]
-      const currentTileCharacters = this.props.world.characters.filter(character => character.position.x === this.props.character.position.x && character.position.y === this.props.character.position.y)
+      const playerTile = this.props.world.map.tiles[this.props.character.position.y][this.props.character.position.x]
+      const currentTileCharacters = this.props.world.otherCharacters.filter(character => character.position.x === this.props.character.position.x && character.position.y === this.props.character.position.y)
       sidebar = (
         <Sidebar>
           <WorldInfo />
@@ -157,8 +157,12 @@ const mapStateToProps = state => {
       position: state.character.position
     },
     world: {
-      tiles: state.world.tiles,
-      characters: state.world.characters
+      name: state.world.name,
+      map: {
+        size: state.world.map.size,
+        tiles: state.world.map.tiles
+      },
+      otherCharacters: state.world.otherCharacters
     },
     chat: {
       messages: state.chat.messages

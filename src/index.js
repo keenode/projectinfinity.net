@@ -4,7 +4,8 @@
  * TODO:
  * -- 2. World time
  * - Update world/map API routes, add create world post route, etc.
- * - Add date/time to world state
+ * - Pass world name to mini map component
+ * - Add date/time to world state... this date should be stored for each world
  * - Store date/time on server and check on client with poll interval
  * -- 3. Chat
  * - Start work on "General" chat functionality... start with standard AJAX, press ENTER to bring up chat prompt, poll interval
