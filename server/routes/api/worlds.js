@@ -45,6 +45,9 @@ router.get('/worlds', authCheck, function (req, res) {
   //     worlds
   //   })
   // })
+  res.json({
+    worlds: []
+  })
 })
 
 /*
@@ -94,22 +97,24 @@ router.delete('/worlds/:id', authCheck, function (req, res) {
  * GET all maps belonging to a world
  */
 router.get('/worlds/:id/maps', authCheck, function (req, res) {
-
+  res.json({
+    maps: []
+  })
 })
 
 /*
  * GET a map belonging to a world
  */
 router.get('/worlds/:id/maps/:id', authCheck, function (req, res) {
-  const tiles = generateTiles()
   res.json({
     map: {
-      name: 'Corelisto World Map',
+      world_id: 0,
+      name: 'House of Keenan',
       size: {
         width: MAP_W,
         height: MAP_H
       },
-      tiles
+      tiles: []
     }
   })
 })
