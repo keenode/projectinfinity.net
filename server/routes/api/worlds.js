@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const authCheck = require('../../middleware/auth-check')
-// const World = require('../../models/world')
+const World = require('../../models/world')
 
 // Ocean
 const o = {
@@ -14,14 +14,11 @@ const G = {
   terrainName: 'Grasslands'
 }
 
-const MAP_W = 30
-const MAP_H = 20
-
-function generateTiles() {
+function generateTiles(mapW, mapH) {
   const tiles = []
-  for (let y = 0; y < MAP_H; y++) {
+  for (let y = 0; y < mapH; y++) {
     const row = []
-    for (let x = 0; x < MAP_W; x++) {
+    for (let x = 0; x < mapW; x++) {
       const terrainProps = Math.random() * 5 < 4 ? G : o 
       row.push({
         ...terrainProps,
@@ -40,13 +37,10 @@ function generateTiles() {
  * GET all worlds
  */
 router.get('/worlds', authCheck, function (req, res) {
-  // World.find().then(function (worlds) {
-  //   res.json({
-  //     worlds
-  //   })
-  // })
-  res.json({
-    worlds: []
+  World.find().then(worlds => {
+    res.json({
+      worlds
+    })
   })
 })
 
@@ -54,21 +48,8 @@ router.get('/worlds', authCheck, function (req, res) {
  * GET a world
  */
 router.get('/worlds/:id', authCheck, function (req, res) {
-  // World.findOne({ _id: req.params.id }).then(function (world) {
-  //   res.json({ world })
-  // })
-  const tiles = generateTiles()
-  res.json({
-    world: {
-      name: 'Corelisto',
-      map: {
-        size: {
-          width: MAP_W,
-          height: MAP_H
-        },
-        tiles
-      }
-    }
+  World.findOne({ _id: req.params.id }).then(world => {
+    res.json({ world })
   })
 })
 
@@ -76,21 +57,48 @@ router.get('/worlds/:id', authCheck, function (req, res) {
  * CREATE a new world
  */
 router.post('/worlds', authCheck, function (req, res) {
-
+  console.log(req.body)
+  const mapW = req.body.map.size.width
+  const mapH = req.body.map.size.height
+  new World({
+    name: req.body.name,
+    map: {
+      size: {
+        width: mapW,
+        height: mapH
+      },
+      tiles: generateTiles(mapW, mapH)
+    }
+  })
+  .save()
+  .then(newWorld => {
+    res.json({
+      world: newWorld
+    })
+  })
 })
 
 /*
  * UPDATE a world
  */
 router.put('/worlds/:id', authCheck, function (req, res) {
-
+  World.findByIdAndUpdate({ _id: req.params.id }, req.body)
+    .then(() => {
+      World.findOne({ _id: req.params.id })
+        .then(world => {
+          res.json({ world })
+        })
+    })
 })
 
 /*
  * DELETE a world
  */
 router.delete('/worlds/:id', authCheck, function (req, res) {
-
+  World.findByIdAndRemove({ _id: req.params.id })
+    .then(world => {
+      res.json({ world })
+    })
 })
 
 /*
@@ -111,8 +119,8 @@ router.get('/worlds/:id/maps/:id', authCheck, function (req, res) {
       world_id: 0,
       name: 'House of Keenan',
       size: {
-        width: MAP_W,
-        height: MAP_H
+        width: 0,
+        height: 0
       },
       tiles: []
     }

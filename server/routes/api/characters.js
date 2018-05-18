@@ -3,7 +3,7 @@ const authCheck = require('../../middleware/auth-check')
 const Character = require('../../models/character')
 
 router.get('/characters', authCheck, function (req, res) {
-  Character.find().then(function (characters) {
+  Character.find().then(characters => {
     res.json({
       characters,
       slots: 0,
@@ -13,7 +13,7 @@ router.get('/characters', authCheck, function (req, res) {
 })
 
 router.get('/characters/:id', authCheck, function (req, res) {
-  Character.findOne({ _id: req.params.id }).then(function (character) {
+  Character.findOne({ _id: req.params.id }).then(character => {
     res.json({ character })
   })
 })
@@ -41,7 +41,6 @@ router.post('/characters', authCheck, function (req, res) {
   })
   .save()
   .then(newCharacter => {
-    console.log('new character created: ', newCharacter)
     res.json({
       character: newCharacter
     })
@@ -49,11 +48,10 @@ router.post('/characters', authCheck, function (req, res) {
 })
 
 router.put('/characters/:id', authCheck, function (req, res) {
-  console.log('updating character: ', req.body)
   Character.findByIdAndUpdate({ _id: req.params.id }, req.body)
-    .then(function () {
+    .then(() => {
       Character.findOne({ _id: req.params.id })
-        .then(function (character) {
+        .then(character => {
           res.json({ character })
         })
     })
@@ -61,7 +59,7 @@ router.put('/characters/:id', authCheck, function (req, res) {
 
 router.delete('/characters/:id', function (req, res) {
   Character.findByIdAndRemove({ _id: req.params.id })
-    .then(function (character) {
+    .then(character => {
       res.json({ character })
     })
 })
