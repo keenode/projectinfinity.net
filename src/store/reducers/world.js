@@ -20,7 +20,6 @@ const getWorldStart = (state, action) => {
 }
 
 const getWorldSuccess = (state, action) => {
-  console.log('action: ', action)
   return updateObject(state, {
     name: action.name,
     map: {
