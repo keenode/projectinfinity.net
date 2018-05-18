@@ -2,6 +2,9 @@ const router = require('express').Router()
 const authCheck = require('../../middleware/auth-check')
 const Character = require('../../models/character')
 
+/*
+ * GET all characters
+ */
 router.get('/characters', authCheck, function (req, res) {
   Character.find().then(characters => {
     res.json({
@@ -12,12 +15,18 @@ router.get('/characters', authCheck, function (req, res) {
   })
 })
 
+/*
+ * GET a character
+ */
 router.get('/characters/:id', authCheck, function (req, res) {
   Character.findOne({ _id: req.params.id }).then(character => {
     res.json({ character })
   })
 })
 
+/*
+ * CREATE a character
+ */
 router.post('/characters', authCheck, function (req, res) {
   new Character({
     name: req.body.name,
@@ -47,6 +56,9 @@ router.post('/characters', authCheck, function (req, res) {
   })
 })
 
+/*
+ * UPDATE a character
+ */
 router.put('/characters/:id', authCheck, function (req, res) {
   Character.findByIdAndUpdate({ _id: req.params.id }, req.body)
     .then(() => {
@@ -57,6 +69,9 @@ router.put('/characters/:id', authCheck, function (req, res) {
     })
 })
 
+/*
+ * DELETE a character
+ */
 router.delete('/characters/:id', function (req, res) {
   Character.findByIdAndRemove({ _id: req.params.id })
     .then(character => {
