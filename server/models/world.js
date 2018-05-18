@@ -6,6 +6,28 @@ const WorldSchema = new Schema({
     type: String,
     required: [true, 'Name field is required']
   },
+  datetime: {
+    day: {
+      type: Number,
+      required: true
+    },
+    month: {
+      type: Number,
+      required: true
+    },
+    year: {
+      type: Number,
+      required: true
+    },
+    hour: {
+      type: Number,
+      required: true
+    },
+    minute: {
+      type: Number,
+      required: true
+    }
+  },
   map: {
     size: {
       width: {

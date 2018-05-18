@@ -119,6 +119,7 @@ class Play extends Component {
         {sidebar}
         {chat}
         {menuBox}
+        {/* TEMP ACTIONS */}
         <div className={styles.TestActions} style={{ display: this.props.playMode === 'Playing' ? 'block' : 'none' }}>
           <Button btnType="Danger" clicked={() => { this.props.onUpdateVitality(this.props.character.id, -5, this.props.character.vam) }}>-5 Vitality</Button>
           <Button clicked={() => { this.props.onUpdateVitality(this.props.character.id, 5, this.props.character.vam) }}>+5 Vitality</Button><br />
@@ -158,6 +159,13 @@ const mapStateToProps = state => {
     },
     world: {
       name: state.world.name,
+      datetime: {
+        day: 1,
+        month: 1,
+        year: 2022,
+        hour: 13,
+        minute: 33
+      },
       map: {
         size: state.world.map.size,
         tiles: state.world.map.tiles
