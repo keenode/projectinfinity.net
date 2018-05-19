@@ -2,37 +2,7 @@ const router = require('express').Router()
 const authCheck = require('../../middleware/auth-check')
 const World = require('../../models/world')
 const Map = require('../../models/map')
-
-// Ocean
-const o = {
-  gfxId: 0,
-  terrainName: 'Ocean'
-}
-
-// Grassland
-const G = {
-  gfxId: 1,
-  terrainName: 'Grasslands'
-}
-
-function generateTiles(mapW, mapH) {
-  const tiles = []
-  for (let y = 0; y < mapH; y++) {
-    const row = []
-    for (let x = 0; x < mapW; x++) {
-      const terrainProps = Math.random() * 5 < 4 ? G : o 
-      row.push({
-        ...terrainProps,
-        location: {
-          xCoord: x,
-          yCoord: y
-        }
-      })
-    }
-    tiles.push(row)
-  }
-  return tiles
-}
+const RandomMapGenerator = require('../../game/world/maps/RandomMapGenerator')
 
 /*
  * Handle world datetime in real time
@@ -113,6 +83,7 @@ router.get('/worlds/:id/datetime', authCheck, function (req, res) {
 router.post('/worlds', authCheck, function (req, res) {
   const mapW = req.body.map.size.width
   const mapH = req.body.map.size.height
+  const tiles = RandomMapGenerator.generateTiles(mapW, mapH)
   new World({
     name: req.body.name,
     datetime: {
@@ -127,7 +98,7 @@ router.post('/worlds', authCheck, function (req, res) {
         width: mapW,
         height: mapH
       },
-      tiles: generateTiles(mapW, mapH)
+      tiles
     }
   })
   .save()

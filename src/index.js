@@ -3,7 +3,6 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 2. World time
- * - Store datetime on server after certain amount of time has passed
  * - Move map generator code to its own file
  * - Move datetime handling logic to its own file
  * -- 3. Chat
