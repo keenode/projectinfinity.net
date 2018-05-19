@@ -71,7 +71,7 @@ class Play extends Component {
           this.props.onLoadWorldCharacters(this.props.character.id)
           this.props.onLoadWorldDatetime(0)
         }, 1000)
-        this.props.onInitChatMessages()
+        this.props.onGetChatMessages()
         this.previousMode = this.props.playMode
       }
     } else if (this.props.playMode === 'CharacterCreate') {
@@ -189,7 +189,7 @@ const mapDispatchToProps = dispatch => {
     onLoadWorld: () => dispatch(actions.getWorld()),
     onLoadWorldDatetime: worldId => dispatch(actions.getWorldDatetime(worldId)),
     onLoadWorldCharacters: charId => dispatch(actions.getWorldCharacters(charId)),
-    onInitChatMessages: () => dispatch(actions.initMessages())
+    onGetChatMessages: () => dispatch(actions.getChatMessages())
   }
 }
 

@@ -1,4 +1,7 @@
-export { initMessages } from './chat'
+export {
+  getChatMessages,
+  sendChatMessage
+} from './chat'
 export {
   auth,
   logout,

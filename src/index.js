@@ -2,9 +2,6 @@
  * Start Mongo:
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
- * -- 2. World time
- * - Move map generator code to its own file
- * - Move datetime handling logic to its own file
  * -- 3. Chat
  * - Start work on "General" chat functionality... start with standard AJAX, press ENTER to bring up chat prompt, poll interval
  * - Begin first websock implementation for chat

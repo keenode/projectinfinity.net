@@ -1,27 +1,37 @@
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-instance'
 
-export const getMessages = (messages) => {
+/*
+ * GET_CHAT_MESSAGES
+ */
+export const getChatMessages = () => {
+  return dispatch => {
+    dispatch(getChatMessagesStart())
+    axios.get('/api/chat/messages')
+      .then(res => {
+        dispatch(getChatMessagesSuccess(res.data.messages))
+      })
+      .catch(err => {
+        dispatch(getChatMessagesError())
+      })
+  }
+}
+
+export const getChatMessagesStart = () => {
   return {
-    type: actionTypes.GET_MESSAGES,
+    type: actionTypes.GET_CHAT_MESSAGES_START
+  }
+}
+
+export const getChatMessagesSuccess = messages => {
+  return {
+    type: actionTypes.GET_CHAT_MESSAGES_SUCCESS,
     messages
   }
 }
 
-export const getMessagesError = () => {
+export const getChatMessagesError = () => {
   return {
-    type: actionTypes.GET_MESSAGES_ERROR
-  }
-}
-
-export const initMessages = () => {
-  return dispatch => {
-    axios.get('/api/chat/messages')
-      .then(res => {
-        dispatch(getMessages(res.data.messages))
-      })
-      .catch(err => {
-        dispatch(getMessagesError())
-      })
+    type: actionTypes.GET_CHAT_MESSAGES_ERROR
   }
 }
