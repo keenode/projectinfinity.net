@@ -3,49 +3,11 @@ const authCheck = require('../../middleware/auth-check')
 const World = require('../../models/world')
 const Map = require('../../models/map')
 const RandomMapGenerator = require('../../game/world/maps/RandomMapGenerator')
+const TickManager = require('../../game/time/TickManager')
 
-/*
- * Handle world datetime in real time
- */
-// This will become to "Tick" handler class
-let worldDatetime = null
-const tickSeconds = 3
-
- World.findOne({ _id: '5aff9d96cb7f3b7fb0be54d0' }).then(world => {
-  handleDatetime(world.datetime)
-})
-// Consider game/time/TickManager.js to handle game tick logic for the entire game
-function handleDatetime(datetime) {
-  worldDatetime = datetime
-  setInterval(function() {
-    worldDatetime.minute += 1
-    if (worldDatetime.minute > 59) {
-      worldDatetime.minute = 0
-      worldDatetime.hour += 1
-    } else if (worldDatetime.hour > 23) {
-      worldDatetime.hour = 0
-      worldDatetime.day += 1
-    } else if (worldDatetime.day > 32) {
-      worldDatetime.day = 1
-      worldDatetime.month += 1
-    } else if (worldDatetime.month > 12) {
-      worldDatetime.month = 1
-      worldDatetime.year += 1
-    }
-    console.log('[handleDatetime]: ', worldDatetime)
-  }, tickSeconds * 1000)
-
-  setInterval(function() {
-    saveDatetime()
-  }, tickSeconds * 1000 * 4)
-}
-
-function saveDatetime() {
-  World.findByIdAndUpdate({ _id:'5aff9d96cb7f3b7fb0be54d0' }, { datetime: worldDatetime })
-    .then(() => {
-      console.log('World datetime saved.')
-    })
-}
+// Init and start the Tick Manager
+const tickManager = new TickManager()
+tickManager.start()
 
 /*
  * GET all worlds
@@ -71,10 +33,7 @@ router.get('/worlds/:id', authCheck, function (req, res) {
  * GET a world's current datetime
  */
 router.get('/worlds/:id/datetime', authCheck, function (req, res) {
-  // World.findOne({ _id: req.params.id }).then(world => {
-  //   res.json({ datetime: world.datetime })
-  // })
-  res.json({ datetime: worldDatetime })
+  res.json({ datetime: tickManager.worldDatetime })
 })
 
 /*
@@ -158,6 +117,7 @@ router.get('/maps/:id', authCheck, function (req, res) {
 router.post('/worlds/:world_id/maps', authCheck, function (req, res) {
   const mapW = req.body.size.width
   const mapH = req.body.size.height
+  const tiles = RandomMapGenerator.generateTiles(mapW, mapH)
   new Map({
     world_id: req.params.world_id,
     name: req.body.name,
@@ -165,7 +125,7 @@ router.post('/worlds/:world_id/maps', authCheck, function (req, res) {
       width: mapW,
       height: mapH
     },
-    tiles: generateTiles(mapW, mapH)
+    tiles
   })
   .save()
   .then(newMap => {
