@@ -46,6 +46,6 @@ const WorldSchema = new Schema({
   }
 })
 
-const World = mongoose.model('world', WorldSchema)
+const World = mongoose.model('World', WorldSchema)
 
 module.exports = World

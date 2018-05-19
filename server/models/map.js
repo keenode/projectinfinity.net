@@ -27,6 +27,6 @@ const MapSchema = new Schema({
   }
 })
 
-const Map = mongoose.model('map', MapSchema)
+const Map = mongoose.model('Map', MapSchema)
 
 module.exports = Map

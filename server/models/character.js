@@ -58,6 +58,6 @@ const CharacterSchema = new Schema({
   }
 })
 
-const Character = mongoose.model('character', CharacterSchema)
+const Character = mongoose.model('Character', CharacterSchema)
 
 module.exports = Character

@@ -14,9 +14,7 @@ tickManager.start()
  */
 router.get('/worlds', authCheck, function (req, res) {
   World.find().then(worlds => {
-    res.json({
-      worlds
-    })
+    res.json({ worlds })
   })
 })
 
