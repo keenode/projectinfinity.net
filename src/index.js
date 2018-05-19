@@ -3,9 +3,9 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 2. World time
- * - Store date/time on server and process time in real time
- * - Check datetime on client with poll interval
- * - Move map generator code to its own file 
+ * - Store datetime on server after certain amount of time has passed
+ * - Move map generator code to its own file
+ * - Move datetime handling logic to its own file
  * -- 3. Chat
  * - Start work on "General" chat functionality... start with standard AJAX, press ENTER to bring up chat prompt, poll interval
  * - Begin first websock implementation for chat

@@ -39,6 +39,7 @@ function generateTiles(mapW, mapH) {
  */
 // This will become to "Tick" handler class
 let worldDatetime = null
+const tickSeconds = 3
 
  World.findOne({ _id: '5aff9d96cb7f3b7fb0be54d0' }).then(world => {
   handleDatetime(world.datetime)
@@ -62,7 +63,18 @@ function handleDatetime(datetime) {
       worldDatetime.year += 1
     }
     console.log('[handleDatetime]: ', worldDatetime)
-  }, 3000)
+  }, tickSeconds * 1000)
+
+  setInterval(function() {
+    saveDatetime()
+  }, tickSeconds * 1000 * 4)
+}
+
+function saveDatetime() {
+  World.findByIdAndUpdate({ _id:'5aff9d96cb7f3b7fb0be54d0' }, { datetime: worldDatetime })
+    .then(() => {
+      console.log('World datetime saved.')
+    })
 }
 
 /*
