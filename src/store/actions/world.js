@@ -6,7 +6,7 @@ import axios from '../../axios-instance'
  */
 export const getWorld = worldId => {
   // TEMP: force world id
-  worldId = '5afe5cc430518f7c98f95f04'
+  worldId = '5aff9d96cb7f3b7fb0be54d0'
   return dispatch => {
     dispatch(getWorldStart())
     axios.get('/api/worlds/' + worldId)

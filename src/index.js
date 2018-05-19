@@ -3,7 +3,6 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 2. World time
- * - Pass datetime props to WorldInfo component
  * - Store date/time on server and process time in real time
  * - Check datetime on client with poll interval
  * - Move map generator code to its own file 

@@ -62,6 +62,13 @@ router.post('/worlds', authCheck, function (req, res) {
   const mapH = req.body.map.size.height
   new World({
     name: req.body.name,
+    datetime: {
+      day: 1,
+      month: 1,
+      year: 0,
+      hour: 0,
+      minute: 0
+    },
     map: {
       size: {
         width: mapW,
