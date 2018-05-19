@@ -160,11 +160,11 @@ const mapStateToProps = state => {
     world: {
       name: state.world.name,
       datetime: {
-        day: 15,
-        month: 7,
-        year: 2022,
-        hour: 13,
-        minute: 33
+        day: state.world.datetime.day,
+        month: state.world.datetime.month,
+        year: state.world.datetime.year,
+        hour: state.world.datetime.hour,
+        minute: state.world.datetime.minute
       },
       map: {
         size: state.world.map.size,

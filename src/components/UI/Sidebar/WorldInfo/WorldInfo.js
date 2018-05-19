@@ -38,7 +38,7 @@ const worldInfo = props => (
       </div>
       <div className={styles.DateTimeWeather}>
         <span>Great Basin - Sunny 76&deg;</span>
-        <span>{props.datetime.hour}:{props.datetime.minute} - {datetimeNames.days[props.datetime.day % 8]}, {props.datetime.day} {datetimeNames.months[props.datetime.month]}, {props.datetime.year}</span>
+        <span>{props.datetime.hour < 10 ? '0' + props.datetime.hour : props.datetime.hour}:{props.datetime.minute < 10 ? '0' + props.datetime.minute : props.datetime.minute} - {datetimeNames.days[props.datetime.day % 8]}, {props.datetime.day} {datetimeNames.months[props.datetime.month]}, {props.datetime.year}</span>
       </div>
     </div>
   </div>

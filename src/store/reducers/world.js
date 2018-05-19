@@ -3,6 +3,13 @@ import { updateObject } from '../../shared/utility'
 
 const initialState = {
   name: null,
+  datetime: {
+    day: 1,
+    month: 1,
+    year: 0,
+    hour: 0,
+    minute: 0
+  },
   map: {
     size: null,
     tiles: []
@@ -22,6 +29,7 @@ const getWorldStart = (state, action) => {
 const getWorldSuccess = (state, action) => {
   return updateObject(state, {
     name: action.name,
+    datetime: action.datetime,
     map: {
       size: action.map.size,
       tiles: action.map.tiles

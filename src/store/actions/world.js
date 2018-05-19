@@ -29,6 +29,7 @@ export const getWorldSuccess = world => {
   return {
     type: actionTypes.GET_WORLD_SUCCESS,
     name: world.name,
+    datetime: world.datetime,
     map: world.map
   }
 }
