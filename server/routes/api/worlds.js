@@ -43,11 +43,24 @@ let worldDatetime = null
  World.findOne({ _id: '5aff9d96cb7f3b7fb0be54d0' }).then(world => {
   handleDatetime(world.datetime)
 })
-
+// Consider game/time/TickManager.js to handle game tick logic for the entire game
 function handleDatetime(datetime) {
   worldDatetime = datetime
   setInterval(function() {
     worldDatetime.minute += 1
+    if (worldDatetime.minute > 59) {
+      worldDatetime.minute = 0
+      worldDatetime.hour += 1
+    } else if (worldDatetime.hour > 23) {
+      worldDatetime.hour = 0
+      worldDatetime.day += 1
+    } else if (worldDatetime.day > 32) {
+      worldDatetime.day = 1
+      worldDatetime.month += 1
+    } else if (worldDatetime.month > 12) {
+      worldDatetime.month = 1
+      worldDatetime.year += 1
+    }
     console.log('[handleDatetime]: ', worldDatetime)
   }, 3000)
 }

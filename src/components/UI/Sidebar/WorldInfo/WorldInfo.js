@@ -18,16 +18,18 @@ const datetimeNames = {
     12: 'December'
   },
   days: {
+    0: 'Sunday',
     1: 'Monday',
     2: 'Tuesday',
     3: 'Wednesday',
     4: 'Thursday',
     5: 'Friday',
     6: 'Saturday',
-    7: 'Sunday',
-    8: 'Sunday+'
+    7: 'Eightday'
   }
 }
+
+// TODO: Consider formatting years to be 0.0000, max at 0.9999 then it goes on to 1.0000
 
 const worldInfo = props => (
   <div className={styles.WorldInfo}>
