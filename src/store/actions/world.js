@@ -41,6 +41,43 @@ export const getWorldError = () => {
 }
 
 /*
+ * GET_WORLD_DATETIME
+ */
+export const getWorldDatetime = worldId => {
+  // TEMP: force world id
+  worldId = '5aff9d96cb7f3b7fb0be54d0'
+  return dispatch => {
+    dispatch(getWorldDatetimeStart())
+    axios.get('/api/worlds/' + worldId + '/datetime')
+      .then(res => {
+        dispatch(getWorldDatetimeSuccess(res.data.datetime))
+      })
+      .catch(err => {
+        dispatch(getWorldDatetimeError())
+      })
+  }
+}
+
+export const getWorldDatetimeStart = () => {
+  return {
+    type: actionTypes.GET_WORLD_DATETIME_START
+  }
+}
+
+export const getWorldDatetimeSuccess = datetime => {
+  return {
+    type: actionTypes.GET_WORLD_DATETIME_SUCCESS,
+    datetime
+  }
+}
+
+export const getWorldDatetimeError = () => {
+  return {
+    type: actionTypes.GET_WORLD_DATETIME_ERROR
+  }
+}
+
+/*
  * GET_WORLD_CHARACTERS
  */
 export const getWorldCharacters = charId => {

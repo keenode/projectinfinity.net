@@ -35,6 +35,24 @@ function generateTiles(mapW, mapH) {
 }
 
 /*
+ * Handle world datetime in real time
+ */
+// This will become to "Tick" handler class
+let worldDatetime = null
+
+ World.findOne({ _id: '5aff9d96cb7f3b7fb0be54d0' }).then(world => {
+  handleDatetime(world.datetime)
+})
+
+function handleDatetime(datetime) {
+  worldDatetime = datetime
+  setInterval(function() {
+    worldDatetime.minute += 1
+    console.log('[handleDatetime]: ', worldDatetime)
+  }, 3000)
+}
+
+/*
  * GET all worlds
  */
 router.get('/worlds', authCheck, function (req, res) {
@@ -52,6 +70,16 @@ router.get('/worlds/:id', authCheck, function (req, res) {
   World.findOne({ _id: req.params.id }).then(world => {
     res.json({ world })
   })
+})
+
+/*
+ * GET a world's current datetime
+ */
+router.get('/worlds/:id/datetime', authCheck, function (req, res) {
+  // World.findOne({ _id: req.params.id }).then(world => {
+  //   res.json({ datetime: world.datetime })
+  // })
+  res.json({ datetime: worldDatetime })
 })
 
 /*

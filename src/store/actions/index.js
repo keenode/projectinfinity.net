@@ -17,5 +17,6 @@ export {
 } from './character'
 export {
   getWorld,
+  getWorldDatetime,
   getWorldCharacters
 } from './world'

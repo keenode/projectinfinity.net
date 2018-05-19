@@ -16,6 +16,7 @@ const initialState = {
   },
   otherCharacters: [],
   loading: false,
+  loadingDatetime: false,
   loadingCharacters: false
 }
 
@@ -40,6 +41,23 @@ const getWorldSuccess = (state, action) => {
 
 const getWorldError = (state, action) => {
   return updateObject(state, { loading: false })
+}
+
+/*
+ * Get World Datetime
+ */
+const getWorldDatetimeStart = (state, action) => {
+  return updateObject(state, { loadingDatetime: true })
+}
+
+const getWorldDatetimeSuccess = (state, action) => {
+  return updateObject(state, {
+    datetime: action.datetime
+  })
+}
+
+const getWorldDatetimeError = (state, action) => {
+  return updateObject(state, { loadingDatetime: false })
 }
 
 /*
@@ -68,6 +86,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_WORLD_START: return getWorldStart(state, action)
     case actionTypes.GET_WORLD_SUCCESS: return getWorldSuccess(state, action)
     case actionTypes.GET_WORLD_ERROR: return getWorldError(state, action)
+    case actionTypes.GET_WORLD_DATETIME_START: return getWorldDatetimeStart(state, action)
+    case actionTypes.GET_WORLD_DATETIME_SUCCESS: return getWorldDatetimeSuccess(state, action)
+    case actionTypes.GET_WORLD_DATETIME_ERROR: return getWorldDatetimeError(state, action)
     case actionTypes.GET_WORLD_CHARACTERS_START: return getWorldCharactersStart(state, action)
     case actionTypes.GET_WORLD_CHARACTERS_SUCCESS: return getWorldCharactersSuccess(state, action)
     case actionTypes.GET_WORLD_CHARACTERS_ERROR: return getWorldCharactersError(state, action)

@@ -67,8 +67,9 @@ class Play extends Component {
         this.props.onLoadWorld()
         // TODO: Use websockets instead of polling
         setInterval(() => {
-          console.log('-- characters update poll')
+          console.log('-- Poll Update')
           this.props.onLoadWorldCharacters(this.props.character.id)
+          this.props.onLoadWorldDatetime(0)
         }, 1000)
         this.props.onInitChatMessages()
         this.previousMode = this.props.playMode
@@ -186,6 +187,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateMind: (charId, changeAmt, curVAM) => dispatch(actions.updateMind(charId, changeAmt, curVAM)),
     onUpdatePosition: (charId, reqX, reqY) => dispatch(actions.updatePosition(charId, reqX, reqY)),
     onLoadWorld: () => dispatch(actions.getWorld()),
+    onLoadWorldDatetime: worldId => dispatch(actions.getWorldDatetime(worldId)),
     onLoadWorldCharacters: charId => dispatch(actions.getWorldCharacters(charId)),
     onInitChatMessages: () => dispatch(actions.initMessages())
   }
