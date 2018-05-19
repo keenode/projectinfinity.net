@@ -100,7 +100,7 @@ class Play extends Component {
       const currentTileCharacters = this.props.world.otherCharacters.filter(character => character.position.x === this.props.character.position.x && character.position.y === this.props.character.position.y)
       sidebar = (
         <Sidebar>
-          <WorldInfo worldName={this.props.world.name} />
+          <WorldInfo worldName={this.props.world.name} datetime={this.props.world.datetime} />
           <ExamineOptions>
             <TileInspector playerTile={playerTile} queriedTile={this.state.queriedTile} />
             <InteractionPane currentTileCharacters={currentTileCharacters} />
@@ -160,8 +160,8 @@ const mapStateToProps = state => {
     world: {
       name: state.world.name,
       datetime: {
-        day: 1,
-        month: 1,
+        day: 15,
+        month: 7,
         year: 2022,
         hour: 13,
         minute: 33
