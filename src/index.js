@@ -6,6 +6,7 @@
  * - Start work on "General" chat functionality... start with standard AJAX, press ENTER to bring up chat prompt, poll interval
  * - Begin first websock implementation for chat
  * - Port over websocket functionality for character movement
+ * * - Port over websocket functionality for world datetime
  * -- 4. Character Select refactor
  * - Add loader while fetching available characters
  * - Only show characters that belong to the account, consider /user/:id/characters route...

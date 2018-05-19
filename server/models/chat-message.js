@@ -7,7 +7,7 @@ const ChatMessageSchema = new Schema({
     type: ObjectId,
     required: true
   },
-  message: {
+  contents: {
     type: String,
     required: true
   },

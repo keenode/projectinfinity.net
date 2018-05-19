@@ -49,12 +49,21 @@
   overflow-y: scroll;
 }
 
+.MessageCharacterName {
+  margin-right: 5px;
+  color: cyan;
+  font-size: 11px;
+  font-weight: 600;
+  text-shadow: 2px 2px 0 var(--theme-color-black);
+}
+
 .Message {
+  color: var(--theme-color-white);
   font-size: 13px;
 }
 
 .MessageTimestamp {
+  margin-right: 5px;
   color: var(--ui-info-text-color);
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 9px;
 }

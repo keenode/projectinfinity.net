@@ -17,7 +17,7 @@ router.get('/chat/messages', authCheck, function (req, res) {
 router.post('/chat/messages', authCheck, function (req, res) {
   new ChatMessage({
     character_id: req.body.character_id,
-    message: req.body.message
+    contents: req.body.message
   })
   .save()
   .then(messages => {
