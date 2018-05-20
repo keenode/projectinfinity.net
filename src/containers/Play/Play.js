@@ -123,8 +123,9 @@ class Play extends Component {
 
   chatMessageSubmitHandler(e) {
     e.preventDefault()
-    if (this.state.chatMessage) {
-      this.props.onSendChatMessage(this.props.character.id, this.state.chatMessage)
+    const trimmedChatMsg = this.state.chatMessage.trim()
+    if (trimmedChatMsg) {
+      this.props.onSendChatMessage(this.props.character.id, trimmedChatMsg)
     }
     this.hideSendChatUI()
   }
