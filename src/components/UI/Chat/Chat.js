@@ -28,7 +28,7 @@ class Chat extends Component {
       return (
         <li key={message._id} className={styles.Message}>
           <span className={styles.MessageTimestamp}>[{dateSent}]</span>
-          <span className={styles.MessageCharacterName}>Keenode{message.characterName}</span>
+          <span className={styles.MessageCharacterName}>{message.characterName}</span>
           {message.contents}
         </li>
       )

@@ -44,7 +44,6 @@ export const sendChatMessage = (charId, message) => {
     dispatch(sendChatMessageStart())
     axios.post('/api/chat/messages', { character_id: charId, message })
       .then(res => {
-        console.log('success: ', res.data.messages)
         dispatch(sendChatMessageSuccess(res.data.messages))
       })
       .catch(err => {
