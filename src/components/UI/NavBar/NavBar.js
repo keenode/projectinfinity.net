@@ -14,7 +14,7 @@ const navBar = (props) => {
       <ul className={styles.NavBarItems}>
         <NavItem link="/" exact>Home</NavItem>
         {props.isLoggedIn ? (<NavItem link="/play">Play</NavItem>) : null}
-        {props.isLoggedIn ? (<NavItem link="/game-master">Game Master</NavItem>) : null}
+        {/* {props.isLoggedIn ? (<NavItem link="/game-master">Game Master</NavItem>) : null} */}
       </ul>
       <ul className={styles.NavBarItems}>
         {

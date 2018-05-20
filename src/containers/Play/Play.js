@@ -82,6 +82,7 @@ class Play extends Component {
         this.previousMode = this.props.playMode
       }
     } else if (this.props.playMode === 'CharacterCreate') {
+      // TODO: Use refs
       document.getElementById('name').focus()
     }
   }

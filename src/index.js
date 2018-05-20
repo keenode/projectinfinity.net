@@ -3,19 +3,59 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 3. Chat
- * - Begin first websock implementation for chat
+ * - Begin first websocket implementation for chat
  * - Port over websocket functionality for character movement
- * * - Port over websocket functionality for world datetime
+ * - Port over websocket functionality for world datetime
+ * 
  * -- 4. Character Select refactor
+ * - Only show characters that belong to the account, consider /user/:id/characters route... 
  * - Add loader while fetching available characters
- * - Only show characters that belong to the account, consider /user/:id/characters route...
  * - Handle slots properly
  * - TLC the styles a bit and dim the delete button
  * - Add "Are You Sure" alert component prior to deleting character, ask user to type 'delete CHARACTER_NAME'
  * -- 5. Character Create refactor
  * - TLC the styles
  * - Focus the character name input
- * - Add proper error validation for character creation process
+ * - Add proper error validation for character creation process (client & server side)
+ * 
+ * -- 5. Play Mode UI touchups
+ * - Chat - add alerts for incomplete functionality, comment out 'Region' tab
+ * - MenuBox - add alerts for incomplete functionality
+ * - Interaction Pane - style up current players, and make area scrollable
+ * - Interaction Pane = add alerts for incomplete functionality
+ * - ESC key should unquery selected tile
+ * - ESC key should unselect player characteqr move choice UI
+ * - Tile Inspector - No tile queried should increase with of current player tile to 100%
+ * - Add region name and randomize weather conditions to database schema for tiles on map, and update WorldInfo component
+ * - Hot Toolbar = add alerts for incomplete functionality
+ * - Add functionality to click on player to query them in the tile inspector
+ * - Handle loading / adding event listeners properly when switching between Home / Play
+ * - Add an option to the Menu Box to return the user back to the Character Selelction screen... handle this state transition properly
+ * - Add an alert before the user logs out of their account
+ * 
+ * -- 6. Login
+ * - TLC the styles
+ * - Fix default field focus refs
+ * - Add proper error validation (client & server side)
+ * 
+ * -- 7. Register
+ * - TLC the styles
+ * - Fix default field focus refs
+ * - Add proper error validation (client & server side)
+ * 
+ * -- 8. Auth - General
+ * - Update user schema to be more flexible with oAuth ids and logging in to a local account
+ * - Add facebook oauth
+ * - Clean up and test client side cookie logic and auto-logoff
+ * - Look deeper in json web tokens and invalidate them? 
+ * 
+ * -- 9. Homepage
+ * - Style up the homepage and come up with some marketing mumbo-jumbo
+ * 
+ * -- 10. Final Touches for MVP
+ * - Add live total players online count near the top right of the black Title Bar
+ * - Prepare configs for production, test test test
+ * - Deploy to new AWS box for production
  */
 
 import React from 'react'
