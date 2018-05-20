@@ -26,19 +26,3 @@ class MessageEntry extends Component {
 }
 
 export default MessageEntry
-
-// import React from 'react'
-
-// import styles from './MessageEntry.css'
-
-// const messageEntry = props => (
-//   <form className={styles.MessageEntry} onSubmit={props.submitted}>
-//     <span>Chat:</span>
-//     <div className={styles.MessageEntryInner}>
-//       <input type="text" onChange={props.changed} value={props.message} />
-//       <button className={styles.SendBtn} type="submit">Send</button>
-//     </div>
-//   </form>
-// )
-
-// export default messageEntry

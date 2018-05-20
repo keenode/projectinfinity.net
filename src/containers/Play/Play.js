@@ -64,6 +64,7 @@ class Play extends Component {
     }, false)
 
     document.addEventListener('keypress', this.handleKeyPress.bind(this), false)
+    document.addEventListener('keydown', this.handleKeyDown.bind(this), false)
   }
 
   componentDidUpdate() {
@@ -89,6 +90,12 @@ class Play extends Component {
       if (e.which === 13) {
         this.showSendChatUI()
       }
+    }
+  }
+
+  handleKeyDown(e) {
+    if (e.which === 27) {
+      this.hideSendChatUI()
     }
   }
 
