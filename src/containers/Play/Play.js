@@ -12,6 +12,7 @@ import InteractionPane from '../../components/UI/Sidebar/ExamineOptions/Interact
 import WorldInfo from '../../components/UI/Sidebar/WorldInfo/WorldInfo'
 import MenuBox from '../../components/UI/MenuBox/MenuBox'
 import Chat from '../../components/UI/Chat/Chat'
+import MessageEntry from '../../components/UI/Chat/MessageEntry/MessageEntry'
 import Modal from '../../components/UI/Modal/Modal'
 
 import CharacterSelect from './CharacterSelect/CharacterSelect'
@@ -85,6 +86,7 @@ class Play extends Component {
     let hotToolbar = null
     let sidebar = null
     let chat = null
+    let messageEntry = null
     let menuBox = null
     // TODO: Refactor
     if (this.props.playMode === 'Playing' && this.props.character.id && this.props.world.map.tiles.length > 0 && this.props.world.otherCharacters.length > 0) {
@@ -109,6 +111,7 @@ class Play extends Component {
         </Sidebar>
       )
       chat = <Chat messages={this.props.chat.messages} />
+      messageEntry = <MessageEntry />
       menuBox = <MenuBox />
     }
 
@@ -119,6 +122,7 @@ class Play extends Component {
         {hotToolbar}
         {sidebar}
         {chat}
+        {messageEntry}
         {menuBox}
         {/* TEMP ACTIONS */}
         <div className={styles.TestActions} style={{ display: this.props.playMode === 'Playing' ? 'block' : 'none' }}>
