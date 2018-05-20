@@ -39,33 +39,34 @@ export const getChatMessagesError = () => {
 /*
  * SEND_CHAT_MESSAGE
  */
-export const sendChatMessages = message => {
+export const sendChatMessage = (charId, message) => {
   return dispatch => {
-    dispatch(sendChatMessagesStart())
-    axios.post('/api/chat/messages', message)
+    dispatch(sendChatMessageStart())
+    axios.post('/api/chat/messages', { character_id: charId, message })
       .then(res => {
-        dispatch(sendChatMessagesSuccess(res.data.messages))
+        console.log('success: ', res.data.messages)
+        dispatch(sendChatMessageSuccess(res.data.messages))
       })
       .catch(err => {
-        dispatch(sendChatMessagesError())
+        dispatch(sendChatMessageError())
       })
   }
 }
 
-export const sendChatMessagesStart = () => {
+export const sendChatMessageStart = () => {
   return {
     type: actionTypes.SEND_CHAT_MESSAGE_START
   }
 }
 
-export const sendChatMessagesSuccess = messages => {
+export const sendChatMessageSuccess = messages => {
   return {
     type: actionTypes.SEND_CHAT_MESSAGE_SUCCESS,
     messages
   }
 }
 
-export const sendChatMessagesError = () => {
+export const sendChatMessageError = () => {
   return {
     type: actionTypes.SEND_CHAT_MESSAGE_ERROR
   }

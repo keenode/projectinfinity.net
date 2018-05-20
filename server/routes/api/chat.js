@@ -20,8 +20,13 @@ router.post('/chat/messages', authCheck, function (req, res) {
     contents: req.body.message
   })
   .save()
-  .then(messages => {
-    res.json({ messages })
+  .then(sentMessage => {
+    ChatMessage.find().then(messages => {
+      res.json({
+        messages,
+        sentMessage
+      })
+    })
   })
 })
 

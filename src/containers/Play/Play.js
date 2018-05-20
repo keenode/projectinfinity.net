@@ -26,6 +26,8 @@ class Play extends Component {
   previousMode = null
 
   state = {
+    chatMessage: '',
+    showingSendChatUI: false,
     queriedTile: null
   }
 
@@ -60,6 +62,8 @@ class Play extends Component {
         queriedTile: null
       })
     }, false)
+
+    document.addEventListener('keypress', this.handleKeyPress.bind(this), false)
   }
 
   componentDidUpdate() {
@@ -80,6 +84,44 @@ class Play extends Component {
     }
   }
 
+  handleKeyPress(e) {
+    if (this.props.playMode === 'Playing') {
+      if (e.which === 13) {
+        this.showSendChatUI()
+      }
+    }
+  }
+
+  showSendChatUI() {
+    this.setState({
+      ...this.state,
+      showingSendChatUI: true
+    })
+  }
+
+  hideSendChatUI() {
+    this.setState({
+      ...this.state,
+      chatMessage: '',
+      showingSendChatUI: false
+    })
+  }
+
+  chatMessageChangedHandler(e) {
+    this.setState({
+      ...this.state,
+      chatMessage: e.target.value
+    })
+  }
+
+  chatMessageSubmitHandler(e) {
+    e.preventDefault()
+    if (this.state.chatMessage) {
+      this.props.onSendChatMessage(this.props.character.id, this.state.chatMessage)
+    }
+    this.hideSendChatUI()
+  }
+
   render () {
     let map = null
     let characterStatus = null
@@ -95,7 +137,8 @@ class Play extends Component {
           mode={this.props.playMode}
           playerCharacter={this.props.character}
           characters={this.props.world.otherCharacters}
-          tilesData={this.props.world.map.tiles} />
+          tilesData={this.props.world.map.tiles}
+          showingSendChatUI={this.state.showingSendChatUI} />
       )
       characterStatus = <CharacterStatus character={this.props.character} />
       hotToolbar = <HotToolbar />
@@ -111,7 +154,7 @@ class Play extends Component {
         </Sidebar>
       )
       chat = <Chat messages={this.props.chat.messages} />
-      messageEntry = <MessageEntry />
+      messageEntry = this.state.showingSendChatUI ? <MessageEntry message={this.state.chatMessage} changed={this.chatMessageChangedHandler.bind(this)} submitted={this.chatMessageSubmitHandler.bind(this)} /> : null
       menuBox = <MenuBox />
     }
 
@@ -193,7 +236,8 @@ const mapDispatchToProps = dispatch => {
     onLoadWorld: () => dispatch(actions.getWorld()),
     onLoadWorldDatetime: worldId => dispatch(actions.getWorldDatetime(worldId)),
     onLoadWorldCharacters: charId => dispatch(actions.getWorldCharacters(charId)),
-    onGetChatMessages: () => dispatch(actions.getChatMessages())
+    onGetChatMessages: () => dispatch(actions.getChatMessages()),
+    onSendChatMessage: (charId, message) => dispatch(actions.sendChatMessage(charId, message))
   }
 }
 

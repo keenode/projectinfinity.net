@@ -45,6 +45,7 @@ class Map extends Component {
       for (let i = 0; i < this.characters.length; i++) {
         this.characters[i].setPosition(this.props.characters[i].position.x, this.props.characters[i].position.y)
       }
+      this.playerCharacter.preventingMoveActions = this.props.showingSendChatUI ? true : false
     }
   }
 

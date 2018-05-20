@@ -18,6 +18,7 @@ class Character {
       this.setPosition(config.position.x, config.position.y)
     }
     if (config.isPlayer) {
+      this.preventingMoveActions = false
       this.moveChoiceUI = new MoveChoiceUI()
       this.addEvents()
     }
@@ -70,6 +71,10 @@ class Character {
   }
 
   handleKeyPress(e) {
+    if (this.preventingMoveActions) {
+      return false
+    }
+
     if (e.which === 119) {
       this.triggerMoveEvent(0, -1)
     } else if (e.which === 97) {
