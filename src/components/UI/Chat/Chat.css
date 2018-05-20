@@ -60,6 +60,7 @@
 .Message {
   color: var(--theme-color-white);
   font-size: 13px;
+  line-height: 1.4;
 }
 
 .MessageTimestamp {

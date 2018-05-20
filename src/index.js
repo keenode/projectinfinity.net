@@ -3,7 +3,6 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 3. Chat
- * - Start work on "General" chat functionality... start with standard AJAX, press ENTER to bring up chat prompt, poll interval
  * - Begin first websock implementation for chat
  * - Port over websocket functionality for character movement
  * * - Port over websocket functionality for world datetime
