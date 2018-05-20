@@ -5,11 +5,11 @@ import styles from './MessageEntry.css'
 class MessageEntry extends Component {
   constructor(props) {
     super(props)
-    this.messageInput = React.createRef()
+    this.messageInputRef = React.createRef()
   }
 
   componentDidMount() {
-    this.messageInput.current.focus()
+    this.messageInputRef.current.focus()
   }
 
   render() {
@@ -18,7 +18,7 @@ class MessageEntry extends Component {
         <span>Chat:</span>
         <div className={styles.MessageEntryInner}>
           <input
-            ref={this.messageInput}
+            ref={this.messageInputRef}
             type="text"
             onChange={this.props.changed}
             value={this.props.message} />
