@@ -4,11 +4,9 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const config = require('./config')
 const db = require('./db')
+const io = require('socket.io')()
 
 const app = express()
-
-// const http = require('http').Server(app)
-const io = require('socket.io')()
 
 db.connect(config.dbUri)
 
@@ -57,10 +55,18 @@ app.use(function(err, req, res, next) {
   res.status(422).send({ error: err.message })
 })
 
+const chatWs = require('./websockets/chat')
+
 io.on('connection', function(socket) {
-  console.log('a user connected')
+  console.log(`[${new Date().toUTCString()}] A user connected.`)
+
+  chatWs.addEvents(socket, io)
+
+  socket.on('disconnect', function() {
+    console.log(`[${new Date().toUTCString()}] A user disconnected.`)
+  })
 })
 
 io.listen(SOCKET_PORT)
 
-app.listen(API_PORT, () => console.log('PI Server listening on port ' + API_PORT))
+app.listen(API_PORT, () => console.log('PI API Server listening on port ' + API_PORT))

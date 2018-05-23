@@ -36,6 +36,10 @@ class App extends Component {
 
     // Socket Test
     const socket = io('http://localhost:9002')
+    socket.emit('chat message', Math.random()*1000)
+    socket.on('chat message', function(msg) {
+      console.log(msg)
+    })
   }
 
   render() {
