@@ -3,28 +3,28 @@ const World = require('../../models/world')
 const tickSeconds = 3
 const numTicksToSave = 4
 
-class TickManager {
-  start() {
-    console.log('[TickManager] Started')
+class TickDirector {
+  static start() {
+    console.log('[TickDirector] Started')
     this.worldDatetime = null
     this.loadDatetime()
   }
 
-  loadDatetime() {
-    console.log('[TickManager] Loading datetime...')
+  static loadDatetime() {
+    console.log('[TickDirector] Loading datetime...')
     World.findOne({ _id: '5aff9d96cb7f3b7fb0be54d0' }).then(world => {
       this.worldDatetime = world.datetime
       this.startDatetimeUpdate()
     })
   }
 
-  startDatetimeUpdate() {
-    console.log('[TickManager] Starting datetime update')
+  static startDatetimeUpdate() {
+    console.log('[TickDirector] Starting datetime update')
     setInterval(this.updateDatetime.bind(this), tickSeconds * 1000)
     setInterval(this.saveDatetime.bind(this), tickSeconds * 1000 * numTicksToSave)
   }
 
-  updateDatetime() {
+  static updateDatetime() {
     const dt = this.worldDatetime
     dt.minute += 1
     if (dt.minute > 59) {
@@ -40,16 +40,16 @@ class TickManager {
       dt.month = 1
       dt.year += 1
     }
-    console.log('[TickManager] Datetime updated: ', dt)
+    console.log('[TickDirector] Datetime updated: ', dt)
   }
 
-  saveDatetime() {
-    console.log('[TickManager] Saving datetime...')
+  static saveDatetime() {
+    console.log('[TickDirector] Saving datetime...')
     World.findByIdAndUpdate({ _id:'5aff9d96cb7f3b7fb0be54d0' }, { datetime: this.worldDatetime })
       .then(() => {
-        console.log('[TickManager] Datetime saved')
+        console.log('[TickDirector] Datetime saved')
       })
   }
 }
 
-module.exports = TickManager
+module.exports = TickDirector

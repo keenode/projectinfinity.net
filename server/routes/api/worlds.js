@@ -3,11 +3,7 @@ const authCheck = require('../../middleware/auth-check')
 const World = require('../../models/world')
 const Map = require('../../models/map')
 const RandomMapGenerator = require('../../game/world/maps/RandomMapGenerator')
-const TickManager = require('../../game/time/TickManager')
-
-// Init and start the Tick Manager
-const tickManager = new TickManager()
-tickManager.start()
+const TickDirector = require('../../game/time/TickDirector')
 
 /*
  * GET all worlds
@@ -31,7 +27,7 @@ router.get('/worlds/:id', authCheck, function (req, res) {
  * GET a world's current datetime
  */
 router.get('/worlds/:id/datetime', authCheck, function (req, res) {
-  res.json({ datetime: tickManager.worldDatetime })
+  res.json({ datetime: TickDirector.worldDatetime })
 })
 
 /*

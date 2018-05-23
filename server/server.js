@@ -55,7 +55,10 @@ app.use(function(err, req, res, next) {
   res.status(422).send({ error: err.message })
 })
 
-const chatWs = require('./websockets/chat')
+const TickDirector = require('./game/time/TickDirector')
+TickDirector.start()
+
+const chatWs = require('./websockets/ChatWS')
 
 io.on('connection', function(socket) {
   console.log(`[${new Date().toUTCString()}] A user connected.`)

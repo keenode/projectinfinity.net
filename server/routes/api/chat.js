@@ -2,6 +2,7 @@ const router = require('express').Router()
 const authCheck = require('../../middleware/auth-check')
 const ChatMessage = require('../../models/chat-message')
 const Character = require('../../models/character')
+const ChatDirector = require('../../game/chat/ChatDirector')
 
 /*
  * GET all chat messages
@@ -32,6 +33,15 @@ router.post('/chat/messages', authCheck, function (req, res) {
         })
       })
     })
+  })
+})
+
+/*
+ * TEST ChatDirector
+ */
+router.get('/chat/cm-messages', authCheck, function (req, res) {
+  res.json({
+    messages: ChatDirector.getMessages()
   })
 })
 
