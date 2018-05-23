@@ -25,6 +25,7 @@
  * - Interaction Pane = add alerts for incomplete functionality
  * - ESC key should unquery selected tile
  * - ESC key should unselect player characteqr move choice UI
+ * - Clicking away from chat message UI should hide it
  * - Tile Inspector - No tile queried should increase with of current player tile to 100%
  * - Add region name and randomize weather conditions to database schema for tiles on map, and update WorldInfo component
  * - Hot Toolbar = add alerts for incomplete functionality

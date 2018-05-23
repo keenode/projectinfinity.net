@@ -7,12 +7,16 @@ const db = require('./db')
 
 const app = express()
 
+// const http = require('http').Server(app)
+const io = require('socket.io')()
+
 db.connect(config.dbUri)
 
 const routes = require('./routes/api/api')
 const authRoutes = require('./routes/api/auth')
 
-const SERVER_PORT = process.env.PORT || 9001
+const API_PORT = process.env.PORT || 9001
+const SOCKET_PORT = process.env.SOCKET_PORT || 9002
 const CLIENT_ORIGIN = 'http://localhost:9000'
 
 app.use(passport.initialize())
@@ -53,4 +57,10 @@ app.use(function(err, req, res, next) {
   res.status(422).send({ error: err.message })
 })
 
-app.listen(SERVER_PORT, () => console.log('PI Server listening on port ' + SERVER_PORT))
+io.on('connection', function(socket) {
+  console.log('a user connected')
+})
+
+io.listen(SOCKET_PORT)
+
+app.listen(API_PORT, () => console.log('PI Server listening on port ' + API_PORT))
