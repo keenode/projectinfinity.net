@@ -3,7 +3,7 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 3. Chat
- * - Begin first websocket implementation for chat
+ * - Save chat logs every so often and double check ws implementation
  * - Port over websocket functionality for character movement
  * - Port over websocket functionality for world datetime
  * 
@@ -65,6 +65,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import io from 'socket.io-client'
+import createSocketIoMiddleware from 'redux-socket.io'
 
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
@@ -76,6 +78,9 @@ import characterReducer from './store/reducers/character'
 import worldReducer from './store/reducers/world'
 
 import './index.css'
+
+const socket = io('http://localhost:9002')
+const socketIoMiddleware = createSocketIoMiddleware(socket, 'ws/')
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -90,7 +95,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   rootReducer,
   composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, socketIoMiddleware)
   )
 )
 

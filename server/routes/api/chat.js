@@ -18,9 +18,7 @@ router.get('/chat/messages', authCheck, function (req, res) {
     characterName: message.characterName
   } : message)
 
-  res.json({
-    messages
-  })
+  res.json({ messages })
   // getChatMessages(messages => {
   //   res.json({ messages })
   // })
@@ -46,15 +44,6 @@ router.post('/chat/messages', authCheck, function (req, res) {
   //     })
   //   })
   // })
-})
-
-/*
- * TEST ChatDirector
- */
-router.get('/chat/cm-messages', authCheck, function (req, res) {
-  res.json({
-    messages: ChatDirector.getMessages()
-  })
 })
 
 function getChatMessages(done) {

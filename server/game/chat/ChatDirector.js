@@ -5,15 +5,17 @@ let messages = []
 // TODO: This class will also manage auto saving to the db after a while
 
 class ChatDirector {
-  static addMessage(charId, msg) {
+  static addMessage(charId, msg, done) {
     findCharacterName(charId, characterName => {
-      messages.push({
+      const newMessage = {
         newModel: new ChatMessage({
           character_id: charId,
           contents: msg
         }),
         characterName
-      })
+      }
+      messages.push(newMessage)
+      done(newMessage)
     })
   }
 

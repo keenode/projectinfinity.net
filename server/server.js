@@ -60,12 +60,12 @@ TickDirector.start()
 
 const chatWs = require('./websockets/ChatWS')
 
-io.on('connection', function(socket) {
+io.on('connection', socket => {
   console.log(`[${new Date().toUTCString()}] A user connected.`)
 
   chatWs.addEvents(socket, io)
 
-  socket.on('disconnect', function() {
+  socket.on('disconnect', () => {
     console.log(`[${new Date().toUTCString()}] A user disconnected.`)
   })
 })

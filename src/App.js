@@ -13,8 +13,6 @@ import Logout from './containers/Auth/Logout/Logout'
 
 import * as actions from './store/actions/index'
 
-import io from 'socket.io-client'
-
 class App extends Component {
   componentDidMount() {
     // Check if auth token was passed via query string
@@ -33,13 +31,6 @@ class App extends Component {
       window.history.replaceState({}, document.title, cleanUri)
     }
     this.props.onLoginAttempt()
-
-    // Socket Test
-    const socket = io('http://localhost:9002')
-    socket.emit('chat message', Math.random()*1000)
-    socket.on('chat message', function(msg) {
-      console.log(msg)
-    })
   }
 
   render() {

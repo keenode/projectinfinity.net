@@ -3,8 +3,7 @@ import { updateObject } from '../../shared/utility'
 
 const initialState = {
   messages: [],
-  loadingMessages: false,
-  sendingMessage: false
+  loadingMessages: false
 }
 
 /*
@@ -26,21 +25,13 @@ const getChatMessagesError = (state, action) => {
 }
 
 /*
- * Send Chat Message
+ * Chat Message Added
  */
-const sendChatMessageStart = (state, action) => {
-  return updateObject(state, { sendingMessage: true })
-}
-
-const sendChatMessageSuccess = (state, action) => {
+const chatMessageAdded = (state, action) => {
+  const messages = [...state.messages, action.message]
   return updateObject(state, {
-    messages: action.messages,
-    sendingMessage: false
+    messages
   })
-}
-
-const sendChatMessageError = (state, action) => {
-  return updateObject(state, { sendingMessage: false })
 }
 
 /*
@@ -48,12 +39,10 @@ const sendChatMessageError = (state, action) => {
  */
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'ws/chat-message-added': return chatMessageAdded(state, action)
     case actionTypes.GET_CHAT_MESSAGES_START: return getChatMessagesStart(state, action)
     case actionTypes.GET_CHAT_MESSAGES_SUCCESS: return getChatMessagesSuccess(state, action)
     case actionTypes.GET_CHAT_MESSAGES_ERROR: return getChatMessagesError(state, action)
-    case actionTypes.SEND_CHAT_MESSAGE_START: return sendChatMessageStart(state, action)
-    case actionTypes.SEND_CHAT_MESSAGE_SUCCESS: return sendChatMessageSuccess(state, action)
-    case actionTypes.SEND_CHAT_MESSAGE_ERROR: return sendChatMessageError(state, action)
     default:
       return state
   }

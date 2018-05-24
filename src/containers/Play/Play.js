@@ -76,7 +76,7 @@ class Play extends Component {
           console.log('-- Poll Update')
           this.props.onLoadWorldCharacters(this.props.character.id)
           this.props.onLoadWorldDatetime(0)
-          this.props.onGetChatMessages()
+          // this.props.onGetChatMessages()
         }, 1000)
         this.props.onGetChatMessages()
         this.previousMode = this.props.playMode
