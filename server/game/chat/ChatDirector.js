@@ -1,10 +1,14 @@
 const ChatMessage = require('../../models/chat-message')
 const Character = require('../../models/character')
 let messages = []
-
-// TODO: This class will also manage auto saving to the db after a while
+const saveIntervalSeconds = 5
 
 class ChatDirector {
+  static start() {
+    console.log('[ChatDirector] Started')
+    setInterval(this.saveChatMessages.bind(this), saveIntervalSeconds * 1000)
+  }
+
   static addMessage(charId, msg, done) {
     findCharacterName(charId, characterName => {
       const newMessage = {
@@ -17,6 +21,23 @@ class ChatDirector {
       messages.push(newMessage)
       done(newMessage)
     })
+  }
+
+  static saveChatMessages() {
+    console.log('[ChatDirector] Saving chat messages...')
+    const newMessages = messages.map(message => message.newModel ? {
+      ...message.newModel._doc,
+      characterName: message.characterName
+    } : null).filter(message => message !== null)
+
+    if (newMessages.length > 0) {
+      ChatMessage.insertMany(newMessages)
+        .then(() => {
+          messages = messages.filter(message => message.newModel ? null : message)
+          messages.push(...newMessages)
+          console.log('[ChatDirector] Chat messages saved')
+        })
+      }
   }
 
   static setMessages(msgs) {

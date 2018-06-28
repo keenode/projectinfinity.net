@@ -56,7 +56,9 @@ app.use(function(err, req, res, next) {
 })
 
 const TickDirector = require('./game/time/TickDirector')
+const ChatDirector = require('./game/chat/ChatDirector')
 TickDirector.start()
+ChatDirector.start()
 
 const chatWs = require('./websockets/ChatWS')
 

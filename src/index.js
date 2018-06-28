@@ -3,7 +3,6 @@
  * "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
  * TODO:
  * -- 3. Chat
- * - Save chat logs every so often and double check ws implementation
  * - Port over websocket functionality for character movement
  * - Port over websocket functionality for world datetime
  * 
@@ -13,13 +12,15 @@
  * - Handle slots properly
  * - TLC the styles a bit and dim the delete button
  * - Add "Are You Sure" alert component prior to deleting character, ask user to type 'delete CHARACTER_NAME'
+ * 
  * -- 5. Character Create refactor
  * - TLC the styles
  * - Focus the character name input
  * - Add proper error validation for character creation process (client & server side)
  * 
- * -- 5. Play Mode UI touchups
+ * -- 6. Play Mode UI touchups
  * - Chat - add alerts for incomplete functionality, comment out 'Region' tab
+ * - Chat format date time nicer
  * - MenuBox - add alerts for incomplete functionality
  * - Interaction Pane - style up current players, and make area scrollable
  * - Interaction Pane = add alerts for incomplete functionality
@@ -34,29 +35,30 @@
  * - Add an option to the Menu Box to return the user back to the Character Selelction screen... handle this state transition properly
  * - Add an alert before the user logs out of their account
  * 
- * -- 6. Login
+ * -- 7. Login
  * - TLC the styles
  * - Fix default field focus refs
  * - Add proper error validation (client & server side)
  * 
- * -- 7. Register
+ * -- 8. Register
  * - TLC the styles
  * - Fix default field focus refs
  * - Add proper error validation (client & server side)
  * 
- * -- 8. Auth - General
+ * -- 9. Auth - General
  * - Update user schema to be more flexible with oAuth ids and logging in to a local account
  * - Add facebook oauth
  * - Clean up and test client side cookie logic and auto-logoff
- * - Look deeper in json web tokens and invalidate them? 
+ * - Look deeper in json web tokens and invalidate them?
  * 
- * -- 9. Homepage
+ * -- 10. Homepage
  * - Style up the homepage and come up with some marketing mumbo-jumbo
  * 
- * -- 10. Final Touches for MVP
+ * -- 11. Final Touches for MVP
  * - Add live total players online count near the top right of the black Title Bar
  * - Prepare configs for production, test test test
  * - Deploy to new AWS box for production
+ * - Update readme and supporting docs to make it look pro
  */
 
 import React from 'react'
