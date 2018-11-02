@@ -59,7 +59,6 @@
  * - Prepare configs for production, test test test
  * - Deploy to new AWS box for production
  * - Update readme and supporting docs to make it look pro
- * 
  */
 
 import React from 'react'
